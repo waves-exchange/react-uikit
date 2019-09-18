@@ -1,0 +1,77 @@
+{
+  "name": "@waves/react-uikit",
+  "version": "0.1.0",
+  "description": "",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "dev": "webpack --mode=development --watch",
+    "test": "jest",
+    "start": "start-storybook -p 3001",
+    "build": "webpack --mode=production",
+    "build:storybook": "build-storybook -s public -o public/storybook",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint-fix": "eslint './src/**/*.{ts,tsx}' --fix"
+  },
+  "devDependencies": {
+    "@emotion/core": "10.0.17",
+    "@emotion/styled": "10.0.17",
+    "@storybook/addon-knobs": "5.2.1",
+    "@storybook/addon-viewport": "5.2.1",
+    "@storybook/react": "5.2.0",
+    "@styled-system/should-forward-prop": "5.1.2",
+    "@testing-library/react": "9.1.4",
+    "@types/jest": "24.0.18",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.9.0",
+    "@types/storybook__react": "4.0.2",
+    "@types/styled-system": "5.1.1",
+    "@typescript-eslint/eslint-plugin": "2.2.0",
+    "@typescript-eslint/parser": "2.2.0",
+    "babel-loader": "8.0.6",
+    "clean-webpack-plugin": "3.0.0",
+    "copy-webpack-plugin": "5.0.4",
+    "eslint": "6.3.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jest": "22.17.0",
+    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react-hooks": "2.0.1",
+    "husky": "3.0.5",
+    "jest": "24.9.0",
+    "jest-emotion": "10.0.17",
+    "lint-staged": "9.2.5",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "styled-system": "5.1.2",
+    "ts-jest": "24.0.2",
+    "ts-loader": "6.1.0",
+    "tslib": "1.10.0",
+    "typescript": "3.6.3",
+    "webpack": "4.40.1",
+    "webpack-cli": "3.3.8"
+  },
+  "jest": {
+    "transform": {
+      "\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "\\.test\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && lint-staged",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts?(x)": [
+      "eslint"
+    ]
+  }
+}
