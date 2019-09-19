@@ -36,6 +36,7 @@ module.exports = {
     'dot-location': ['warn', 'property'],
     'eqeqeq': ['error', 'smart'],
     'getter-return': 'error',
+    'jsx-quotes': ['error', 'prefer-double'],
     'max-len': [
       'error',
       {
