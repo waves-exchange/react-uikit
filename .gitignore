@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+*.iml
+
+/.idea
+/dist/
+/node_modules/
+/coverage/
