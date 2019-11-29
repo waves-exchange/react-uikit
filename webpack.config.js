@@ -10,7 +10,7 @@ module.exports = (env, { mode }) => {
         entry: './src/index.ts',
         output: {
             path: path.resolve('./dist'),
-            filename: 'react-uikit.min.js',
+            filename: isProduction ? 'react-uikit.min.js' : 'react-uikit.js',
             libraryTarget: 'umd',
             library: 'WavesReactUIKit'
         },
@@ -19,7 +19,8 @@ module.exports = (env, { mode }) => {
             'react-dom': 'ReactDOM'
         },
         resolve: {
-            extensions: ['.ts', '.tsx', '.js', '.json']
+            extensions: ['.ts', '.tsx', '.js', '.json'],
+            modules: [path.resolve(__dirname, 'src'), 'node_modules']
         },
         module: {
             rules: [
@@ -30,12 +31,12 @@ module.exports = (env, { mode }) => {
                 }
             ]
         },
-        plugins: [
+        plugins: isProduction ? [
             new CleanWebpackPlugin(),
             new CopyWebpackPlugin([
                 { from: './README.md' },
                 { from: './package.json' }
             ])
-        ]
+        ] : []
     };
 };
