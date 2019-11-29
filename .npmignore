@@ -5,5 +5,5 @@ coverage/
 
 .eslintignore
 .eslintrc.js
-tsconfig.json
+tsconfig.*
 webpack.config.js

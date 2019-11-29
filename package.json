@@ -3,16 +3,24 @@
   "version": "0.1.0",
   "description": "",
   "license": "MIT",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/typings/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.waves.exchange/we-public/react-uikit.git"
+  },
   "scripts": {
-    "dev": "webpack --mode=development --watch",
     "test": "jest",
     "start": "start-storybook -p 3001",
-    "build": "webpack --mode=production",
+    "build": "npm run build:types && npm run build:cjs && npm run build:esm",
+    "build:cjs": "rimraf ./dist/cjs && tsc -p ./tsconfigs/tsconfig.cjs.json",
+    "build:esm": "rimraf ./dist/esm && tsc -p ./tsconfigs/tsconfig.esm.json",
+    "build:types": "rimraf ./dist/typings && tsc -p ./tsconfigs/tsconfig.types.json",
     "build:storybook": "build-storybook -s public -o public/storybook",
     "lint": "eslint './src/**/*.{ts,tsx}'",
-    "lint-fix": "eslint './src/**/*.{ts,tsx}' --fix"
+    "lint-fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "prepublish": "npm run test && npm run build"
   },
   "devDependencies": {
     "@emotion/core": "10.0.17",
@@ -31,8 +39,6 @@
     "@typescript-eslint/eslint-plugin": "2.2.0",
     "@typescript-eslint/parser": "2.2.0",
     "babel-loader": "8.0.6",
-    "clean-webpack-plugin": "3.0.0",
-    "copy-webpack-plugin": "5.0.4",
     "emotion-theming": "10.0.19",
     "eslint": "6.3.0",
     "eslint-plugin-import": "2.18.2",
@@ -45,15 +51,28 @@
     "lint-staged": "9.2.5",
     "react": "16.9.0",
     "react-dom": "16.9.0",
+    "rimraf": "3.0.0",
     "styled-system": "5.1.2",
     "ts-jest": "24.0.2",
     "ts-loader": "6.1.0",
     "tslib": "1.10.0",
-    "typescript": "3.6.3",
-    "webpack": "4.40.1",
-    "webpack-cli": "3.3.8"
+    "typescript": "3.6.3"
+  },
+  "peerDependencies": {
+    "@emotion/core": "*",
+    "@emotion/styled": "*",
+    "emotion-theming": "*",
+    "react": "*",
+    "react-dom": "*",
+    "styled-system": "*",
+    "tslib": "*"
   },
   "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "<rootDir>/tsconfigs/tsconfig.test.json"
+      }
+    },
     "transform": {
       "\\.tsx?$": "ts-jest"
     },
@@ -63,7 +82,11 @@
       "tsx",
       "js",
       "json"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^components/(.*)$": "<rootDir>/src/components/$1",
+      "^themes/(.*)$": "<rootDir>/src/themes/$1"
+    }
   },
   "husky": {
     "hooks": {
