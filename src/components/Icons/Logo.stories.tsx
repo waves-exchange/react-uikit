@@ -3,16 +3,17 @@ import { storiesOf } from '@storybook/react';
 import { defaultTheme } from 'themes/default';
 import { ThemeProvider } from 'emotion-theming';
 import { Flex } from 'components/Flex/Flex';
-import { Avatar } from './Avatar';
+import { Logo } from './Logo';
 
-const stories = storiesOf('Avatar', module);
+
+const stories = storiesOf('Close', module);
 
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
         <Flex flexDirection="row" p="16">
             <Flex flexDirection="column" mr="16">
-                <Avatar size={30}
-                        address={'3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7'}/>
+                <Logo/>
+                <Logo size={80}/>
             </Flex>
         </Flex>
     </ThemeProvider>
