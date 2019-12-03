@@ -55,11 +55,46 @@ stories.add('simple', () => (
 
 stories.add('disabled', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex flexDirection="column" p="16">
-            <Button mb="16" disabled={true}>Button</Button>
-            <Button mb="16" variant="secondary" disabled={true}>Button</Button>
-            <Button mb="16" variant="action" disabled={true}>Button</Button>
-            <Button mb="16" variant="accent" disabled={true}>Button</Button>
+        <Flex flexDirection="row" p="16">
+            <Flex flexDirection="column" mr="16">
+                <h3>Large</h3>
+                <Button mb="16" variant="primary" size="large" disabled={true}>Primary</Button>
+                <Button mb="16" variant="secondary" size="large" disabled={true}>Secondary</Button>
+                <Button mb="16" variant="action" size="large" disabled={true}>Action</Button>
+                <Button mb="16" variant="accent" size="large" disabled={true}>Action</Button>
+            </Flex>
+
+            <Flex flexDirection="column" mr="16">
+                <h3>Medium</h3>
+                <Button mb="16" variant="primary" size="medium" disabled={true}>Primary</Button>
+                <Button mb="16" variant="secondary" size="medium" disabled={true}>Secondary</Button>
+                <Button mb="16" variant="action" size="medium" disabled={true}>Action</Button>
+                <Button mb="16" variant="accent" size="medium" disabled={true}>Action</Button>
+            </Flex>
+
+            <Flex flexDirection="column" mr="16">
+                <h3>Small</h3>
+                <Button mb="16" variant="primary" size="small" disabled={true}>Primary</Button>
+                <Button mb="16" variant="secondary" size="small" disabled={true}>Secondary</Button>
+                <Button mb="16" variant="action" size="small" disabled={true}>Action</Button>
+                <Button mb="16" variant="accent" size="small" disabled={true}>Action</Button>
+            </Flex>
+
+            <Flex flexDirection="column" mr="16">
+                <h3>Potty</h3>
+                <Button mb="16" variant="primary" size="potty" disabled={true}>Primary</Button>
+                <Button mb="16" variant="secondary" size="potty" disabled={true}>Secondary</Button>
+                <Button mb="16" variant="action" size="potty" disabled={true}>Action</Button>
+                <Button mb="16" variant="accent" size="potty" disabled={true}>Action</Button>
+            </Flex>
+
+            <Flex flexDirection="column" mr="16">
+                <h3>Micro</h3>
+                <Button mb="16" variant="primary" size="micro" disabled={true}>Primary</Button>
+                <Button mb="16" variant="secondary" size="micro" disabled={true}>Secondary</Button>
+                <Button mb="16" variant="action" size="micro" disabled={true}>Action</Button>
+                <Button mb="16" variant="accent" size="micro" disabled={true}>Action</Button>
+            </Flex>
         </Flex>
     </ThemeProvider>
 ));

@@ -16,7 +16,7 @@ import {
     grid,
     GridProps,
     layout,
-    LayoutProps,
+    LayoutProps, overflow, OverflowProps,
     position,
     PositionProps,
     space,
@@ -37,6 +37,7 @@ export type IBoxProps =
     PositionProps &
     BoxShadowProps &
     TypographyProps &
+    OverflowProps &
     FlexboxProps & {
         as?: ElementType;
     };
@@ -51,6 +52,7 @@ export const Box = styled<'div', IBoxProps>('div', {
     border,
     grid,
     position,
+    overflow,
     boxShadow,
     typography,
     flexbox
