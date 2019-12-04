@@ -1,3 +1,5 @@
+import { defaultTheme } from './themes/default';
+
 export type TUser = {
     publicKey: string;
     address: string;
@@ -13,3 +15,5 @@ export type TNetworkInfo = {
 export type TPartialDeep<T> = T extends object
     ? { [Key in keyof T]?: TPartialDeep<T[Key]> }
     : T;
+
+export type TDefaultTheme = typeof defaultTheme;    

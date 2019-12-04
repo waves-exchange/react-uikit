@@ -1,36 +1,38 @@
 import React from 'react';
 import { config, create } from 'identity-img';
-import { defaultTheme } from 'themes/default';
-import styled from '@emotion/styled';
-import { always, prop } from 'ramda';
-import { TPartialDeep } from 'interface';
+import { styled } from 'styled';
+import { useTheme } from 'emotion-theming';
+import { always, isNil, omit } from 'ramda';
+import { TDefaultTheme } from 'interface';
 
 
 config({ rows: 8, cells: 8 });
 
 
-function getSize(size: TAvatarSizes, theme?: TPartialDeep<Pick<typeof defaultTheme, 'avatarSizes'>>): number {
-    return prop(size, theme?.avatarSizes ?? Object.create(null)) ?? defaultTheme.avatarSizes[size];
-}
+const getSize: (data: TProps & { theme: TDefaultTheme }) => number = data =>
+    isNil(data.size) ? data.theme.avatarSizes.default : data.theme.avatarSizes[data.size];
 
-const AvatarFunction = ({ address, size = 'medium', theme, ...props }: TProps) => (
-    <img src={create(address, { size: getSize(size, theme) })}
-         width={getSize(size, theme)}
-         height={getSize(size, theme)}
-         {...props}/>
-);
+
+const AvatarFunction = (props: TProps) => {
+    const theme = useTheme<TDefaultTheme>();
+    return (
+        <img src={create(props.address, { size: getSize({ ...props, theme }) })}
+            {...omit(['address', 'size'], props)} />
+    );
+};
 
 export const Avatar = styled(AvatarFunction, { shouldForwardProp: always(true) })(
-    {
+    props => ({
         overflow: 'hidden',
-        borderRadius: '100%'
-    }
+        borderRadius: '100%',
+        width: `${getSize(props)}px`,
+        height: `${getSize(props)}px`
+    })
 );
 
 type TProps = {
     size?: TAvatarSizes;
-    theme?: TPartialDeep<Pick<typeof defaultTheme, 'avatarSizes'>>;
     address: string;
 };
 
-type TAvatarSizes = keyof typeof defaultTheme.avatarSizes;
+type TAvatarSizes = keyof TDefaultTheme['avatarSizes'];
