@@ -21,11 +21,11 @@ import {
     TypographyProps,
     variant
 } from 'styled-system';
-import { defaultTheme } from 'themes/default';
+import { TDefaultTheme } from 'interface';
 
 
-export type TButtonVariant = keyof typeof defaultTheme.buttons;
-export type TButtonSize = keyof typeof defaultTheme.buttonSizes;
+export type TButtonVariant = keyof TDefaultTheme['buttons'];
+export type TButtonSize = keyof TDefaultTheme['buttonSizes'];
 
 export type IButtonProps =
     RefAttributes<HTMLDivElement> &
