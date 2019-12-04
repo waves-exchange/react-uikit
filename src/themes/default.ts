@@ -136,6 +136,11 @@ export const defaultTheme = {
         medium: 18,
         large: 24
     },
+    avatarSizes: {
+        small: 27,
+        medium: 30,
+        large: 45
+    },
     icons: {
         help: {
             default: colors.basic[500],

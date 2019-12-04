@@ -3,6 +3,7 @@ import { defaultTheme } from 'themes/default';
 import styled from '@emotion/styled';
 import { compose, margin, MarginProps, padding, PaddingProps } from 'styled-system';
 import { always, omit } from 'ramda';
+import { TPartialDeep } from 'interface';
 
 
 class HelpClass extends Component<TProps, TState> {
@@ -55,10 +56,6 @@ export const Help = styled(HelpClass, { shouldForwardProp: always(true) })(
         margin,
     )
 );
-
-type TPartialDeep<T> = T extends object
-    ? { [Key in keyof T]?: TPartialDeep<T[Key]> }
-    : T;
 
 type TProps = PaddingProps & MarginProps & {
     onMouseEnter?: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => any;
