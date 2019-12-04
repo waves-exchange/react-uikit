@@ -139,7 +139,8 @@ export const defaultTheme = {
     avatarSizes: {
         small: 27,
         medium: 30,
-        large: 45
+        large: 45,
+        default: 30
     },
     icons: {
         help: {
