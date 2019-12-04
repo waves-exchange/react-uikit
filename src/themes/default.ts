@@ -1,26 +1,39 @@
 const colors = {
-    text: '#444',
-    background: '#fff',
-    white: '#fff',
-    grays: {
-        200: '#dae1e9',
-        500: '#9ba6b2',
-        700: '#4e5c6e'
+    main: {
+        100: '#878FA0',
+        200: '#697284',
+        300: '#555D6D',
+        500: '#495060',
+        600: '#3A4050',
+        700: '#363C4A',
+        800: '#292F3C',
+        900: '#19202E',
     },
-    blues: {
-        100: '#c4d0ef',
-        200: '#bacaf4',
-        400: '#1f5af6',
-        500: '#1f5af6',
-        600: '#2051d3',
-        700: '#1a4ac8',
-        800: '#0d3dba'
+    basic: {
+        300: '#B7BFD1',
+        500: '#959DAE',
+        700: '#6C7486',
+        900: '#4B5364',
+        1000: '#323846'
+    },
+    standard: {
+        white: '#fff',
+        black: '#000'
+    },
+    blue: {
+        300: '#5A81EA',
+        500: '#3C6AE4',
+        700: '#2E5DDC',
+        900: '#384770'
     },
     red: {
-        200: '#f4b1a5',
-        400: '#e5494d',
-        600: '#d1383c',
-        700: '#b72125'
+        500: '#E5494D'
+    },
+    orange: {
+        500: '#F8B700'
+    },
+    green: {
+        500: '#008B55'
     }
 };
 
@@ -75,55 +88,58 @@ export const defaultTheme = {
         button: {}
     },
     buttons: {
-        primary: {
-            background: colors.blues[400],
-            color: colors.white,
+        blue: {
+            background: colors.blue[300],
+            color: colors.standard.white,
             ':hover:not(:disabled)': {
-                background: colors.blues[600]
+                background: colors.blue[500]
             },
             ':active': {
-                background: colors.blues[700]
+                background: colors.blue[700]
             },
             ':disabled': {
-                background: colors.blues[100]
+                background: colors.blue[100]
             }
         },
-        secondary: {
-            background: colors.white,
-            color: colors.grays[500],
-            border: `1px solid ${colors.grays[200]}`,
+        red: {
+            background: colors.red[300],
+            color: colors.standard.white,
             ':hover:not(:disabled)': {
-                borderColor: colors.grays[500],
-                color: colors.grays[700]
-            },
-            ':disabled': {
-                opacity: '0.4'
-            }
-        },
-        action: {
-            background: colors.white,
-            color: colors.grays[500],
-            boxShadow: '0 2px 4px 0 rgba(218, 225, 233, 0.5)',
-            ':hover:not(:disabled)': {
-                boxShadow: '0 2px 4px 0 rgba(199, 210, 222, 0.6)',
-                color: colors.grays[700]
-            },
-            ':disabled': {
-                opacity: '0.9'
-            }
-        },
-        accent: {
-            background: colors.red[400],
-            color: colors.white,
-            ':hover:not(:disabled)': {
-                background: colors.red[600]
+                background: colors.red[500]
             },
             ':active': {
                 background: colors.red[700]
             },
             ':disabled': {
-                background: colors.red[200]
+                background: colors.red[900]
             }
+        },
+        transparent: {
+            background: 'transparent',
+            color: colors.standard.white,
+            border: `1px solid ${colors.main[300]}`,
+            ':hover:not(:disabled)': {
+                border: `1px solid ${colors.main[200]}`
+            },
+            ':active': {
+                border: `1px solid ${colors.main[100]}`
+            },
+            ':disabled': {
+                color: colors.basic[700],
+                border: `1px solid ${colors.main[500]}`
+            }
+        }
+    },
+    iconSizes: {
+        potty: 10,
+        small: 14,
+        medium: 18,
+        large: 24
+    },
+    icons: {
+        help: {
+            default: colors.basic[500],
+            hovered: colors.blue[300]
         }
     },
     buttonSizes: {

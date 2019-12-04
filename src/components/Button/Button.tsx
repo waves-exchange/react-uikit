@@ -2,38 +2,30 @@ import { ButtonHTMLAttributes, RefAttributes } from 'react';
 import styled from '@emotion/styled';
 import shouldForwardProp from '@styled-system/should-forward-prop';
 import {
-    compose,
-    color,
-    space,
     background,
-    border,
-    position,
-    boxShadow,
-    typography,
-    flexbox,
-    ColorProps,
-    SpaceProps,
     BackgroundProps,
+    border,
     BorderProps,
-    PositionProps,
+    boxShadow,
     BoxShadowProps,
-    TypographyProps,
+    color,
+    ColorProps,
+    compose,
+    flexbox,
     FlexboxProps,
+    position,
+    PositionProps,
+    space,
+    SpaceProps,
+    typography,
+    TypographyProps,
     variant
 } from 'styled-system';
+import { defaultTheme } from 'themes/default';
 
-export type TButtonVariant =
-    | 'primary'
-    | 'secondary'
-    | 'action'
-    | 'accent';
 
-export type TButtonSize =
-    | 'large'
-    | 'medium'
-    | 'small'
-    | 'potty'
-    | 'micro';
+export type TButtonVariant = keyof typeof defaultTheme.buttons;
+export type TButtonSize = keyof typeof defaultTheme.buttonSizes;
 
 export type IButtonProps =
     RefAttributes<HTMLDivElement> &
@@ -46,9 +38,9 @@ export type IButtonProps =
     BoxShadowProps &
     TypographyProps &
     FlexboxProps & {
-        variant?: TButtonVariant;
-        size?: TButtonSize;
-    };
+    variant?: TButtonVariant;
+    size?: TButtonSize;
+};
 
 export const Button = styled<'button', IButtonProps>('button', {
     shouldForwardProp
@@ -75,7 +67,7 @@ export const Button = styled<'button', IButtonProps>('button', {
 
 Button.defaultProps = {
     type: 'button',
-    variant: 'primary',
+    variant: 'blue',
     size: 'large',
     borderRadius: 'button'
 };
