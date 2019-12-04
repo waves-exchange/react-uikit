@@ -6,7 +6,7 @@ import { Flex } from 'components/Flex/Flex';
 import { Logo } from './Logo';
 
 
-const stories = storiesOf('Close', module);
+const stories = storiesOf('Logo', module);
 
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
