@@ -1,5 +1,5 @@
 import React, { Component, createRef, Fragment, RefObject } from 'react';
-import { Help as Icon, HelpClass } from '../Icons/Help';
+import { HelpIcon as Icon, HelpClass } from '../Icons/HelpIcon';
 import { Box } from 'components/Box/Box';
 import { TDefaultTheme } from 'src/interface';
 import { withTheme } from 'emotion-theming';
@@ -42,7 +42,7 @@ class HelpComponent extends Component<TProps, TState> {
     }
 
     public render(): React.ReactElement {
-        const hovered = true; // this.state.hovered;
+        const hovered = this.state.hovered;
         const theme = this.props.theme;
 
         const content = hovered ? (

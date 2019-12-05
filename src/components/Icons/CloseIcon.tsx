@@ -21,7 +21,7 @@ class CloseClass extends BaseIcon<TProps, TBaseIconState> {
 
 }
 
-export const Close = withTheme(styled(CloseClass, { shouldForwardProp: always(true) })(
+export const CloseIcon = withTheme(styled(CloseClass, { shouldForwardProp: always(true) })(
     compose(
         padding,
         margin
