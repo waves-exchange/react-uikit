@@ -24,7 +24,7 @@ export class HelpClass extends BaseIcon<TProps> {
 
 }
 
-export const Help = withTheme(styled(HelpClass, { shouldForwardProp: always(true) })(
+export const HelpIcon = withTheme(styled(HelpClass, { shouldForwardProp: always(true) })(
     compose(
         padding,
         margin,
