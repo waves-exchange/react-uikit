@@ -1,6 +1,9 @@
-import styled from '@emotion/styled';
+import styled, { CSSObject } from '@emotion/styled';
 import shouldForwardProp from '@styled-system/should-forward-prop';
+import { InterpolationWithTheme } from '@emotion/core';
+import { TDefaultTheme } from 'src/interface';
 import { ElementType, RefAttributes, HTMLAttributes } from 'react';
+import css from '@styled-system/css';
 import {
     background,
     BackgroundProps,
@@ -38,26 +41,29 @@ export type IBoxProps =
     BoxShadowProps &
     TypographyProps &
     OverflowProps &
-    FlexboxProps & {
-        as?: ElementType;
-    };
+    FlexboxProps &
+    { as?: ElementType } &
+    { sx?: InterpolationWithTheme<TDefaultTheme> };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const sx = (props: any): CSSObject => css(props.sx)(props.theme);
 
 export const Box = styled<'div', IBoxProps>('div', {
     shouldForwardProp
-})(compose(
-    layout,
-    color,
-    space,
-    background,
-    border,
-    grid,
-    position,
-    overflow,
-    boxShadow,
-    typography,
-    flexbox
-), {
-    boxSizing: 'border-box'
-});
-
-
+})(
+    compose(
+        layout,
+        color,
+        space,
+        background,
+        border,
+        grid,
+        position,
+        overflow,
+        boxShadow,
+        typography,
+        flexbox
+    ),
+    sx,
+    { boxSizing: 'border-box' }
+);

@@ -39,6 +39,7 @@
     "@types/react-dom": "16.9.0",
     "@types/storybook__react": "4.0.2",
     "@types/styled-system": "5.1.1",
+    "@types/styled-system__css": "^5.0.4",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
     "babel-loader": "8.0.6",
@@ -108,6 +109,7 @@
     ]
   },
   "dependencies": {
+    "@styled-system/css": "^5.1.4",
     "@types/ramda": "^0.26.36",
     "@waves/ts-lib-crypto": "^1.4.1",
     "@waves/ts-types": "^0.3.1",
