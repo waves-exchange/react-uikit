@@ -1,6 +1,6 @@
 import React from 'react';
 import { config, create } from 'identity-img';
-import { styled } from 'styled';
+import { styled } from '../../styled';
 import { useTheme } from 'emotion-theming';
 import { always, isNil, omit } from 'ramda';
 import { TDefaultTheme } from 'interface';
@@ -19,7 +19,7 @@ const AvatarFunction = (props: TProps) => {
     const theme = useTheme<TDefaultTheme>();
     return (
         <img src={create(props.address, { size: getSize({ ...props, theme }) })}
-            {...omit(['address', 'size'], props)} />
+            {...omit(['address', 'size', 'theme'], props)} />
     );
 };
 

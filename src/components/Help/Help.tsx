@@ -1,6 +1,6 @@
 import React, { Component, createRef, Fragment, RefObject } from 'react';
 import { HelpIcon as Icon, HelpClass } from '../Icons/HelpIcon';
-import { Box } from 'components/Box/Box';
+import { Box } from '../Box/Box';
 import { TDefaultTheme } from 'src/interface';
 import { withTheme } from 'emotion-theming';
 
