@@ -52,10 +52,10 @@ class HelpComponent extends Component<TProps, TState> {
                 <Box position={'absolute'}
                     ref={this.arrow}
                     border="solid 5px transparent"
-                    borderBottom={`solid 5px ${theme.colors.blue.$300}`} />,
+                    borderBottom={`solid 5px ${theme.colors.primary.$300}`} />,
                 <Box position={'absolute'}
                     background={theme.colors.main.$700}
-                    borderTop={`solid 4px ${theme.colors.blue.$300}`}
+                    borderTop={`solid 4px ${theme.colors.primary.$300}`}
                     padding="12px 16px 16px 16px"
                     borderRadius={4}
                     overflow="hidden"
