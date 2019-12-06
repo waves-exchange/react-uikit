@@ -1,8 +1,8 @@
 import React from 'react';
 import { BaseIcon, TBaseIconProps } from './BaseIcon';
 import styled from '@emotion/styled';
-import { compose, margin, MarginProps, padding, PaddingProps } from 'styled-system';
-import { zIndex, ZIndexProps, position, PositionProps } from 'styled-system';
+import { padding, margin, compose, PaddingProps, MarginProps, zIndex, position } from 'styled-system';
+import { flex, display, DisplayProps, FlexProps, PositionProps, ZIndexProps } from 'styled-system';
 import { always } from 'ramda';
 import { withTheme } from 'emotion-theming';
 
@@ -29,8 +29,10 @@ export const HelpIcon = withTheme(styled(HelpClass, { shouldForwardProp: always(
         padding,
         margin,
         zIndex,
-        position
+        position,
+        flex,
+        display,
     )
 ));
 
-type TProps = PaddingProps & PositionProps & MarginProps & ZIndexProps & TBaseIconProps;
+type TProps = DisplayProps & FlexProps & PaddingProps & PositionProps & MarginProps & ZIndexProps & TBaseIconProps;
