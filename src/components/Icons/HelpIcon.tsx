@@ -24,7 +24,7 @@ export class HelpClass extends BaseIcon<TProps> {
 
 }
 
-export const HelpIcon = withTheme(styled(HelpClass, { shouldForwardProp: always(true) })(
+export const HelpIcon = styled(withTheme(HelpClass), { shouldForwardProp: always(true) })(
     compose(
         padding,
         margin,
@@ -33,6 +33,6 @@ export const HelpIcon = withTheme(styled(HelpClass, { shouldForwardProp: always(
         flex,
         display,
     )
-));
+);
 
 type TProps = DisplayProps & FlexProps & PaddingProps & PositionProps & MarginProps & ZIndexProps & TBaseIconProps;
