@@ -2,6 +2,7 @@ import React from 'react';
 import { BaseIcon, TBaseIconProps, TBaseIconState } from './BaseIcon';
 import { styled } from '../../styled';
 import { always } from 'ramda';
+import { withTheme } from 'emotion-theming';
 import { padding, margin, compose, PaddingProps, MarginProps, zIndex, position } from 'styled-system';
 import { flex, display, DisplayProps, FlexProps, PositionProps, ZIndexProps } from 'styled-system';
 
@@ -21,7 +22,7 @@ class CloseClass extends BaseIcon<TProps, TBaseIconState> {
 
 }
 
-export const CloseIcon = styled(CloseClass, { shouldForwardProp: always(true) })(
+export const CloseIcon = styled(withTheme(CloseClass), { shouldForwardProp: always(true) })(
     compose(
         padding,
         margin,

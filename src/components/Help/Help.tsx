@@ -3,6 +3,8 @@ import { HelpIcon as Icon, HelpClass } from '../Icons/HelpIcon';
 import { Box } from '../Box/Box';
 import { TDefaultTheme } from 'src/interface';
 import { withTheme } from 'emotion-theming';
+import { padding, compose, margin, MarginProps, PaddingProps } from 'styled-system';
+import { styled } from '../../styled';
 
 
 class HelpComponent extends Component<TProps, TState> {
@@ -30,9 +32,9 @@ class HelpComponent extends Component<TProps, TState> {
     private static getSnapVerticalY(icon: DOMRect, box: DOMRect, mode: TDirection): number {
         switch (mode) {
             case 'bottom':
-                return icon.bottom + 10;
+                return icon.bottom - box.top + 10;
             case 'top':
-                return icon.bottom - (box.bottom + 10);
+                return -(box.height + 10);
             case 'left':
             case 'right':
                 return (icon.top + icon.height / 2) - (box.top + box.height / 2);
@@ -98,15 +100,20 @@ class HelpComponent extends Component<TProps, TState> {
     private snap(): void {
         const box = this.box.current!;
         const icon = this.icon.current!.ref.current!;
+        const arrow = this.arrow.current!;
 
         box.style.transform = '';
+        arrow.style.transform = '';
 
         const boxRect = box.getBoundingClientRect();
         const iconRect = icon.getBoundingClientRect();
+        const arrowRect = arrow.getBoundingClientRect();
         const align = this.props.align ?? 'auto';
         const direction = this.props.direction ?? 'auto';
 
-        this.arrow.current!.style.transform = `translate(0, ${iconRect.bottom}px)`;
+        const arrowX = iconRect.left + iconRect.width / 2 - (arrowRect.left + arrowRect.width / 2);
+        const arrowY = iconRect.bottom - arrowRect.top;
+        this.arrow.current!.style.transform = `translate(${arrowX}px, ${arrowY}px)`;
 
         const x = HelpComponent.getSnapHorizontalX(iconRect, boxRect, align);
         const y = HelpComponent.getSnapVerticalY(iconRect, boxRect, direction);
@@ -122,12 +129,17 @@ class HelpComponent extends Component<TProps, TState> {
     }
 }
 
-export const Help = withTheme(HelpComponent);
+export const Help = styled(withTheme(HelpComponent), {})(
+    compose(
+        margin,
+        padding
+    )
+);
 
 type TAlign = 'left' | 'center' | 'right' | 'auto';
 type TDirection = 'top' | 'bottom' | 'left' | 'right' | 'auto';
 
-type TProps = {
+type TProps = MarginProps & PaddingProps & {
     direction?: TDirection;
     align?: TAlign;
     theme: TDefaultTheme;

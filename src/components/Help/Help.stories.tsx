@@ -28,8 +28,16 @@ const box = (
 
 stories.add('Bottom left', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex width="100%" height="100%" justifyContent="center" flexDirection="row" p="16">
-            <Help direction="bottom" align="left">
+        <Flex position="fixed"
+            width="100%"
+            height="100%"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="row" p="16">
+            <Text mr="10px" fontSize="15px" fontFamily="Roboto">
+                Set a single password for all your Waves.Exchange accounts.
+            </Text>
+            <Help pl="10px" direction="bottom" align="right">
                 {box}
             </Help>
         </Flex>
@@ -38,7 +46,12 @@ stories.add('Bottom left', () => (
 
 stories.add('Bottom Center', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex width="100%" height="100%" justifyContent="center" flexDirection="row" p="16">
+        <Flex position="fixed"
+            width="100%"
+            height="100%"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="row" p="16">
             <Help direction="bottom" align="center">
                 {box}
             </Help>
@@ -48,7 +61,12 @@ stories.add('Bottom Center', () => (
 
 stories.add('Bottom Right', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex width="100%" height="100%" justifyContent="center" flexDirection="row" p="16">
+        <Flex position="fixed"
+            width="100%"
+            height="100%"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="row" p="16">
             <Help direction="bottom" align="right">
                 {box}
             </Help>
