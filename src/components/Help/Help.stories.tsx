@@ -11,7 +11,7 @@ import { Help } from './Help';
 const stories = storiesOf('Help', module);
 const box = (
     <Box width="200px"
-        color={defaultTheme.colors.standard.white}>
+        color={defaultTheme.colors.standard[0]}>
         <Text>
             Enter this address into your Bitcoin client or wallet
         </Text>
