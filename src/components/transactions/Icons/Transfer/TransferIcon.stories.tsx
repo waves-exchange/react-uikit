@@ -40,17 +40,17 @@ stories.add('simple', () => (
             <Flex flexDirection="row" mr="16">
                 <TransferIcon tx={send} user={user}/>
                 <TransferIcon tx={send} user={user} size={40}/>
-                <TransferIcon tx={send} user={user} size={40} fillColor={'blue'}/>
+                <TransferIcon tx={send} user={user} size={40} fillColor={'primary'}/>
             </Flex>
             <Flex flexDirection="row" mr="16">
                 <TransferIcon tx={receive} user={user}/>
                 <TransferIcon tx={receive} user={user} size={40}/>
-                <TransferIcon tx={receive} user={user} size={40} fillColor={'blue'}/>
+                <TransferIcon tx={receive} user={user} size={40} fillColor={'primary'}/>
             </Flex>
             <Flex flexDirection="row" mr="16">
                 <TransferIcon tx={circular} user={user}/>
                 <TransferIcon tx={circular} user={user} size={40}/>
-                <TransferIcon tx={circular} user={user} size={40} fillColor={'blue'}/>
+                <TransferIcon tx={circular} user={user} size={40} fillColor={'primary'}/>
             </Flex>
         </Flex>
     </ThemeProvider>

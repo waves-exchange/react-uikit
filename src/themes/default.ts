@@ -12,79 +12,80 @@ const colors = {
     basic: {
         $300: '#B7BFD1',
         $500: '#959DAE',
-        $700: '#6C7486',
+        $700: '#6C7406',
         $900: '#4B5364',
         $1000: '#323846'
     },
     standard: {
-        white: '#fff',
-        black: '#000'
+        $0: '#fff',
+        $1000: '#000'
     },
-    blue: {
+    primary: {
         $100: '', // TODO
         $300: '#5A81EA',
         $500: '#3C6AE4',
         $700: '#2E5DDC',
         $900: '#384770'
     },
-    red: {
+    denger: {
         $300: '', // TODO
         $500: '#E5494D',
         $700: '', // TODO
         $900: '' // TODO
     },
-    orange: {
+    warning: {
         $500: '#F8B700'
     },
-    green: {
+    success: {
         $500: '#008B55'
+    },
+    mix: {
+        // TODO
     }
 };
 
 const fontSizes = {
     $11: '11px',
-    $12: '12px',
     $13: '13px',
     $15: '15px',
     $17: '17px',
-    $19: '19px',
     $21: '21px',
-    $24: '24px'
+    $25: '25px',
+    $26: '26px'
 };
 
 const space = {
     $0: '0px',
-    $4: '4px',
-    $8: '8px',
-    $16: '16px',
-    $24: '24px',
-    $32: '32px',
-    $48: '48px',
-    $64: '64px',
-    $96: '96px',
-    $128: '128px',
-    $256: '256px',
-    $512: '512px'
+    $3: '3px',
+    $5: '5px',
+    $10: '10px',
+    $20: '20px',
+    $30: '30px',
+    $40: '40px'
 };
 
 const radii = {
-    default: 0,
-    button: '4px',
-    circle: '9999px',
+    none: 0,
+    $2: 2,
+    $4: 4,
+    $6: 6,
+    circle: '100%'
 };
 
 export const defaultTheme = {
     colors,
-    fonts: {
-        body: '-apple-system, sans-serif',
-        heading: '-apple-system, sans-serif',
-        monospace: 'Menlo, Consolas, monospace',
-    },
+    // fonts: {
+    //     body: '-apple-system, sans-serif',
+    //     heading: '-apple-system, sans-serif',
+    //     monospace: 'Menlo, Consolas, monospace',
+    // },
     fontSizes,
-    fontWeights: {},
-    lineHeights: {},
+    fontWeights: [100, 300, 400, 500, 700],
+    lineHeights: [16, 20, 22, 26, 30, 36],
     space,
     radii,
+    borderWidths: [0, 1],
+    breakpoints: ['576px', '768px', '992px', '1200px'],
     shadows: {
         default: '0 0 4px rgba(0, 0, 0, 0.125)',
     },
@@ -98,9 +99,9 @@ export const defaultTheme = {
             },
             variants: {
                 primary: {
-                    fill: colors.blue.$300,
+                    fill: colors.primary.$300,
                     hover: {
-                        fill: colors.blue.$500
+                        fill: colors.primary.$500
                     }
                 }
             }
@@ -114,35 +115,35 @@ export const defaultTheme = {
         }
     },
     buttons: {
-        blue: {
-            background: colors.blue.$300,
-            color: colors.standard.white,
+        primary: {
+            background: colors.primary.$300,
+            color: colors.standard[0],
             ':hover:not(:disabled)': {
-                background: colors.blue.$500
+                background: colors.primary.$500
             },
             ':active': {
-                background: colors.blue.$700
+                background: colors.primary.$700
             },
             ':disabled': {
-                background: colors.blue.$100
+                background: colors.primary.$100
             }
         },
-        red: {
-            background: colors.red.$300,
-            color: colors.standard.white,
+        danger: {
+            background: colors.denger.$300,
+            color: colors.standard[0],
             ':hover:not(:disabled)': {
-                background: colors.red.$500
+                background: colors.denger.$500
             },
             ':active': {
-                background: colors.red.$700
+                background: colors.denger.$700
             },
             ':disabled': {
-                background: colors.red.$900
+                background: colors.denger.$900
             }
         },
         transparent: {
             background: 'transparent',
-            color: colors.standard.white,
+            color: colors.standard[0],
             border: `1px solid ${colors.main.$300}`,
             ':hover:not(:disabled)': {
                 border: `1px solid ${colors.main.$200}`
@@ -159,42 +160,41 @@ export const defaultTheme = {
     icons: {
         help: {
             default: colors.basic.$500,
-            hovered: colors.blue.$300
+            hovedenger: colors.primary.$300
         }
     },
     buttonSizes: {
         large: {
             fontSize: fontSizes.$17,
             height: '54px',
-            paddingLeft: space.$48,
-            paddingRight: space.$48
+            paddingLeft: space.$40,
+            paddingRight: space.$40
         },
         medium: {
             fontSize: fontSizes.$15,
             height: '42px',
-            paddingLeft: space.$48,
-            paddingRight: space.$48
+            paddingLeft: space.$40,
+            paddingRight: space.$40
         },
         small: {
             fontSize: fontSizes.$13,
             height: '36px',
-            paddingLeft: space.$32,
-            paddingRight: space.$32
+            paddingLeft: space.$30,
+            paddingRight: space.$30
         },
         potty: {
-            fontSize: fontSizes.$12,
+            fontSize: fontSizes.$15,
             height: '30px',
-            paddingLeft: space.$32,
-            paddingRight: space.$32
+            paddingLeft: space.$30,
+            paddingRight: space.$30
         },
         micro: {
             fontSize: fontSizes.$11,
             height: '22px',
-            paddingLeft: space.$16,
-            paddingRight: space.$16
+            paddingLeft: space.$10,
+            paddingRight: space.$10
         }
     },
-    breakpoints: ['600px', '960px', '1140px'],
     styles: {
         root: {
             fontFamily: 'body',
