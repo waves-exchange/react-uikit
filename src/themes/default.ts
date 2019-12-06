@@ -64,12 +64,16 @@ const space = {
     $40: '40px',
 };
 
+const sizes = {
+    medium: '48px'
+};
+
 const radii = {
     none: 0,
     $2: 2,
     $4: 4,
     $6: 6,
-    circle: '100%',
+    circle: '9999px',
 };
 
 export const defaultTheme = {
@@ -113,6 +117,39 @@ export const defaultTheme = {
                 large: 45,
             },
         },
+        input: {
+            sizes: {
+                medium: {
+                    fontSize: fontSizes.$15,
+                    height: sizes.medium,
+                    paddingLeft: space.$20,
+                    paddingRight: space.$20
+                }
+            },
+            variants: {
+                default: {
+                    backgroundColor: colors.main.$800,
+                    borderColor: colors.main.$500,
+                    borderRadius: radii.$4,
+                    color: colors.standard.$0,
+                    ':hover:not(:disabled)': {
+                        borderColor: colors.main.$200
+                    },
+                    ':focus:not(:disabled)': {
+                        borderColor: colors.primary.$300
+                    },
+                    ':disabled': {
+                        backgroundColor: colors.main.$700
+                    },
+
+                }
+            },
+            errorVariants: {
+                default: {
+                    borderColor: colors.denger.$500
+                }
+            }
+        }
     },
     buttons: {
         primary: {
@@ -203,5 +240,5 @@ export const defaultTheme = {
             fontSize: [2, 18],
             color: 'text.dark',
         },
-    },
+    }
 };

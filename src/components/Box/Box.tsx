@@ -29,9 +29,9 @@ import {
     styleFn
 } from 'styled-system';
 
-export type IBoxProps =
-    RefAttributes<HTMLDivElement> &
-    HTMLAttributes<HTMLDivElement> &
+export type IBoxProps<T = HTMLDivElement> =
+    RefAttributes<T> &
+    HTMLAttributes<T> &
     LayoutProps &
     ColorProps &
     SpaceProps &

@@ -7,10 +7,10 @@ expect.extend(matchers);
 
 describe('Flex', () => {
     it('renders', () => {
-        const { getByTestId } = render(<Flex data-testid="flex" />);
+        const { container } = render(
+            <Flex />
+        );
 
-        const flex = getByTestId('flex');
-
-        expect(flex).toHaveStyleRule('display', 'flex');
+        expect(container.firstChild).toHaveStyleRule('display', 'flex');
     });
 });
