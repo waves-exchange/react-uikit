@@ -67,7 +67,7 @@ export const Button = styled<'button', IButtonProps>('button', {
 
 Button.defaultProps = {
     type: 'button',
-    variant: 'blue',
+    variant: 'primary',
     size: 'large',
     borderRadius: 'button'
 };
