@@ -88,9 +88,30 @@ export const defaultTheme = {
     shadows: {
         default: '0 0 4px rgba(0, 0, 0, 0.125)',
     },
-    variants: {
-        icon: {},
-        button: {}
+    components: {
+        icons: {
+            sizes: {
+                potty: 10,
+                small: 14,
+                medium: 18,
+                large: 24
+            },
+            variants: {
+                primary: {
+                    fill: colors.blue.$300,
+                    hover: {
+                        fill: colors.blue.$500
+                    }
+                }
+            }
+        },
+        addressAvatar: {
+            sizes: {
+                small: 27,
+                medium: 30,
+                large: 45,
+            }
+        }
     },
     buttons: {
         blue: {
@@ -134,18 +155,6 @@ export const defaultTheme = {
                 border: `1px solid ${colors.main.$500}`
             }
         }
-    },
-    iconSizes: {
-        potty: 10,
-        small: 14,
-        medium: 18,
-        large: 24
-    },
-    avatarSizes: {
-        small: 27,
-        medium: 30,
-        large: 45,
-        default: 30
     },
     icons: {
         help: {
