@@ -23,11 +23,14 @@ module.exports = {
     'react',
     'react-hooks',
     'jest',
+    'prettier'
   ],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint',
   ],
   rules: {
     // http://eslint.org/docs/rules/
@@ -158,7 +161,6 @@ module.exports = {
     // typescript-eslint
     '@typescript-eslint/await-thenable': 'error',
     '@typescript-eslint/consistent-type-definitions': 'warn',
-    '@typescript-eslint/indent': 'warn',
     '@typescript-eslint/interface-name-prefix': ['warn', 'always'],
     '@typescript-eslint/member-delimiter-style': 'warn',
     '@typescript-eslint/member-ordering': 'warn',

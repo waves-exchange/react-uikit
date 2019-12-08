@@ -3,14 +3,26 @@
     "eslint.validate": [
         "javascript",
         "javascriptreact",
-        { "language": "typescript", "autoFix": false },
-        { "language": "typescriptreact", "autoFix": false }
+        { "language": "typescript", "autoFix": true },
+        { "language": "typescriptreact", "autoFix": true }
     ],
+    "eslint.autoFixOnSave": true,
+    "eslint.enable": true,
     "eslint.options": {
         "include": [
             "src"
         ]
     },
-    "eslint.autoFixOnSave": true,
-    "eslint.enable": true
+    "[javasctipt]": {
+        "editor.formatOnSave": false,
+      },
+    "[javasctiptreact]": {
+      "editor.formatOnSave": false,
+    },
+    "[typescript]": {
+      "editor.formatOnSave": false,
+    },
+    "[typescriptreact]": {
+      "editor.formatOnSave": false,
+    }
 }
