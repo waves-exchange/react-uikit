@@ -16,7 +16,7 @@ describe('Box', () => {
                 m="10px"
             >
                 Test Box
-            </Box>
+            </Box>,
         );
 
         const box = getByTestId('box');
