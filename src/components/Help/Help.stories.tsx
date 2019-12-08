@@ -7,33 +7,32 @@ import { Box } from 'components/Box/Box';
 import { Text } from 'components/Text/Text';
 import { Help } from './Help';
 
-
 const stories = storiesOf('Help', module);
 const box = (
-    <Box width="200px"
-        color={defaultTheme.colors.standard[0]}>
+    <Box width="200px" color={defaultTheme.colors.standard[0]}>
+        <Text>Enter this address into your Bitcoin client or wallet</Text>
         <Text>
-            Enter this address into your Bitcoin client or wallet
+            Once the transaction is confirmed, the gateway will process the
+            transfer of BTC to a token in your Waves account.
         </Text>
         <Text>
-            Once the transaction is confirmed,
-            the gateway will process the transfer of BTC to a token in
-            your Waves account.
-        </Text>
-        <Text>
-            Please note that the gateway doesn't apply any fees for this operation.
+            Please note that the gateway doesn't apply any fees for this
+            operation.
         </Text>
     </Box>
 );
 
 stories.add('Bottom left', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex position="fixed"
+        <Flex
+            position="fixed"
             width="100%"
             height="100%"
             justifyContent="center"
             alignItems="center"
-            flexDirection="row" p="16">
+            flexDirection="row"
+            p="16"
+        >
             <Text mr="10px" fontSize="15px" fontFamily="Roboto">
                 Set a single password for all your Waves.Exchange accounts.
             </Text>
@@ -46,12 +45,15 @@ stories.add('Bottom left', () => (
 
 stories.add('Bottom Center', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex position="fixed"
+        <Flex
+            position="fixed"
             width="100%"
             height="100%"
             justifyContent="center"
             alignItems="center"
-            flexDirection="row" p="16">
+            flexDirection="row"
+            p="16"
+        >
             <Help direction="bottom" align="center">
                 {box}
             </Help>
@@ -61,12 +63,15 @@ stories.add('Bottom Center', () => (
 
 stories.add('Bottom Right', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex position="fixed"
+        <Flex
+            position="fixed"
             width="100%"
             height="100%"
             justifyContent="center"
             alignItems="center"
-            flexDirection="row" p="16">
+            flexDirection="row"
+            p="16"
+        >
             <Help direction="bottom" align="right">
                 {box}
             </Help>
@@ -76,12 +81,15 @@ stories.add('Bottom Right', () => (
 
 stories.add('Top Left', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex position="fixed"
+        <Flex
+            position="fixed"
             width="100%"
             height="100%"
             justifyContent="center"
             alignItems="center"
-            flexDirection="row" p="16">
+            flexDirection="row"
+            p="16"
+        >
             <Help direction="top" align="right">
                 {box}
             </Help>

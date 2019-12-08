@@ -3,25 +3,36 @@ import { HelpIcon as Icon, HelpClass } from '../Icons/HelpIcon';
 import { Box } from '../Box/Box';
 import { TDefaultTheme } from 'src/interface';
 import { withTheme } from 'emotion-theming';
-import { padding, compose, margin, MarginProps, PaddingProps } from 'styled-system';
+import {
+    padding,
+    compose,
+    margin,
+    MarginProps,
+    PaddingProps,
+} from 'styled-system';
 import { styled } from '../../styled';
 
-
-class HelpComponent extends Component<TProps, TState> {
-
+class HelpComponent extends Component<TProps, IState> {
     public readonly state = { hovered: false };
-    private readonly box: RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
-    private readonly arrow: RefObject<HTMLDivElement> = createRef<HTMLDivElement>();
+    private readonly box: RefObject<HTMLDivElement> = createRef<
+        HTMLDivElement
+    >();
+    private readonly arrow: RefObject<HTMLDivElement> = createRef<
+        HTMLDivElement
+    >();
     private readonly icon: RefObject<HelpClass> = createRef<HelpClass>();
     private timer: ReturnType<typeof setTimeout> | null = null;
 
-
-    private static getSnapHorizontalX(icon: DOMRect, box: DOMRect, mode: TAlign): number {
+    private static getSnapHorizontalX(
+        icon: DOMRect,
+        box: DOMRect,
+        mode: TAlign
+    ): number {
         switch (mode) {
             case 'right':
                 return icon.right - box.right + 16;
             case 'center':
-                return (icon.x + icon.width / 2) - (box.x + box.width / 2);
+                return icon.x + icon.width / 2 - (box.x + box.width / 2);
             case 'left':
                 return icon.left - box.left - 16;
             default:
@@ -29,7 +40,11 @@ class HelpComponent extends Component<TProps, TState> {
         }
     }
 
-    private static getSnapVerticalY(icon: DOMRect, box: DOMRect, mode: TDirection): number {
+    private static getSnapVerticalY(
+        icon: DOMRect,
+        box: DOMRect,
+        mode: TDirection
+    ): number {
         switch (mode) {
             case 'bottom':
                 return icon.bottom - box.top + 10;
@@ -37,7 +52,7 @@ class HelpComponent extends Component<TProps, TState> {
                 return -(box.height + 10);
             case 'left':
             case 'right':
-                return (icon.top + icon.height / 2) - (box.top + box.height / 2);
+                return icon.top + icon.height / 2 - (box.top + box.height / 2);
             default:
                 throw new Error(`Align ${mode} is not supported!`);
         }
@@ -47,29 +62,37 @@ class HelpComponent extends Component<TProps, TState> {
         const hovered = this.state.hovered;
         const theme = this.props.theme;
 
-        const content = hovered ? (
-            [
-                <Box position={'absolute'}
-                    ref={this.arrow}
-                    border="solid 5px transparent"
-                    borderBottom={`solid 5px ${theme.colors.primary.$300}`} />,
-                <Box position={'absolute'}
-                    background={theme.colors.main.$700}
-                    borderTop={`solid 4px ${theme.colors.primary.$300}`}
-                    padding="12px 16px 16px 16px"
-                    borderRadius={4}
-                    overflow="hidden"
-                    onMouseEnter={this.onMouseEnter}
-                    onMouseLeave={this.onMouseLeave}
-                    ref={this.box}>{this.props.children}</Box>
-            ]
-        ) : null;
+        const content = hovered
+            ? [
+                  <Box
+                      position="absolute"
+                      ref={this.arrow}
+                      border="solid 5px transparent"
+                      borderBottom={`solid 5px ${theme.colors.primary.$300}`}
+                  />,
+                  <Box
+                      position="absolute"
+                      background={theme.colors.main.$700}
+                      borderTop={`solid 4px ${theme.colors.primary.$300}`}
+                      padding="12px 16px 16px 16px"
+                      borderRadius={4}
+                      overflow="hidden"
+                      onMouseEnter={this.onMouseEnter}
+                      onMouseLeave={this.onMouseLeave}
+                      ref={this.box}
+                  >
+                      {this.props.children}
+                  </Box>,
+              ]
+            : null;
 
         return (
             <Fragment>
-                <Icon ref={this.icon}
+                <Icon
+                    ref={this.icon}
                     onMouseEnter={this.onMouseEnter}
-                    onMouseLeave={this.onMouseLeave} />
+                    onMouseLeave={this.onMouseLeave}
+                />
                 {content}
             </Fragment>
         );
@@ -111,8 +134,12 @@ class HelpComponent extends Component<TProps, TState> {
         const align = this.props.align ?? 'auto';
         const direction = this.props.direction ?? 'auto';
 
-        const arrowX = iconRect.left + iconRect.width / 2 - (arrowRect.left + arrowRect.width / 2);
+        const arrowX =
+            iconRect.left +
+            iconRect.width / 2 -
+            (arrowRect.left + arrowRect.width / 2);
         const arrowY = iconRect.bottom - arrowRect.top;
+
         this.arrow.current!.style.transform = `translate(${arrowX}px, ${arrowY}px)`;
 
         const x = HelpComponent.getSnapHorizontalX(iconRect, boxRect, align);
@@ -129,22 +156,21 @@ class HelpComponent extends Component<TProps, TState> {
     }
 }
 
-export const Help = styled(withTheme(HelpComponent), {})(
-    compose(
-        margin,
-        padding
-    )
-);
+export const Help = styled(
+    withTheme(HelpComponent),
+    {}
+)(compose(margin, padding));
 
 type TAlign = 'left' | 'center' | 'right' | 'auto';
 type TDirection = 'top' | 'bottom' | 'left' | 'right' | 'auto';
 
-type TProps = MarginProps & PaddingProps & {
-    direction?: TDirection;
-    align?: TAlign;
-    theme: TDefaultTheme;
-};
+type TProps = MarginProps &
+    PaddingProps & {
+        direction?: TDirection;
+        align?: TAlign;
+        theme: TDefaultTheme;
+    };
 
-type TState = {
+interface IState {
     hovered: boolean;
-};
+}
