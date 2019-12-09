@@ -14,34 +14,34 @@ const colors = {
         $500: '#959DAE',
         $700: '#6C7406',
         $900: '#4B5364',
-        $1000: '#323846'
+        $1000: '#323846',
     },
     standard: {
         $0: '#fff',
-        $1000: '#000'
+        $1000: '#000',
     },
     primary: {
         $100: '', // TODO
         $300: '#5A81EA',
         $500: '#3C6AE4',
         $700: '#2E5DDC',
-        $900: '#384770'
+        $900: '#384770',
     },
     denger: {
         $300: '', // TODO
         $500: '#E5494D',
         $700: '', // TODO
-        $900: '' // TODO
+        $900: '', // TODO
     },
     warning: {
-        $500: '#F8B700'
+        $500: '#F8B700',
     },
     success: {
-        $500: '#008B55'
+        $500: '#008B55',
     },
     mix: {
         // TODO
-    }
+    },
 };
 
 const fontSizes = {
@@ -51,7 +51,7 @@ const fontSizes = {
     $17: '17px',
     $21: '21px',
     $25: '25px',
-    $26: '26px'
+    $26: '26px',
 };
 
 const space = {
@@ -61,7 +61,7 @@ const space = {
     $10: '10px',
     $20: '20px',
     $30: '30px',
-    $40: '40px'
+    $40: '40px',
 };
 
 const radii = {
@@ -69,7 +69,7 @@ const radii = {
     $2: 2,
     $4: 4,
     $6: 6,
-    circle: '100%'
+    circle: '100%',
 };
 
 export const defaultTheme = {
@@ -95,105 +95,105 @@ export const defaultTheme = {
                 potty: 10,
                 small: 14,
                 medium: 18,
-                large: 24
+                large: 24,
             },
             variants: {
                 primary: {
                     fill: colors.primary.$300,
                     hover: {
-                        fill: colors.primary.$500
-                    }
-                }
-            }
+                        fill: colors.primary.$500,
+                    },
+                },
+            },
         },
         addressAvatar: {
             sizes: {
                 small: 27,
                 medium: 30,
                 large: 45,
-            }
-        }
+            },
+        },
     },
     buttons: {
         primary: {
             background: colors.primary.$300,
             color: colors.standard[0],
             ':hover:not(:disabled)': {
-                background: colors.primary.$500
+                background: colors.primary.$500,
             },
             ':active': {
-                background: colors.primary.$700
+                background: colors.primary.$700,
             },
             ':disabled': {
-                background: colors.primary.$100
-            }
+                background: colors.primary.$100,
+            },
         },
         danger: {
             background: colors.denger.$300,
             color: colors.standard[0],
             ':hover:not(:disabled)': {
-                background: colors.denger.$500
+                background: colors.denger.$500,
             },
             ':active': {
-                background: colors.denger.$700
+                background: colors.denger.$700,
             },
             ':disabled': {
-                background: colors.denger.$900
-            }
+                background: colors.denger.$900,
+            },
         },
         transparent: {
             background: 'transparent',
             color: colors.standard[0],
             border: `1px solid ${colors.main.$300}`,
             ':hover:not(:disabled)': {
-                border: `1px solid ${colors.main.$200}`
+                border: `1px solid ${colors.main.$200}`,
             },
             ':active': {
-                border: `1px solid ${colors.main.$100}`
+                border: `1px solid ${colors.main.$100}`,
             },
             ':disabled': {
                 color: colors.basic.$700,
-                border: `1px solid ${colors.main.$500}`
-            }
-        }
+                border: `1px solid ${colors.main.$500}`,
+            },
+        },
     },
     icons: {
         help: {
             default: colors.basic.$500,
-            hovedenger: colors.primary.$300
-        }
+            hovedenger: colors.primary.$300,
+        },
     },
     buttonSizes: {
         large: {
             fontSize: fontSizes.$17,
             height: '54px',
             paddingLeft: space.$40,
-            paddingRight: space.$40
+            paddingRight: space.$40,
         },
         medium: {
             fontSize: fontSizes.$15,
             height: '42px',
             paddingLeft: space.$40,
-            paddingRight: space.$40
+            paddingRight: space.$40,
         },
         small: {
             fontSize: fontSizes.$13,
             height: '36px',
             paddingLeft: space.$30,
-            paddingRight: space.$30
+            paddingRight: space.$30,
         },
         potty: {
             fontSize: fontSizes.$15,
             height: '30px',
             paddingLeft: space.$30,
-            paddingRight: space.$30
+            paddingRight: space.$30,
         },
         micro: {
             fontSize: fontSizes.$11,
             height: '22px',
             paddingLeft: space.$10,
-            paddingRight: space.$10
-        }
+            paddingRight: space.$10,
+        },
     },
     styles: {
         root: {

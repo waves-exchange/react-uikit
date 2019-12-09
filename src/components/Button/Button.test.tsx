@@ -5,11 +5,7 @@ import { Button } from './Button';
 describe('Button', () => {
     it('renders', () => {
         const { getByTestId } = render(
-            <Button
-                data-testid="button"
-            >
-                Test Button
-            </Button>
+            <Button data-testid="button">Test Button</Button>
         );
 
         const button = getByTestId('button');

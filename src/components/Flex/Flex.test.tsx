@@ -7,9 +7,7 @@ expect.extend(matchers);
 
 describe('Flex', () => {
     it('renders', () => {
-        const { getByTestId } = render(
-            <Flex data-testid="flex" />
-        );
+        const { getByTestId } = render(<Flex data-testid="flex" />);
 
         const flex = getByTestId('flex');
 
