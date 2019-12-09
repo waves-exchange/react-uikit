@@ -23,7 +23,8 @@
     "prettier": "prettier --ignore-path .gitignore \"./src/**/*.+(ts|tsx)\"",
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
-    "check-types": "tsc --noEmit"
+    "check-types": "tsc --noEmit",
+    "watch-ts": "tsc -p ./tsconfigs/tsconfig.cjs.json -w"
   },
   "devDependencies": {
     "@emotion/core": "10.0.17",
