@@ -4,17 +4,29 @@ import { Icon } from '../Icon/Icon';
 import { ControlBox, IControlBoxStyles } from '../ControlBox/ControlBox';
 import { mergeDeepRight } from 'ramda';
 import { defaultControlBoxStyles } from './styles';
+import { iconCheck } from '../../assets/icons/check';
+
+/**
+ * Usage notes:
+ * To customize either pass controlBoxStyles (see ControlBox component for the list of styles props)
+ * or render prop ControlBox with your styles: () => <ControlBox {...styles} />
+ * see storybook for examples
+ */
 
 interface ICheckboxProps {
     controlBoxStyles?: IControlBoxStyles;
+    controlBox?: () => React.ReactNode;
     isChecked?: boolean;
     isFullWidth?: boolean;
     isDisabled?: boolean;
     isReadOnly?: boolean;
 }
 
-export const Checkbox: React.FC<ICheckboxProps & IBoxProps & InputHTMLAttributes<HTMLInputElement>> = ({
+export const Checkbox: React.FC<ICheckboxProps &
+    IBoxProps &
+    InputHTMLAttributes<HTMLInputElement>> = ({
     children,
+    controlBox,
     controlBoxStyles = {},
     id,
     name,
@@ -29,7 +41,12 @@ export const Checkbox: React.FC<ICheckboxProps & IBoxProps & InputHTMLAttributes
     onFocus,
     ...rest
 }) => {
-    const controlStyles = mergeDeepRight(defaultControlBoxStyles, controlBoxStyles) as IControlBoxStyles;
+    const controlStyles = mergeDeepRight(
+        defaultControlBoxStyles,
+        controlBoxStyles
+    ) as IControlBoxStyles;
+
+    const { baseStyles, ...restControlStyles } = controlStyles;
 
     return (
         <Box
@@ -39,7 +56,7 @@ export const Checkbox: React.FC<ICheckboxProps & IBoxProps & InputHTMLAttributes
             alignItems="center"
             width={isFullWidth ? 'full' : undefined}
             style={{
-                cursor: isDisabled ? 'not-allowed' : 'pointer'
+                cursor: isDisabled ? 'not-allowed' : 'pointer',
             }}
             {...rest}
         >
@@ -64,30 +81,23 @@ export const Checkbox: React.FC<ICheckboxProps & IBoxProps & InputHTMLAttributes
                 onFocus={onFocus}
                 defaultChecked={isReadOnly ? undefined : defaultChecked}
                 checked={
-                    isReadOnly ?
-                        Boolean(isChecked) :
-                        defaultChecked ?
-                            undefined :
-                            isChecked
-                } 
+                    isReadOnly
+                        ? Boolean(isChecked)
+                        : defaultChecked
+                        ? undefined
+                        : isChecked
+                }
                 disabled={isDisabled}
                 readOnly={isReadOnly}
             />
-            <ControlBox
-                sx={controlStyles.baseStyles}
-                _focus={controlStyles._focus}
-                _hover={controlStyles._hover}
-                _invalid={controlStyles._disabled}
-                _disabled={controlStyles._disabled}
-                _checked={controlStyles._checked}
-                _child={controlStyles._child}
-                _checkedAndChild={controlStyles._checkedAndChild}
-                _checkedAndDisabled={controlStyles._checkedAndDisabled}
-                _checkedAndFocus={controlStyles._checkedAndFocus}
-                _checkedAndHover={controlStyles._checkedAndHover}
-            >
-                {children || <Icon name="check" />}
-            </ControlBox>
+            {controlBox ? (
+                controlBox()
+            ) : (
+                <ControlBox sx={baseStyles} {...restControlStyles}>
+                    <Icon icon={iconCheck} />
+                </ControlBox>
+            )}
+            {children}
         </Box>
     );
 };

@@ -4,30 +4,44 @@ export const defaultControlBoxStyles: IControlBoxStyles = {
     baseStyles: {
         userSelect: 'none' as 'none',
         border: '1px solid',
-        rounded: 'md',
         color: 'white',
         borderColor: 'main.$500',
         backgroundColor: 'main.$800',
-        borderRadius: 'button',
+        borderRadius: '$4',
         transition: 'all 120ms, background-color 120ms, box-shadow 250ms',
+        width: '18px',
+        height: '18px'
     },
     _hover: {
         borderColor: 'main.$200',
     },
+    _child: {
+        opacity: 0,
+        width: '100%',
+        height: '100%'
+    },
+    _checkedAndChild: {
+        opacity: 1
+    },
     _checked: {
-        backgroundColor: 'blue.$300',
+        backgroundColor: 'primary.$300',
+        borderColor: 'primary.$300',
         ':hover': {
             borderColor: 'main.$200',
         }
     },
+    _checkedAndHover: {
+        borderColor: 'primary.$300',
+    },
     _checkedAndDisabled: {
-        backgroundColor: 'blue.$900',
-        borderRadius: 2
+        backgroundColor: 'primary.$900',
+        borderColor: 'primary.$900',
+    },
+    _checkedAndDisabledHover: {
+        borderColor: 'primary.$900',
     },
     _disabled: {
-        backgroundColor: '#353b4a',
-    },
-    _focus: {
-        borderColor: 'main.$200',
+        borderColor: 'main.$500',
+        backgroundColor: 'main.$900',
     }
 };

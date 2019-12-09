@@ -12,6 +12,7 @@ export interface IControlBoxStyles {
     _child?: CSSObject;
     _checkedAndChild?: CSSObject;
     _checkedAndDisabled?: CSSObject;
+    _checkedAndDisabledHover?: CSSObject;
     _checkedAndFocus?: CSSObject;
     _checkedAndHover?: CSSObject;
 }
@@ -30,6 +31,7 @@ export const ControlBox = styled(Box)<TProps>(({
     _child = { opacity: 0 },
     _checkedAndChild = { opacity: 1 },
     _checkedAndDisabled,
+    _checkedAndDisabledHover,
     _checkedAndFocus,
     _checkedAndHover,
 }: TProps) => {
@@ -40,6 +42,7 @@ export const ControlBox = styled(Box)<TProps>(({
     const disabled = `input[type=${type}]:disabled + &`;
     const focus = `input[type=${type}]:focus + &`;
     const hover = `input[type=${type}]:hover:not(:disabled):not(:checked) + &`;
+    const checkedAndDisabledHover = `input[type=${type}]:hover:disabled:checked + &`;
     const checked = `input[type=${type}]:checked + &, input[type=${type}][aria-checked=mixed] + &`;
     const invalid = `input[type=${type}][aria-invalid=true] + &`;
 
@@ -51,6 +54,7 @@ export const ControlBox = styled(Box)<TProps>(({
         [checkedAndDisabled]: _checkedAndDisabled,
         [checkedAndFocus]: _checkedAndFocus,
         [checkedAndHover]: _checkedAndHover,
+        [checkedAndDisabledHover]: _checkedAndDisabledHover,
         ...{ '& > *': _child },
         [checked]: {
             ..._checked,
