@@ -1,9 +1,9 @@
-import styled, { CSSObject } from '@emotion/styled';
+import styled, { WithTheme } from '@emotion/styled';
 import shouldForwardProp from '@styled-system/should-forward-prop';
 import { InterpolationWithTheme } from '@emotion/core';
 import { TDefaultTheme } from 'src/interface';
 import { ElementType, RefAttributes, HTMLAttributes } from 'react';
-import css from '@styled-system/css';
+import css, { SystemStyleObject } from '@styled-system/css';
 import {
     background,
     BackgroundProps,
@@ -25,7 +25,8 @@ import {
     space,
     SpaceProps,
     typography,
-    TypographyProps
+    TypographyProps,
+    styleFn
 } from 'styled-system';
 
 export type IBoxProps =
@@ -45,8 +46,7 @@ export type IBoxProps =
     { as?: ElementType } &
     { sx?: InterpolationWithTheme<TDefaultTheme> };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const sx = (props: any): CSSObject => css(props.sx)(props.theme);
+const sx: styleFn = (props: WithTheme<{ sx: SystemStyleObject }, TDefaultTheme>) => css(props.sx)(props.theme);
 
 export const Box = styled<'div', IBoxProps>('div', {
     shouldForwardProp

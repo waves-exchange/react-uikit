@@ -1,23 +1,24 @@
 import React, { forwardRef, SVGAttributes } from 'react';
 import styled from '@emotion/styled';
 import { Box, IBoxProps } from '../Box/Box';
-import { icons, IconNames } from '../../assets/icons';
 
-const Svg = styled(Box)`
-    flex-shrink: 0;
-    backface-visibility: hidden;
-    &:not(:root) {
-        overflow: hidden;
+const Svg = styled(Box)({
+    flexShrink: 0,
+    backfaceVisibility: 'hidden',
+    '&:not(:root)': {
+        overflow: 'hidden'
     }
-`;
+});
 
-type IconProps = Record<'name', IconNames> & IBoxProps & SVGAttributes<SVGElement>;
+interface IIcon {
+    path: JSX.Element;
+    viewBox?: string;
+}
+
+type IconProps = Record<'icon', IIcon> & IBoxProps & SVGAttributes<SVGElement>;
 
 export const Icon = forwardRef<SVGElement, IconProps>((props, ref) => {
-    const { color, name, size, ...rest } = props;
-
-    const icon = icons[name];
-    const { path, viewBox: iconViewBox = '0 0 10 10' } = icon;
+    const { icon: { path, viewBox }, color, size, ...rest } = props;
 
     return (
         <Svg
@@ -28,7 +29,7 @@ export const Icon = forwardRef<SVGElement, IconProps>((props, ref) => {
             size={size}
             display="inline-block"
             verticalAlign="middle"
-            viewBox={iconViewBox}
+            viewBox={viewBox}
             {...rest}
         >
             {path}
@@ -39,6 +40,6 @@ export const Icon = forwardRef<SVGElement, IconProps>((props, ref) => {
 Icon.displayName = 'Icon';
 
 Icon.defaultProps = {
-    size: 20,
+    size: 14,
     color: 'currentColor',
 };
