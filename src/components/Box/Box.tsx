@@ -1,6 +1,9 @@
-import styled from '@emotion/styled';
+import styled, { WithTheme } from '@emotion/styled';
 import shouldForwardProp from '@styled-system/should-forward-prop';
+import { InterpolationWithTheme } from '@emotion/core';
+import { TDefaultTheme } from 'src/interface';
 import { ElementType, RefAttributes, HTMLAttributes } from 'react';
+import css, { SystemStyleObject } from '@styled-system/css';
 import {
     background,
     BackgroundProps,
@@ -22,7 +25,8 @@ import {
     space,
     SpaceProps,
     typography,
-    TypographyProps
+    TypographyProps,
+    styleFn
 } from 'styled-system';
 
 export type IBoxProps =
@@ -38,26 +42,28 @@ export type IBoxProps =
     BoxShadowProps &
     TypographyProps &
     OverflowProps &
-    FlexboxProps & {
-        as?: ElementType;
-    };
+    FlexboxProps &
+    { as?: ElementType } &
+    { sx?: InterpolationWithTheme<TDefaultTheme> };
+
+const sx: styleFn = (props: WithTheme<{ sx: SystemStyleObject }, TDefaultTheme>) => css(props.sx)(props.theme);
 
 export const Box = styled<'div', IBoxProps>('div', {
     shouldForwardProp
-})(compose(
-    layout,
-    color,
-    space,
-    background,
-    border,
-    grid,
-    position,
-    overflow,
-    boxShadow,
-    typography,
-    flexbox
-), {
-    boxSizing: 'border-box'
-});
-
-
+})(
+    compose(
+        layout,
+        color,
+        space,
+        background,
+        border,
+        grid,
+        position,
+        overflow,
+        boxShadow,
+        typography,
+        flexbox
+    ),
+    sx,
+    { boxSizing: 'border-box' }
+);
