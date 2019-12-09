@@ -141,12 +141,9 @@ export const defaultTheme = {
                     ':disabled': {
                         backgroundColor: colors.main.$700
                     },
-
-                }
-            },
-            errorVariants: {
-                default: {
-                    borderColor: colors.denger.$500
+                    '&[aria-invalid="true"]': {
+                        borderColor: colors.denger.$500
+                    }
                 }
             }
         }

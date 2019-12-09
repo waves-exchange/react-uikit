@@ -27,7 +27,7 @@ stories.add('simple', () => (
             <Box mb="$20">
                 <label>
                     Error
-                    <InputPassword invalid={true} />
+                    <InputPassword aria-invalid={true} />
                 </label>
             </Box>
         </Box>

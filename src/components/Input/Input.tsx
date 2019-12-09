@@ -11,7 +11,6 @@ export type InputProps =
     InputHTMLAttributes<HTMLInputElement> & {
         variantSize?: InputSize;
         variant?: InputVariant;
-        invalid?: boolean;
         paddingRight?: string;
     };
 
@@ -24,14 +23,6 @@ export const Input = styled(Box)<InputProps, TDefaultTheme>(
         prop: 'variant',
         scale: 'components.input.variants',
     }),
-    (props) => {
-        const { errorVariants } = props.theme.components.input;
-        const current = props.variant as InputVariant;
-
-        return props.invalid ?
-            errorVariants[current] || errorVariants['default'] :
-            undefined;
-    },
     ({ paddingRight }) => paddingRight ? { paddingRight } : undefined, // TODO Виктор обещал починить
     {
         outline: 0

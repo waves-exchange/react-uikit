@@ -14,14 +14,13 @@ describe('Input', () => {
                 input: {
                     variants: {
                         default: {
-                            color: 'test'
+                            color: 'black',
+                            border: '1px solid',
+                            '&[aria-invalid="true"]': {
+                                borderColor: 'red'
+                            }
                         }
                     },
-                    errorVariants: {
-                        default: {
-                            borderColor: 'red'
-                        }
-                    }
                 }
             }
         };
@@ -37,42 +36,20 @@ describe('Input', () => {
         const input = container.firstChild;
 
         expect(input).toHaveProperty('type', 'text');
-        expect(input).toHaveStyleRule('color', 'test');
+        expect(input).toHaveStyleRule('color', 'black');
     });
 
     it('renders invalid', () => {
         const { container } = render(
             <Input
                 theme={theme}
-                invalid={true}
+                aria-invalid={true}
             />
         );
 
-        expect(container.firstChild).toHaveStyleRule('border-color', 'red');
-    });
-
-    it('renders invalid with empty variant', () => {
-        const { container } = render(
-            <Input
-                theme={theme}
-                invalid={true}
-                variant={null as any}
-            />
-        );
-
-        expect(container.firstChild).toHaveStyleRule('border-color', 'red');
-    });
-
-    it('renders invalid with not found variant', () => {
-        const { container } = render(
-            <Input
-                theme={theme}
-                invalid={true}
-                variant={'_not_found_' as any}
-            />
-        );
-
-        expect(container.firstChild).toHaveStyleRule('border-color', 'red');
+        expect(container.firstChild).toHaveStyleRule('border-color', 'red', {
+            target: '[aria-invalid="true"]'
+        });
     });
 
     it('renders with custom padding-right', () => {
