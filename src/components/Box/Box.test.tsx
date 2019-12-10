@@ -8,14 +8,9 @@ expect.extend(matchers);
 describe('Box', () => {
     it('renders', () => {
         const { container } = render(
-            <Box
-                color="red"
-                fontSize="15px"
-                p="20px"
-                m="10px"
-            >
+            <Box color="red" fontSize="15px" p="20px" m="10px">
                 Test Box
-            </Box>,
+            </Box>
         );
 
         const box = container.firstChild;

@@ -7,9 +7,7 @@ expect.extend(matchers);
 
 describe('Flex', () => {
     it('renders', () => {
-        const { container } = render(
-            <Flex />
-        );
+        const { container } = render(<Flex />);
 
         expect(container.firstChild).toHaveStyleRule('display', 'flex');
     });

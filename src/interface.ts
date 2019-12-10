@@ -16,4 +16,4 @@ export type TPartialDeep<T> = T extends object
     ? { [Key in keyof T]?: TPartialDeep<T[Key]> }
     : T;
 
-export type TDefaultTheme = typeof defaultTheme;    
+export type TDefaultTheme = typeof defaultTheme;

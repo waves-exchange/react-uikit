@@ -27,22 +27,6 @@ export const defaultTheme = {
         default: '0 0 4px rgba(0, 0, 0, 0.125)',
     },
     components: {
-        icons: {
-            sizes: {
-                potty: 10,
-                small: 14,
-                medium: 18,
-                large: 24,
-            },
-            variants: {
-                primary: {
-                    fill: colors.primary.$300,
-                    hover: {
-                        fill: colors.primary.$500,
-                    },
-                },
-            },
-        },
         addressAvatar: {
             sizes: {
                 small: 27,
@@ -94,12 +78,6 @@ export const defaultTheme = {
             },
         },
     },
-    icons: {
-        help: {
-            default: colors.basic.$500,
-            hovedanger: colors.primary.$300,
-        },
-    },
     buttonSizes: {
         large: {
             fontSize: fontSizes.$17,
@@ -130,15 +108,6 @@ export const defaultTheme = {
             height: '22px',
             paddingLeft: space.$10,
             paddingRight: space.$10,
-        },
-    },
-    styles: {
-        root: {
-            fontFamily: 'body',
-            fontWeight: 'body',
-            lineHeight: 'body',
-            fontSize: [2, 18],
-            color: 'text.dark',
         },
     },
 };

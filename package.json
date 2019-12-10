@@ -23,7 +23,8 @@
     "prepublish": "npm run test && npm run build",
     "prettier": "prettier --ignore-path .gitignore \"./src/**/*.+(ts|tsx)\"",
     "format": "npm run prettier -- --write",
-    "check-format": "npm run prettier -- --list-different"
+    "check-format": "npm run prettier -- --list-different",
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@emotion/core": "10.0.17",
@@ -96,7 +97,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm test",
+      "pre-commit": "lint-staged && npm run check-types && npm test",
       "post-commit": "git update-index --again"
     }
   },

@@ -4,11 +4,7 @@ import { Button } from './Button';
 
 describe('Button', () => {
     it('renders', () => {
-        const { container } = render(
-            <Button>
-                Test Button
-            </Button>
-        );
+        const { container } = render(<Button>Test Button</Button>);
 
         const button = container.firstChild;
 
