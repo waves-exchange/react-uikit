@@ -4,11 +4,13 @@ import { Button } from './Button';
 
 describe('Button', () => {
     it('renders', () => {
-        const { getByTestId } = render(
-            <Button data-testid="button">Test Button</Button>
+        const { container } = render(
+            <Button>
+                Test Button
+            </Button>
         );
 
-        const button = getByTestId('button');
+        const button = container.firstChild;
 
         expect(button).toHaveProperty('textContent', 'Test Button');
         expect(button).toHaveProperty('type', 'button');

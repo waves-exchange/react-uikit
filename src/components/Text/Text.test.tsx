@@ -7,9 +7,8 @@ expect.extend(matchers);
 
 describe('Text', () => {
     it('renders', () => {
-        const { getByTestId } = render(
+        const { container } = render(
             <Text
-                data-testid="text"
                 color="red"
                 fontSize="15px"
                 fontWeight="bold"
@@ -18,7 +17,7 @@ describe('Text', () => {
             </Text>
         );
 
-        const text = getByTestId('text');
+        const text = container.firstChild;
 
         expect(text).toHaveProperty('textContent', 'Test Text');
         expect(text).toHaveStyleRule('color', 'red');
@@ -27,17 +26,14 @@ describe('Text', () => {
     });
 
     it('truncates', () => {
-        const { getByTestId } = render(
+        const { container } = render(
             <Text
-                data-testid="text"
                 isTruncated={true}
             >
                 Test Text
             </Text>
         );
 
-        const text = getByTestId('text');
-
-        expect(text).toHaveStyleRule('text-overflow', 'ellipsis');
+        expect(container.firstChild).toHaveStyleRule('text-overflow', 'ellipsis');
     });
 });

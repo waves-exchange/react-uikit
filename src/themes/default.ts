@@ -27,7 +27,7 @@ const colors = {
         $700: '#2E5DDC',
         $900: '#384770',
     },
-    denger: {
+    danger: {
         $300: '', // TODO
         $500: '#E5494D',
         $700: '', // TODO
@@ -64,12 +64,16 @@ const space = {
     $40: '40px',
 };
 
+const sizes = {
+    medium: '48px',
+};
+
 const radii = {
     none: 0,
     $2: 2,
     $4: 4,
     $6: 6,
-    circle: '100%',
+    circle: '9999px',
 };
 
 export const defaultTheme = {
@@ -83,6 +87,7 @@ export const defaultTheme = {
     fontWeights: [100, 300, 400, 500, 700],
     lineHeights: [16, 20, 22, 26, 30, 36],
     space,
+    sizes,
     radii,
     borderWidths: [0, 1],
     breakpoints: ['576px', '768px', '992px', '1200px'],
@@ -129,16 +134,16 @@ export const defaultTheme = {
             },
         },
         danger: {
-            background: colors.denger.$300,
+            background: colors.danger.$300,
             color: colors.standard[0],
             ':hover:not(:disabled)': {
-                background: colors.denger.$500,
+                background: colors.danger.$500,
             },
             ':active': {
-                background: colors.denger.$700,
+                background: colors.danger.$700,
             },
             ':disabled': {
-                background: colors.denger.$900,
+                background: colors.danger.$900,
             },
         },
         transparent: {
@@ -160,7 +165,7 @@ export const defaultTheme = {
     icons: {
         help: {
             default: colors.basic.$500,
-            hovedenger: colors.primary.$300,
+            hovedanger: colors.primary.$300,
         },
     },
     buttonSizes: {

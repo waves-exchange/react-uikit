@@ -7,9 +7,8 @@ expect.extend(matchers);
 
 describe('Box', () => {
     it('renders', () => {
-        const { getByTestId } = render(
+        const { container } = render(
             <Box
-                data-testid="box"
                 color="red"
                 fontSize="15px"
                 p="20px"
@@ -19,7 +18,7 @@ describe('Box', () => {
             </Box>,
         );
 
-        const box = getByTestId('box');
+        const box = container.firstChild;
 
         expect(box).toHaveProperty('textContent', 'Test Box');
         expect(box).toHaveStyleRule('color', 'red');

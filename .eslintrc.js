@@ -160,7 +160,8 @@ module.exports = {
 
     // typescript-eslint
     '@typescript-eslint/await-thenable': 'error',
-    '@typescript-eslint/consistent-type-definitions': 'warn',
+    '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/indent': 'off',
     '@typescript-eslint/interface-name-prefix': ['warn', 'always'],
     '@typescript-eslint/member-delimiter-style': 'warn',
     '@typescript-eslint/member-ordering': 'warn',
@@ -194,7 +195,7 @@ module.exports = {
     '@typescript-eslint/require-array-sort-compare': 'error',
     '@typescript-eslint/require-await': 'error',
     '@typescript-eslint/semi': 'error',
-    '@typescript-eslint/strict-boolean-expressions': 'off',
+    // '@typescript-eslint/strict-boolean-expressions': 'error',
     '@typescript-eslint/type-annotation-spacing': 'error',
 
     // eslint-plugin-react
@@ -238,6 +239,7 @@ module.exports = {
         'jest/globals': true,
       },
       rules: {
+        '@typescript-eslint/no-explicit-any': 'off',
         'jest/no-disabled-tests': 'warn',
         'jest/no-focused-tests': 'error',
         'jest/no-alias-methods': 'error',
@@ -251,6 +253,14 @@ module.exports = {
         'jest/prefer-spy-on': 'error',
         'jest/valid-expect': 'error',
       }
-    }
-  ]
+    },
+    {
+      files: [
+        'src/assets/**/*.*'
+      ],
+      rules: {
+        'max-len': 'off'
+      },
+    },
+  ],
 };
