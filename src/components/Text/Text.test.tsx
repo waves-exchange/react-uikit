@@ -2,13 +2,16 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { matchers } from 'jest-emotion';
 import { Text } from './Text';
+import { defaultTheme } from 'themes/default';
 
 expect.extend(matchers);
 
 describe('Text', () => {
     it('renders', () => {
-        const { container } = render(
+        const { getByTestId } = render(
             <Text
+                theme={defaultTheme}
+                data-testid="text"
                 color="red"
                 fontSize="15px"
                 fontWeight="bold"
@@ -17,7 +20,7 @@ describe('Text', () => {
             </Text>
         );
 
-        const text = container.firstChild;
+        const text = getByTestId('text');
 
         expect(text).toHaveProperty('textContent', 'Test Text');
         expect(text).toHaveStyleRule('color', 'red');
@@ -26,14 +29,14 @@ describe('Text', () => {
     });
 
     it('truncates', () => {
-        const { container } = render(
-            <Text
-                isTruncated={true}
-            >
+        const { getByTestId } = render(
+            <Text data-testid="text" isTruncated={true}>
                 Test Text
             </Text>
         );
 
-        expect(container.firstChild).toHaveStyleRule('text-overflow', 'ellipsis');
+        const text = getByTestId('text');
+
+        expect(text).toHaveStyleRule('text-overflow', 'ellipsis');
     });
 });
