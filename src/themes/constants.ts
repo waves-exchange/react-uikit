@@ -93,7 +93,7 @@ export const radii = {
     $2: 2,
     $4: 4,
     $6: 6,
-    circle: '100%',
+    circle: '9999px',
 };
 
 export const sizes = {

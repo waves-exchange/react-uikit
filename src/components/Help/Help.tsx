@@ -1,5 +1,4 @@
 import React, { Component, createRef, Fragment, RefObject } from 'react';
-import { HelpIcon as Icon, HelpClass } from '../Icons/HelpIcon';
 import { Box } from '../Box/Box';
 import { TDefaultTheme } from 'src/interface';
 import { withTheme } from 'emotion-theming';
@@ -11,6 +10,9 @@ import {
     PaddingProps,
 } from 'styled-system';
 import { styled } from '../../styled';
+import { Icon } from '../Icon/Icon';
+import { iconQuestion } from '../../assets/icons/question';
+import { Flex } from '../Flex/Flex';
 
 class HelpComponent extends Component<TProps, IState> {
     public readonly state = { hovered: false };
@@ -20,7 +22,7 @@ class HelpComponent extends Component<TProps, IState> {
     private readonly arrow: RefObject<HTMLDivElement> = createRef<
         HTMLDivElement
     >();
-    private readonly icon: RefObject<HelpClass> = createRef<HelpClass>();
+    private readonly icon = createRef<SVGElement>();
     private timer: ReturnType<typeof setTimeout> | null = null;
 
     private static getSnapHorizontalX(
@@ -88,11 +90,31 @@ class HelpComponent extends Component<TProps, IState> {
 
         return (
             <Fragment>
-                <Icon
-                    ref={this.icon}
-                    onMouseEnter={this.onMouseEnter}
-                    onMouseLeave={this.onMouseLeave}
-                />
+                <Flex
+                    position="relative"
+                    size="14px"
+                    borderRadius="circle"
+                    justifyContent="center"
+                    alignItems="center"
+                    backgroundColor={
+                        this.state.hovered ? 'primary.$300' : 'basic.$500'
+                    }
+                >
+                    <Icon
+                        sx={{
+                            transform: 'translate(-50%, -50%)',
+                        }}
+                        position="absolute"
+                        top="50%"
+                        left="50%"
+                        icon={iconQuestion}
+                        ref={this.icon}
+                        size="7px"
+                        color="standard.$1000"
+                        onMouseEnter={this.onMouseEnter}
+                        onMouseLeave={this.onMouseLeave}
+                    />
+                </Flex>
                 {content}
             </Fragment>
         );
@@ -106,13 +128,11 @@ class HelpComponent extends Component<TProps, IState> {
     }
 
     private readonly onMouseEnter = (): void => {
-        console.log('Hover in');
         this.clearTimeout();
         this.setState({ hovered: true });
     };
 
     private readonly onMouseLeave = (): void => {
-        console.log('Hover out');
         this.clearTimeout();
         this.timer = setTimeout(() => {
             console.log('hovered: false');
@@ -122,7 +142,7 @@ class HelpComponent extends Component<TProps, IState> {
 
     private snap(): void {
         const box = this.box.current!;
-        const icon = this.icon.current!.ref.current!;
+        const icon = this.icon.current!;
         const arrow = this.arrow.current!;
 
         box.style.transform = '';

@@ -19,18 +19,19 @@ import {
     grid,
     GridProps,
     layout,
-    LayoutProps, overflow, OverflowProps,
+    LayoutProps,
+    overflow,
+    OverflowProps,
     position,
     PositionProps,
     space,
     SpaceProps,
     typography,
     TypographyProps,
-    styleFn
+    styleFn,
 } from 'styled-system';
 
-export type IBoxProps<T = HTMLDivElement> =
-    RefAttributes<T> &
+export type IBoxProps<T = HTMLDivElement> = RefAttributes<T> &
     HTMLAttributes<T> &
     LayoutProps &
     ColorProps &
@@ -42,14 +43,16 @@ export type IBoxProps<T = HTMLDivElement> =
     BoxShadowProps &
     TypographyProps &
     OverflowProps &
-    FlexboxProps &
-    { as?: ElementType } &
-    { sx?: InterpolationWithTheme<TDefaultTheme> };
+    FlexboxProps & { as?: ElementType } & {
+        sx?: InterpolationWithTheme<TDefaultTheme>;
+    };
 
-const sx: styleFn = (props: WithTheme<{ sx: SystemStyleObject }, TDefaultTheme>) => css(props.sx)(props.theme);
+const sx: styleFn = (
+    props: WithTheme<{ sx: SystemStyleObject }, TDefaultTheme>
+) => css(props.sx)(props.theme);
 
 export const Box = styled<'div', IBoxProps>('div', {
-    shouldForwardProp
+    shouldForwardProp,
 })(
     compose(
         layout,
