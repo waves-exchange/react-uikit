@@ -10,17 +10,15 @@ describe('Input', () => {
 
     beforeEach(() => {
         theme = {
-            components: {
-                input: {
-                    variants: {
-                        default: {
-                            color: 'black',
-                            border: '1px solid',
-                            '&[aria-invalid="true"]': {
-                                borderColor: 'red',
-                            },
-                        },
-                    },
+            sizes: {
+                medium: '42px',
+            },
+            colors: {
+                standard: {
+                    $0: 'white',
+                },
+                danger: {
+                    $500: 'red',
                 },
             },
         };
@@ -32,7 +30,7 @@ describe('Input', () => {
         const input = container.firstChild;
 
         expect(input).toHaveProperty('type', 'text');
-        expect(input).toHaveStyleRule('color', 'black');
+        expect(input).toHaveStyleRule('color', 'white');
     });
 
     it('renders invalid', () => {

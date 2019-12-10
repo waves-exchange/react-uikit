@@ -1,11 +1,15 @@
 import styled from '@emotion/styled';
-import { useTheme } from 'emotion-theming';
 import React, { FC, useState } from 'react';
 import { TDefaultTheme } from 'src/interface';
 import { Flex } from '../Flex/Flex';
 import { iconEye } from '../../assets/icons/eye';
 import { iconEyeActive } from '../../assets/icons/eyeActive';
-import { Input, InputProps, InputSize } from '../Input/Input';
+import {
+    Input,
+    InputProps,
+    InputSize,
+    inputSizeVariants,
+} from '../Input/Input';
 import { InputElement } from '../InputElement/InputElement';
 import { InputGroup } from '../InputGroup/InputGroup';
 import { Icon } from '../Icon/Icon';
@@ -27,12 +31,11 @@ const InputPasswordToggler = styled(Flex)<
 
 export const InputPassword: FC<InputProps> = (props) => {
     const [show, setShow] = useState(false);
-    const theme = useTheme<TDefaultTheme>();
 
     const toggle = (): void => setShow(!show);
     const variantSize = props.variantSize as InputSize;
-    const togglerWidth = theme.components.input.sizes[variantSize]
-        ? theme.components.input.sizes[variantSize].height
+    const togglerWidth = inputSizeVariants[variantSize]
+        ? inputSizeVariants[variantSize].height
         : '0';
 
     return (

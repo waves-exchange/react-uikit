@@ -10,14 +10,8 @@ describe('InputElement', () => {
 
     beforeEach(() => {
         theme = {
-            components: {
-                input: {
-                    sizes: {
-                        medium: {
-                            height: '42px',
-                        },
-                    },
-                },
+            sizes: {
+                medium: '42px',
             },
         };
     });

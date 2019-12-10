@@ -1,20 +1,17 @@
-import { TDefaultTheme } from 'src/interface';
 import styled from '@emotion/styled';
 import { Box } from '../Box/Box';
-import { get } from 'styled-system';
+import { css } from '@styled-system/css';
+import { InputSize, inputSizeVariants } from '../Input/Input';
 
-type InputSize = keyof TDefaultTheme['components']['input']['sizes'];
 type Props = {
     placement: 'left' | 'right';
     inputSize?: InputSize;
 };
 
-export const InputElement = styled(Box)<Props, TDefaultTheme>(
-    ({ placement, theme, inputSize }) => ({
+export const InputElement = styled(Box)<Props>(({ placement, inputSize }) =>
+    css({
         position: 'absolute',
-        height: inputSize
-            ? get(theme.components.input.sizes[inputSize], 'height')
-            : 0,
+        height: inputSize ? inputSizeVariants[inputSize].height : 0,
         top: 0,
         [placement]: 0,
     })

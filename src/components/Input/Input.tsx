@@ -4,8 +4,38 @@ import { variant } from 'styled-system';
 import { TDefaultTheme } from 'interface';
 import { Box } from '../Box/Box';
 
-export type InputSize = keyof TDefaultTheme['components']['input']['sizes'];
-export type InputVariant = keyof TDefaultTheme['components']['input']['variants'];
+export const inputSizeVariants = {
+    medium: {
+        fontSize: '$15',
+        height: 'medium',
+        paddingLeft: '$20',
+        paddingRight: '$20',
+    },
+};
+
+export const inputVariants = {
+    default: {
+        backgroundColor: 'main.$800',
+        borderColor: 'main.$500',
+        borderRadius: '$4',
+        color: 'standard.$0',
+        ':hover:not(:disabled)': {
+            borderColor: 'main.$200',
+        },
+        ':focus:not(:disabled)': {
+            borderColor: 'primary.$300',
+        },
+        ':disabled': {
+            backgroundColor: 'main.$700',
+        },
+        '&[aria-invalid="true"]': {
+            borderColor: 'danger.$500',
+        },
+    },
+};
+
+export type InputSize = keyof typeof inputSizeVariants;
+export type InputVariant = keyof typeof inputVariants;
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     variantSize?: InputSize;
@@ -16,11 +46,11 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 export const Input = styled(Box)<InputProps, TDefaultTheme>(
     variant({
         prop: 'variantSize',
-        scale: 'components.input.sizes',
+        variants: inputSizeVariants,
     }),
     variant({
         prop: 'variant',
-        scale: 'components.input.variants',
+        variants: inputVariants,
     }),
     ({ paddingRight }) => (paddingRight ? { paddingRight } : undefined), // TODO Виктор обещал починить
     {

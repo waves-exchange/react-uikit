@@ -27,7 +27,7 @@ const colors = {
         $700: '#2E5DDC',
         $900: '#384770',
     },
-    denger: {
+    danger: {
         $300: '', // TODO
         $500: '#E5494D',
         $700: '', // TODO
@@ -65,7 +65,7 @@ const space = {
 };
 
 const sizes = {
-    medium: '48px'
+    medium: '48px',
 };
 
 const radii = {
@@ -87,6 +87,7 @@ export const defaultTheme = {
     fontWeights: [100, 300, 400, 500, 700],
     lineHeights: [16, 20, 22, 26, 30, 36],
     space,
+    sizes,
     radii,
     borderWidths: [0, 1],
     breakpoints: ['576px', '768px', '992px', '1200px'],
@@ -117,36 +118,6 @@ export const defaultTheme = {
                 large: 45,
             },
         },
-        input: {
-            sizes: {
-                medium: {
-                    fontSize: fontSizes.$15,
-                    height: sizes.medium,
-                    paddingLeft: space.$20,
-                    paddingRight: space.$20
-                }
-            },
-            variants: {
-                default: {
-                    backgroundColor: colors.main.$800,
-                    borderColor: colors.main.$500,
-                    borderRadius: radii.$4,
-                    color: colors.standard.$0,
-                    ':hover:not(:disabled)': {
-                        borderColor: colors.main.$200
-                    },
-                    ':focus:not(:disabled)': {
-                        borderColor: colors.primary.$300
-                    },
-                    ':disabled': {
-                        backgroundColor: colors.main.$700
-                    },
-                    '&[aria-invalid="true"]': {
-                        borderColor: colors.denger.$500
-                    }
-                }
-            }
-        }
     },
     buttons: {
         primary: {
@@ -163,16 +134,16 @@ export const defaultTheme = {
             },
         },
         danger: {
-            background: colors.denger.$300,
+            background: colors.danger.$300,
             color: colors.standard[0],
             ':hover:not(:disabled)': {
-                background: colors.denger.$500,
+                background: colors.danger.$500,
             },
             ':active': {
-                background: colors.denger.$700,
+                background: colors.danger.$700,
             },
             ':disabled': {
-                background: colors.denger.$900,
+                background: colors.danger.$900,
             },
         },
         transparent: {
@@ -194,7 +165,7 @@ export const defaultTheme = {
     icons: {
         help: {
             default: colors.basic.$500,
-            hovedenger: colors.primary.$300,
+            hovedanger: colors.primary.$300,
         },
     },
     buttonSizes: {
@@ -237,5 +208,5 @@ export const defaultTheme = {
             fontSize: [2, 18],
             color: 'text.dark',
         },
-    }
+    },
 };

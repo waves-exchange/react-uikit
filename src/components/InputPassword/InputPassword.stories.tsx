@@ -13,7 +13,7 @@ stories.add('simple', () => (
             height="100vh"
             p="$20"
             backgroundColor="main.$800"
-            color="standard.white"
+            color="standard.$0"
         >
             <Box mb="$20">
                 <label>
