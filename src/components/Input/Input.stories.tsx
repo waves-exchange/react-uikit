@@ -9,7 +9,12 @@ const stories = storiesOf('Input', module);
 
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Box height="100vh" p="$20" backgroundColor="main.$800" color="standard.white">
+        <Box
+            height="100vh"
+            p="$20"
+            backgroundColor="main.$800"
+            color="standard.white"
+        >
             <Box mb="$20">
                 <label>
                     Default

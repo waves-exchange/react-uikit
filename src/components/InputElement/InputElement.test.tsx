@@ -14,20 +14,17 @@ describe('InputElement', () => {
                 input: {
                     sizes: {
                         medium: {
-                            height: '42px'
-                        }
-                    }
-                }
-            }
+                            height: '42px',
+                        },
+                    },
+                },
+            },
         };
     });
 
     it('renders', () => {
         const { container } = render(
-            <InputElement
-                theme={theme}
-                placement="left"
-            />
+            <InputElement theme={theme} placement="left" />
         );
 
         expect(container.firstChild).toHaveStyleRule('height', '42px');
@@ -35,10 +32,7 @@ describe('InputElement', () => {
 
     it('renders with left placement', () => {
         const { container } = render(
-            <InputElement
-                theme={theme}
-                placement="left"
-            />
+            <InputElement theme={theme} placement="left" />
         );
 
         expect(container.firstChild).toHaveStyleRule('left', '0');
@@ -46,10 +40,7 @@ describe('InputElement', () => {
 
     it('renders with right placement', () => {
         const { container } = render(
-            <InputElement
-                theme={theme}
-                placement="right"
-            />
+            <InputElement theme={theme} placement="right" />
         );
 
         expect(container.firstChild).toHaveStyleRule('right', '0');

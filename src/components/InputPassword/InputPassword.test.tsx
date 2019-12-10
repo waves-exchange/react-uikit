@@ -13,17 +13,15 @@ describe('InputPassword', () => {
         theme = {
             colors: {
                 basic: {},
-                primary: {}
+                primary: {},
             },
             components: {
                 input: {
                     sizes: {
-                        medium: {
-
-                        }
-                    }
-                }
-            }
+                        medium: {},
+                    },
+                },
+            },
         };
     });
 

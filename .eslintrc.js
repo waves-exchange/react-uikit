@@ -161,7 +161,7 @@ module.exports = {
     // typescript-eslint
     '@typescript-eslint/await-thenable': 'error',
     '@typescript-eslint/consistent-type-definitions': 'off',
-    '@typescript-eslint/indent': 'warn',
+    '@typescript-eslint/indent': 'off',
     '@typescript-eslint/interface-name-prefix': ['warn', 'always'],
     '@typescript-eslint/member-delimiter-style': 'warn',
     '@typescript-eslint/member-ordering': 'warn',
@@ -253,6 +253,14 @@ module.exports = {
         'jest/prefer-spy-on': 'error',
         'jest/valid-expect': 'error',
       }
-    }
-  ]
+    },
+    {
+      files: [
+        'src/assets/**/*.*'
+      ],
+      rules: {
+        'max-len': 'off'
+      },
+    },
+  ],
 };

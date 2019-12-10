@@ -17,21 +17,17 @@ describe('Input', () => {
                             color: 'black',
                             border: '1px solid',
                             '&[aria-invalid="true"]': {
-                                borderColor: 'red'
-                            }
-                        }
+                                borderColor: 'red',
+                            },
+                        },
                     },
-                }
-            }
+                },
+            },
         };
     });
 
     it('renders', () => {
-        const { container } = render(
-            <Input
-                theme={theme}
-            />
-        );
+        const { container } = render(<Input theme={theme} />);
 
         const input = container.firstChild;
 
@@ -41,23 +37,17 @@ describe('Input', () => {
 
     it('renders invalid', () => {
         const { container } = render(
-            <Input
-                theme={theme}
-                aria-invalid={true}
-            />
+            <Input theme={theme} aria-invalid={true} />
         );
 
         expect(container.firstChild).toHaveStyleRule('border-color', 'red', {
-            target: '[aria-invalid="true"]'
+            target: '[aria-invalid="true"]',
         });
     });
 
     it('renders with custom padding-right', () => {
         const { container } = render(
-            <Input
-                theme={theme}
-                paddingRight="55px"
-            />
+            <Input theme={theme} paddingRight="55px" />
         );
 
         expect(container.firstChild).toHaveStyleRule('padding-right', '55px');

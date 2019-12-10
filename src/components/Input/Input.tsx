@@ -7,12 +7,11 @@ import { Box } from '../Box/Box';
 export type InputSize = keyof TDefaultTheme['components']['input']['sizes'];
 export type InputVariant = keyof TDefaultTheme['components']['input']['variants'];
 
-export type InputProps =
-    InputHTMLAttributes<HTMLInputElement> & {
-        variantSize?: InputSize;
-        variant?: InputVariant;
-        paddingRight?: string;
-    };
+export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+    variantSize?: InputSize;
+    variant?: InputVariant;
+    paddingRight?: string;
+};
 
 export const Input = styled(Box)<InputProps, TDefaultTheme>(
     variant({
@@ -23,9 +22,9 @@ export const Input = styled(Box)<InputProps, TDefaultTheme>(
         prop: 'variant',
         scale: 'components.input.variants',
     }),
-    ({ paddingRight }) => paddingRight ? { paddingRight } : undefined, // TODO Виктор обещал починить
+    ({ paddingRight }) => (paddingRight ? { paddingRight } : undefined), // TODO Виктор обещал починить
     {
-        outline: 0
+        outline: 0,
     }
 );
 
