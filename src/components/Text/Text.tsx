@@ -9,7 +9,7 @@ import {
 } from 'styled-system';
 import CSS from 'csstype';
 import { Box, BoxProps } from '../Box/Box';
-import { TDefaultTheme } from 'interface';
+import { TDefaultTheme } from '../../interface';
 import { variants } from './styles';
 
 const truncate: styleFn = (

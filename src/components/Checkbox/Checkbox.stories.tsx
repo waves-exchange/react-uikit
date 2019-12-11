@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex } from '../Flex/Flex';
-import { defaultTheme } from 'themes/default';
+import { defaultTheme } from '../../themes/default';
 import { ThemeProvider } from 'emotion-theming';
 import { storiesOf } from '@storybook/react';
 import { ControlBox } from '../ControlBox/ControlBox';

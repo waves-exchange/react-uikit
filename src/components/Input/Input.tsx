@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 import { variant } from 'styled-system';
-import { TDefaultTheme } from 'interface';
+import { TDefaultTheme } from '../../interface';
 import { Box } from '../Box/Box';
 
 export const inputSizeVariants = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { matchers } from 'jest-emotion';
 import { Text } from './Text';
-import { defaultTheme } from 'themes/default';
+import { defaultTheme } from '../../themes/default';
 
 expect.extend(matchers);
 
