@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React, { FC, useState } from 'react';
 import { TDefaultTheme } from 'src/interface';
-import { Flex } from '../Flex/Flex';
+import { Flex, TFlexProps } from '../Flex/Flex';
 import { iconEye } from '../../assets/icons/eye';
 import { iconEyeActive } from '../../assets/icons/eyeActive';
 import {
@@ -11,7 +11,6 @@ import {
     inputSizeVariants,
 } from '../Input/Input';
 import { InputElement } from '../InputElement/InputElement';
-import { InputGroup } from '../InputGroup/InputGroup';
 import { Icon } from '../Icon/Icon';
 
 type InputPasswordTogglerProps = {
@@ -29,7 +28,10 @@ const InputPasswordToggler = styled(Flex)<
     },
 }));
 
-export const InputPassword: FC<InputProps> = (props) => {
+export const InputPassword: FC<InputProps & TFlexProps> = ({
+    id,
+    ...props
+}) => {
     const [show, setShow] = useState(false);
 
     const toggle = (): void => setShow(!show);
@@ -39,8 +41,9 @@ export const InputPassword: FC<InputProps> = (props) => {
         : '0';
 
     return (
-        <InputGroup>
+        <Flex position="relative">
             <Input
+                id={id}
                 {...props}
                 type={show ? 'text' : 'password'}
                 paddingRight={togglerWidth}
@@ -62,7 +65,7 @@ export const InputPassword: FC<InputProps> = (props) => {
                     )}
                 </InputPasswordToggler>
             </InputElement>
-        </InputGroup>
+        </Flex>
     );
 };
 
