@@ -3,7 +3,7 @@ import { config, create } from 'identity-img';
 import { styled } from '../../styled';
 import { useTheme } from 'emotion-theming';
 import { always, isNil, omit } from 'ramda';
-import { TDefaultTheme } from 'interface';
+import { TDefaultTheme } from '../../interface';
 
 config({ rows: 8, cells: 8 });
 

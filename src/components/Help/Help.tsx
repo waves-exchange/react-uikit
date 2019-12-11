@@ -1,6 +1,6 @@
 import React, { Component, createRef, Fragment, RefObject } from 'react';
 import { Box } from '../Box/Box';
-import { TDefaultTheme } from 'src/interface';
+import { TDefaultTheme } from '../../interface';
 import { withTheme } from 'emotion-theming';
 import {
     padding,
