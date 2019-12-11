@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
-import { Box, IBoxProps } from '../Box/Box';
+import { Flex, TFlexProps } from '../Flex/Flex';
 import { Icon } from '../Icon/Icon';
 import { ControlBox, IControlBoxStyles } from '../ControlBox/ControlBox';
 import { mergeDeepRight } from 'ramda';
@@ -23,7 +23,7 @@ interface ICheckboxProps {
 }
 
 export const Checkbox: React.FC<ICheckboxProps &
-    IBoxProps &
+    TFlexProps &
     InputHTMLAttributes<HTMLInputElement>> = ({
     children,
     controlBox,
@@ -49,7 +49,7 @@ export const Checkbox: React.FC<ICheckboxProps &
     const { baseStyles, ...restControlStyles } = controlStyles;
 
     return (
-        <Box
+        <Flex
             as="label"
             display="inline-flex"
             verticalAlign="top"
@@ -98,6 +98,6 @@ export const Checkbox: React.FC<ICheckboxProps &
                 </ControlBox>
             )}
             {children}
-        </Box>
+        </Flex>
     );
 };

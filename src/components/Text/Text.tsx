@@ -1,10 +1,16 @@
-// @ts-nocheck
 import styled, { WithTheme } from '@emotion/styled';
 import { PropsWithChildren } from 'react';
-import { styleFn, textShadow, TextShadowProps, variant } from 'styled-system';
-import { Box, IBoxProps } from 'components/Box/Box';
+import {
+    styleFn,
+    textShadow,
+    TextShadowProps,
+    variant,
+    system,
+} from 'styled-system';
+import CSS from 'csstype';
+import { Box, BoxProps } from '../Box/Box';
 import { TDefaultTheme } from 'interface';
-import shouldForwardProp from '@styled-system/should-forward-prop';
+import { variants } from './styles';
 
 const truncate: styleFn = (
     props: WithTheme<PropsWithChildren<{ isTruncated?: boolean }>, object>
@@ -18,54 +24,26 @@ const truncate: styleFn = (
     }
 };
 
-export const textVariants = {
-    body1: {
-        fontSize: '$15',
-        lineHeight: '$20',
-    },
-    body2: {
-        fontSize: '$13',
-        lineHeight: '$18',
-    },
-    footnote1: {
-        fontSize: '$12',
-        lineHeight: '$16',
-    },
-    footnote2: {
-        fontSize: '$11',
-        lineHeight: '$14',
-    },
-    heading1: {
-        fontSize: '$28',
-        margin: 0,
-        lineHeight: '$34',
-        fontWeight: '$700',
-    },
-    heading2: {
-        fontSize: '$22',
-        margin: 0,
-        lineHeight: '$28',
-        fontWeight: '$400',
-    },
+export type TTextVariant = keyof typeof variants;
+
+type TextSpecificProps = {
+    isTruncated?: boolean;
+    variant?: TTextVariant;
+    textDecoration?: CSS.TextDecorationProperty;
 };
 
-export type TTextVariant = keyof typeof textVariants;
+export type TTextProps = BoxProps & TextShadowProps & TextSpecificProps;
 
-export type TTextProps = IBoxProps &
-    TextShadowProps & {
-        variant?: TTextVariant;
-        isTruncated?: boolean;
-    };
-
-export const Text = styled(Box, shouldForwardProp)<TTextProps, TDefaultTheme>(
+export const Text = styled(Box)<TTextProps, TDefaultTheme>(
     truncate,
     textShadow,
+    system({ textDecoration: true }),
     variant({
         prop: 'variant',
-        variants: textVariants,
+        variants,
     })
 );
 
 Text.defaultProps = {
-    variant: 'body1',
+    as: 'span',
 };
