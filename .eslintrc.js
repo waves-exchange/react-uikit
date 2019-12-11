@@ -163,7 +163,6 @@ module.exports = {
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/indent': 'off',
     '@typescript-eslint/interface-name-prefix': ['warn', 'always'],
-    '@typescript-eslint/member-delimiter-style': 'warn',
     '@typescript-eslint/member-ordering': 'warn',
     '@typescript-eslint/no-array-constructor': 'error',
     '@typescript-eslint/no-empty-function': 'error',
@@ -194,7 +193,6 @@ module.exports = {
     '@typescript-eslint/quotes': ['error', 'single'],
     '@typescript-eslint/require-array-sort-compare': 'error',
     '@typescript-eslint/require-await': 'error',
-    '@typescript-eslint/semi': 'error',
     // '@typescript-eslint/strict-boolean-expressions': 'error',
     '@typescript-eslint/type-annotation-spacing': 'error',
 

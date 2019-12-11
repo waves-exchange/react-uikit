@@ -1,10 +1,11 @@
-import styled, { WithTheme } from '@emotion/styled';
-import shouldForwardProp from '@styled-system/should-forward-prop';
 import { InterpolationWithTheme } from '@emotion/core';
-import { TDefaultTheme } from 'src/interface';
-import { ElementType, RefAttributes, HTMLAttributes } from 'react';
+import styled, { WithTheme } from '@emotion/styled';
 import css, { SystemStyleObject } from '@styled-system/css';
+import shouldForwardProp from '@styled-system/should-forward-prop';
+import { ElementType, HTMLAttributes, RefAttributes } from 'react';
+import { TDefaultTheme } from 'src/interface';
 import {
+    AlignSelfProps,
     background,
     BackgroundProps,
     border,
@@ -14,24 +15,38 @@ import {
     color,
     ColorProps,
     compose,
+    FlexBasisProps,
     flexbox,
-    FlexboxProps,
+    FlexGrowProps,
+    FlexProps,
+    FlexShrinkProps,
     grid,
     GridProps,
+    JustifySelfProps,
     layout,
     LayoutProps,
+    OrderProps,
     overflow,
     OverflowProps,
     position,
     PositionProps,
     space,
     SpaceProps,
+    styleFn,
     typography,
     TypographyProps,
-    styleFn,
 } from 'styled-system';
 
-export type IBoxProps<T = HTMLDivElement> = RefAttributes<T> &
+type FlexChildProps = FlexProps &
+    FlexGrowProps &
+    FlexShrinkProps &
+    FlexBasisProps &
+    FlexBasisProps &
+    JustifySelfProps &
+    AlignSelfProps &
+    OrderProps;
+
+export type BoxProps<T = HTMLDivElement> = RefAttributes<T> &
     HTMLAttributes<T> &
     LayoutProps &
     ColorProps &
@@ -43,7 +58,8 @@ export type IBoxProps<T = HTMLDivElement> = RefAttributes<T> &
     BoxShadowProps &
     TypographyProps &
     OverflowProps &
-    FlexboxProps & { as?: ElementType } & {
+    FlexChildProps & {
+        as?: ElementType;
         sx?: InterpolationWithTheme<TDefaultTheme>;
     };
 
@@ -51,7 +67,7 @@ const sx: styleFn = (
     props: WithTheme<{ sx: SystemStyleObject }, TDefaultTheme>
 ) => css(props.sx)(props.theme);
 
-export const Box = styled<'div', IBoxProps>('div', {
+export const Box = styled<'div', BoxProps>('div', {
     shouldForwardProp,
 })(
     compose(

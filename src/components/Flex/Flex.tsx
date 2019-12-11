@@ -1,6 +1,9 @@
 import React, { forwardRef } from 'react';
-import { Box, IBoxProps } from '../Box/Box';
+import { FlexboxProps } from 'styled-system';
+import { Box, BoxProps } from '../Box/Box';
 
-export const Flex = forwardRef<HTMLDivElement, IBoxProps>((props, ref) => (
+export type TFlexProps = BoxProps & FlexboxProps;
+
+export const Flex = forwardRef<HTMLDivElement, TFlexProps>((props, ref) => (
     <Box ref={ref} display="flex" {...props} />
 ));

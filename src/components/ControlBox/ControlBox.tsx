@@ -1,6 +1,6 @@
 import styled, { CSSObject } from '@emotion/styled';
 import css from '@styled-system/css';
-import { Box } from '../Box/Box';
+import { Flex } from '../Flex/Flex';
 
 export interface IControlBoxStyles {
     baseStyles?: CSSObject;
@@ -21,7 +21,7 @@ type TProps = IControlBoxStyles & {
     type?: 'checkbox' | 'radio';
 };
 
-export const ControlBox = styled(Box)<TProps>(
+export const ControlBox = styled(Flex)<TProps>(
     ({
         type = 'checkbox',
         _hover,

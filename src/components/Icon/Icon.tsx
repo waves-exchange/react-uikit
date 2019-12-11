@@ -1,9 +1,9 @@
 import React, { forwardRef, SVGAttributes } from 'react';
 import styled from '@emotion/styled';
-import { Box, IBoxProps } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import { variant } from 'styled-system';
 
-const iconVariants = {
+const variants = {
     potty: { size: 10 },
     small: { size: 14 },
     medium: { size: 18 },
@@ -13,7 +13,7 @@ const iconVariants = {
 const Svg = styled(Box)<{ iconSize?: IconSize }>(
     variant({
         prop: 'iconSize',
-        variants: iconVariants,
+        variants,
     }),
     {
         flexShrink: 0,
@@ -29,10 +29,14 @@ interface IIcon {
     viewBox?: string;
 }
 
-type IconSize = keyof typeof iconVariants;
+type IconSize = keyof typeof variants;
 
-type IconProps = Record<'icon', IIcon> & { iconSize?: IconSize } & IBoxProps &
-    SVGAttributes<SVGElement>;
+type IconSpecificProps = {
+    icon: IIcon;
+    iconSize?: IconSize;
+};
+
+type IconProps = IconSpecificProps & BoxProps & SVGAttributes<SVGElement>;
 
 export const Icon = forwardRef<SVGElement, IconProps>((props, ref) => {
     const {

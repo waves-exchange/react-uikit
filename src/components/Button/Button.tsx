@@ -1,76 +1,35 @@
-import { ButtonHTMLAttributes, RefAttributes } from 'react';
 import styled from '@emotion/styled';
-import shouldForwardProp from '@styled-system/should-forward-prop';
-import {
-    background,
-    BackgroundProps,
-    border,
-    BorderProps,
-    boxShadow,
-    BoxShadowProps,
-    color,
-    ColorProps,
-    compose,
-    flexbox,
-    FlexboxProps,
-    position,
-    PositionProps,
-    space,
-    SpaceProps,
-    typography,
-    TypographyProps,
-    variant,
-} from 'styled-system';
-import { TDefaultTheme } from 'interface';
+import { ButtonHTMLAttributes } from 'react';
+import { variant } from 'styled-system';
+import { Box, BoxProps } from '../Box/Box';
+import { variants, variantSizes } from './styles';
 
-export type TButtonVariant = keyof TDefaultTheme['buttons'];
-export type TButtonSize = keyof TDefaultTheme['buttonSizes'];
+export type Variant = keyof typeof variants;
+export type VariantSize = keyof typeof variantSizes;
 
-export type IButtonProps = RefAttributes<HTMLDivElement> &
+type ButtonSpecificProps = {
+    variant?: Variant;
+    variantSize?: VariantSize;
+};
+
+type ButtonProps = BoxProps &
     ButtonHTMLAttributes<HTMLButtonElement> &
-    ColorProps &
-    SpaceProps &
-    BackgroundProps &
-    BorderProps &
-    PositionProps &
-    BoxShadowProps &
-    TypographyProps &
-    FlexboxProps & {
-        variant?: TButtonVariant;
-        size?: TButtonSize;
-    };
+    ButtonSpecificProps;
 
-export const Button = styled<'button', IButtonProps>('button', {
-    shouldForwardProp,
-})(
-    compose(
-        color,
-        space,
-        background,
-        border,
-        position,
-        boxShadow,
-        typography,
-        flexbox
-    ),
-    {
-        border: 0,
-        boxSizing: 'border-box',
-        whiteSpace: 'nowrap',
-        transition: 'all 0.3s',
-    },
+export const Button = styled(Box)<ButtonProps>(
     variant({
-        scale: 'buttons',
+        prop: 'variant',
+        variants,
     }),
     variant({
-        prop: 'size',
-        scale: 'buttonSizes',
+        prop: 'variantSize',
+        variants: variantSizes,
     })
 );
 
 Button.defaultProps = {
+    as: 'button',
     type: 'button',
-    variant: 'primary',
-    size: 'large',
-    borderRadius: 'button',
+    border: 0,
+    borderRadius: '$4',
 };
