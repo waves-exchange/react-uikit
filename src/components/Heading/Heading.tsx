@@ -8,10 +8,12 @@ export type HeadingProps = TTextProps & {
     level?: HeadingLevel;
 };
 
-export const Heading: FC<HeadingProps> = ({ level, children }) => (
+export const Heading: FC<HeadingProps> = ({ level, children, ...rest }) => (
     <Text
         as={`h${String(level)}` as ElementType}
+        m={0}
         variant={`heading${level}` as TTextVariant}
+        {...rest}
     >
         {children}
     </Text>
