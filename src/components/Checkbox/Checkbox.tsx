@@ -13,7 +13,7 @@ import { iconCheck } from '../../assets/icons/check';
  * see storybook for examples
  */
 
-interface ICheckboxProps {
+interface CheckboxSpecificProps {
     controlBoxStyles?: IControlBoxStyles;
     controlBox?: () => React.ReactNode;
     isChecked?: boolean;
@@ -22,9 +22,11 @@ interface ICheckboxProps {
     isReadOnly?: boolean;
 }
 
-export const Checkbox: React.FC<ICheckboxProps &
+export type ICheckboxProps = CheckboxSpecificProps &
     TFlexProps &
-    InputHTMLAttributes<HTMLInputElement>> = ({
+    InputHTMLAttributes<HTMLInputElement>;
+
+export const Checkbox: React.FC<ICheckboxProps> = ({
     children,
     controlBox,
     controlBoxStyles = {},
