@@ -55,7 +55,7 @@ export const variantSizes = {
     },
     medium: {
         fontSize: '$15',
-        height: '42px',
+        height: '48px',
         paddingLeft: '$40',
         paddingRight: '$40',
     },
