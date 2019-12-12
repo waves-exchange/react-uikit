@@ -24,7 +24,9 @@
     "format": "npm run prettier -- --write",
     "check-format": "npm run prettier -- --list-different",
     "check-types": "tsc --noEmit",
-    "watch-ts": "tsc -p ./tsconfigs/tsconfig.cjs.json -w"
+    "build-link": "tsc -p ./tsconfigs/tsconfig.cjs.json",
+    "watch-ts": "tsc -p ./tsconfigs/tsconfig.cjs.json -w",
+    "postinstall": "npm run build"
   },
   "devDependencies": {
     "@emotion/core": "10.0.17",
@@ -56,8 +58,8 @@
     "jest": "24.9.0",
     "jest-emotion": "10.0.17",
     "lint-staged": "9.2.5",
-    "react": "16.9.0",
-    "react-dom": "16.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "rimraf": "3.0.0",
     "styled-system": "5.1.2",
     "ts-jest": "24.0.2",

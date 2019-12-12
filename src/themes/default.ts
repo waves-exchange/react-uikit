@@ -6,7 +6,7 @@ import {
     sizes,
     lineHeights,
     radii,
-} from 'themes/constants';
+} from './constants';
 
 export const defaultTheme = {
     colors,

@@ -15,8 +15,13 @@ module.exports = (env, { mode }) => {
             library: 'ReactUIKit'
         },
         externals: {
-            react: 'React',
-            'react-dom': 'ReactDOM'
+            react: 'react',
+            'react-dom': 'ReactDOM',
+            // tslib: 'tslib',
+            // '@emotion/core': '@emotion/core',
+            // "@emotion/styled": "@emotion/styled",
+            // "emotion-theming": "emotion-theming",
+            // "styled-system": "styled-system",
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.json'],
