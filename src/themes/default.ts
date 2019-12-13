@@ -27,7 +27,7 @@ export const defaultTheme = {
         default: '0 0 4px rgba(0, 0, 0, 0.125)',
     },
     components: {
-        addressAvatar: {
+        Avatar: {
             sizes: {
                 small: 27,
                 medium: 30,

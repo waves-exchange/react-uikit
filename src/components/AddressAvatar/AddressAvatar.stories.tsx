@@ -8,10 +8,15 @@ const stories = storiesOf('AddressAvatar', module);
 
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
-        <AddressAvatar address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7" />
         <AddressAvatar
-            size="large"
             address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
+            name="Coco Jumbo"
+        />
+        <AddressAvatar
+            isShort={false}
+            hasName={false}
+            address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
+            name="Coco Jumbo"
         />
     </ThemeProvider>
 ));

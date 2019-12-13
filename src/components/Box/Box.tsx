@@ -8,7 +8,6 @@ import {
     RefAttributes,
     DetailedHTMLProps,
 } from 'react';
-import { TDefaultTheme } from 'src/interface';
 import {
     AlignSelfProps,
     background,
@@ -41,6 +40,7 @@ import {
     typography,
     TypographyProps,
 } from 'styled-system';
+import { TDefaultTheme } from '../../interface';
 
 type FlexChildProps = FlexProps &
     FlexGrowProps &
