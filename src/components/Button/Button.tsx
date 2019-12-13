@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { ButtonHTMLAttributes } from 'react';
 import { variant } from 'styled-system';
-import { Box, BoxProps } from '../Box/Box';
+import { Box, BoxProps, BoxAsElement } from '../Box/Box';
 import { variants, variantSizes } from './styles';
 
 export type Variant = keyof typeof variants;
@@ -12,11 +12,13 @@ type ButtonSpecificProps = {
     variantSize?: VariantSize;
 };
 
-type ButtonProps = BoxProps &
-    ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonProps = BoxProps<
+    HTMLButtonElement,
+    ButtonHTMLAttributes<HTMLButtonElement>
+> &
     ButtonSpecificProps;
 
-export const Button = styled(Box)<ButtonProps>(
+export const Button = styled(Box as BoxAsElement<'button', ButtonProps>)(
     variant({
         prop: 'variant',
         variants,

@@ -1,9 +1,14 @@
 import { InterpolationWithTheme } from '@emotion/core';
-import styled, { WithTheme } from '@emotion/styled';
+import styled, { WithTheme, StyledComponent } from '@emotion/styled';
 import css, { SystemStyleObject } from '@styled-system/css';
 import shouldForwardProp from '@styled-system/should-forward-prop';
-import { ElementType, HTMLAttributes, RefAttributes } from 'react';
-import { TDefaultTheme } from '../../interface';
+import {
+    ElementType,
+    HTMLAttributes,
+    RefAttributes,
+    DetailedHTMLProps,
+} from 'react';
+import { TDefaultTheme } from 'src/interface';
 import {
     AlignSelfProps,
     background,
@@ -46,8 +51,16 @@ type FlexChildProps = FlexProps &
     AlignSelfProps &
     OrderProps;
 
-export type BoxProps<T = HTMLDivElement> = RefAttributes<T> &
-    HTMLAttributes<T> &
+export type BoxAsElement<
+    E extends keyof JSX.IntrinsicElements,
+    P
+> = StyledComponent<JSX.IntrinsicElements[E], P, any>;
+
+export type BoxProps<E = HTMLDivElement, A = HTMLAttributes<E>> = RefAttributes<
+    E
+> &
+    A &
+    DetailedHTMLProps<A, E> &
     LayoutProps &
     ColorProps &
     SpaceProps &
