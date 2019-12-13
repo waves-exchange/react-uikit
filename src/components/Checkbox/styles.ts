@@ -42,6 +42,6 @@ export const defaultControlBoxStyles: IControlBoxStyles = {
     },
     _disabled: {
         borderColor: 'main.$500',
-        backgroundColor: 'main.$900',
+        backgroundColor: 'main.$1000',
     },
 };
