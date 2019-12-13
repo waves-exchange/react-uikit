@@ -6,6 +6,7 @@ type IconButtonProps = {
     _hover?: CSSObject;
     _focus?: CSSObject;
     _disabled?: CSSObject;
+    _disabledAndHover?: CSSObject;
 };
 
 export const IconButton: FC<ButtonProps & IconButtonProps> = ({
@@ -13,21 +14,22 @@ export const IconButton: FC<ButtonProps & IconButtonProps> = ({
     _hover,
     _focus,
     _disabled,
+    _disabledAndHover,
     ...rest
 }) => {
     return (
         <Button
+            display="flex"
             sx={{
                 cursor: 'pointer',
-                '& > *': {
-                    position: 'absolute',
-                    transform: 'translate(-50%, -50%)',
-                },
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 ':focus': _focus,
                 ':hover': _hover,
                 ':disabled': _disabled,
+                ':hover:disabled': _disabledAndHover,
             }}
-            position="relative"
             bg="transparent"
             borderRadius={0}
             {...rest}
