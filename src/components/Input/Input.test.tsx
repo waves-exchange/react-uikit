@@ -18,7 +18,7 @@ describe('Input', () => {
                     $0: 'white',
                 },
                 danger: {
-                    $500: 'red',
+                    $300: 'red',
                 },
             },
         };
