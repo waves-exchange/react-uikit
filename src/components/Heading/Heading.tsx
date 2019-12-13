@@ -1,6 +1,6 @@
 import React, { ElementType, FC } from 'react';
-import { Text, TTextVariant } from 'components/Text/Text';
-import { TTextProps } from 'components/Text/Text';
+import { Text, TTextVariant } from '../Text/Text';
+import { TTextProps } from '../Text/Text';
 
 type HeadingLevel = 1 | 2;
 

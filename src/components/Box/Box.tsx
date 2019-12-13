@@ -3,7 +3,7 @@ import styled, { WithTheme } from '@emotion/styled';
 import css, { SystemStyleObject } from '@styled-system/css';
 import shouldForwardProp from '@styled-system/should-forward-prop';
 import { ElementType, HTMLAttributes, RefAttributes } from 'react';
-import { TDefaultTheme } from 'src/interface';
+import { TDefaultTheme } from '../../interface';
 import {
     AlignSelfProps,
     background,

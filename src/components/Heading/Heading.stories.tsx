@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Heading } from './Heading';
-import { Box } from 'components/Box/Box';
-import { defaultTheme } from 'themes/default';
+import { Box } from '../Box/Box';
+import { defaultTheme } from '../../themes/default';
 import { ThemeProvider } from 'emotion-theming';
 
 const stories = storiesOf('Heading', module);
