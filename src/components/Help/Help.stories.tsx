@@ -1,10 +1,10 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { defaultTheme } from 'themes/default';
+import { defaultTheme } from '../../themes/default';
 import { ThemeProvider } from 'emotion-theming';
-import { Flex } from 'components/Flex/Flex';
-import { Box } from 'components/Box/Box';
-import { Text } from 'components/Text/Text';
+import { Flex } from '../Flex/Flex';
+import { Box } from '../Box/Box';
+import { Text } from '../Text/Text';
 import { Help } from './Help';
 
 const stories = storiesOf('Help', module);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { defaultTheme } from 'themes/default';
+import { defaultTheme } from '../../themes/default';
 import { ThemeProvider } from 'emotion-theming';
 import { AddressAvatar } from './AddressAvatar';
 

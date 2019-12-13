@@ -1,9 +1,9 @@
 import { storiesOf } from '@storybook/react';
-import { Button } from 'components/Button/Button';
-import { Flex } from 'components/Flex/Flex';
+import { Button } from '../Button/Button';
+import { Flex } from '../Flex/Flex';
 import { ThemeProvider } from 'emotion-theming';
 import React from 'react';
-import { defaultTheme } from 'themes/default';
+import { defaultTheme } from '../../themes/default';
 
 const stories = storiesOf('Button', module);
 

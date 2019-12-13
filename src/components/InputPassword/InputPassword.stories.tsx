@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'emotion-theming';
-import { defaultTheme } from 'themes/default';
+import { defaultTheme } from '../../themes/default';
 import { Box } from '../Box/Box';
 import { InputPassword } from './InputPassword';
 
