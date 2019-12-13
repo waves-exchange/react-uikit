@@ -29,7 +29,7 @@ export const inputVariants = {
             backgroundColor: 'main.$700',
         },
         '&[aria-invalid="true"]': {
-            borderColor: 'danger.$500',
+            borderColor: 'danger.$300',
         },
     },
 };
