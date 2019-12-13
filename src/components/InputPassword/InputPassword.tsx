@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import React, { FC, useState } from 'react';
-import { TDefaultTheme } from 'src/interface';
+import { TDefaultTheme } from '../../interface';
 import { Flex, TFlexProps } from '../Flex/Flex';
 import { iconEye } from '../../assets/icons/eye';
 import { iconEyeActive } from '../../assets/icons/eyeActive';
