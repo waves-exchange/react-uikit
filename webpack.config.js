@@ -15,8 +15,8 @@ module.exports = (env, { mode }) => {
             library: 'ReactUIKit'
         },
         externals: {
-            react: 'React',
-            'react-dom': 'ReactDOM'
+            react: 'react',
+            'react-dom': 'ReactDOM',
         },
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.json'],
