@@ -6,19 +6,28 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
     name,
     hasName,
     isShort,
-}) => (
-    <Flex>
-        <Box marginRight="10px">
-            <Avatar address={address} />
-        </Box>
-        <Flex flexDirection="column" justifyContent="center">
-            {hasName && <Text variant="footnote1">{name}</Text>}
-            <Text variant="body2" isTruncated={isShort}>
-                {address}
-            </Text>
+}) => {
+    const getShortAddress = (address: string): string =>
+        `${address.slice(0, 8)}***${address.slice(-8)}`;
+
+    return (
+        <Flex>
+            <Box marginRight="10px">
+                <Avatar address={address} />
+            </Box>
+            <Flex flexDirection="column" justifyContent="center">
+                {hasName && (
+                    <Text variant="footnote1" color="basic.$500">
+                        {name}
+                    </Text>
+                )}
+                <Text variant="body2" color="standard.$0">
+                    {isShort ? getShortAddress(address) : address}
+                </Text>
+            </Flex>
         </Flex>
-    </Flex>
-);
+    );
+};
 
 interface IAddressAvatarProps {
     address: string;
