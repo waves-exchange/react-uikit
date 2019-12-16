@@ -24,3 +24,5 @@ export * from './assets/icons/eye';
 export * from './assets/icons/eyeActive';
 export * from './assets/icons/logo';
 export * from './assets/icons/question';
+//types
+export * from './interface';

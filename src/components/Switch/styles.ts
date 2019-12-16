@@ -2,9 +2,9 @@ import { IControlBoxStyles } from '../ControlBox/ControlBox';
 
 export const controlBoxStyles: IControlBoxStyles = {
     baseStyles: {
-        width: 40,
-        height: 20,
-        boxSizing: 'border-box',
+        width: 38,
+        height: 18,
+        boxSizing: 'content-box',
         border: '1px solid',
         borderRadius: 10,
         backgroundColor: 'main.$300',
@@ -35,7 +35,7 @@ export const controlBoxStyles: IControlBoxStyles = {
     _disabled: {
         backgroundColor: 'main.$600',
         borderColor: 'main.$600',
-        cursor: 'default',
+        cursor: 'not-allowed',
     },
     _checkedAndDisabled: {
         backgroundColor: 'primary.$900',

@@ -19,6 +19,12 @@ export type ButtonProps = BoxProps<
     ButtonSpecificProps;
 
 export const Button = styled(Box as BoxAsElement<'button', ButtonProps>)(
+    {
+        cursor: 'pointer',
+        ':disabled': {
+            cursor: 'not-allowed',
+        },
+    },
     variant({
         prop: 'variant',
         variants,
