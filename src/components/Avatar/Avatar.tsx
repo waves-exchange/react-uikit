@@ -1,27 +1,20 @@
 import React from 'react';
 import { config, create } from 'identity-img';
 import { styled } from '../../styled';
-import { useTheme } from 'emotion-theming';
 import { always, isNil, omit } from 'ramda';
-import { TDefaultTheme } from '../../interface';
+import { sizes } from './styles';
 
 config({ rows: 8, cells: 8 });
 
-const getSize: (data: IProps & { theme: TDefaultTheme }) => number = (data) =>
-    isNil(data.size)
-        ? data.theme.components.Avatar.sizes.medium
-        : data.theme.components.Avatar.sizes[data.size];
+const getSize: (data: IProps) => number = ({ size }) =>
+    isNil(size) ? sizes.medium : sizes[size];
 
-const AvatarFunction: React.FC<IProps> = (props) => {
-    const theme = useTheme<TDefaultTheme>();
-
-    return (
-        <img
-            src={create(props.address, { size: getSize({ ...props, theme }) })}
-            {...omit(['address', 'size', 'theme'], props)}
-        />
-    );
-};
+const AvatarFunction: React.FC<IProps> = (props) => (
+    <img
+        src={create(props.address, { size: getSize(props) })}
+        {...omit(['address', 'size'], props)}
+    />
+);
 
 export const Avatar = styled(AvatarFunction, {
     shouldForwardProp: always(true),
@@ -37,4 +30,4 @@ interface IProps {
     address: string;
 }
 
-type TAvatarSizes = keyof TDefaultTheme['components']['Avatar']['sizes'];
+type TAvatarSizes = keyof typeof sizes;

@@ -1,42 +1,32 @@
 import React, { FC } from 'react';
-import { Avatar, Box, Text, Flex } from '../..';
+import { Avatar, Box, Text, Flex, TFlexProps } from '../..';
+import { getShortAddress } from './helpers';
 
 export const AddressAvatar: FC<IAddressAvatarProps> = ({
     address,
     name,
-    hasName,
     isShort,
-}) => {
-    const getShortAddress = (address: string): string =>
-        `${address.slice(0, 8)}***${address.slice(-8)}`;
-
-    return (
-        <Flex>
-            <Box marginRight="10px">
-                <Avatar address={address} />
-            </Box>
-            <Flex flexDirection="column" justifyContent="center">
-                {hasName && (
-                    <Text variant="footnote1" color="basic.$500">
-                        {name}
-                    </Text>
-                )}
-                <Text variant="body2" color="standard.$0">
-                    {isShort ? getShortAddress(address) : address}
+    ...rest
+}) => (
+    <Flex {...rest}>
+        <Box mr="10px">
+            <Avatar address={address} />
+        </Box>
+        <Flex flexDirection="column" justifyContent="center">
+            {name && (
+                <Text variant="footnote1" color="basic.$500">
+                    {name}
                 </Text>
-            </Flex>
+            )}
+            <Text variant="body2" color="standard.$0">
+                {isShort ? getShortAddress(address) : address}
+            </Text>
         </Flex>
-    );
-};
+    </Flex>
+);
 
-interface IAddressAvatarProps {
+interface IAddressAvatarProps extends TFlexProps {
     address: string;
-    name: string;
-    hasName?: boolean;
+    name?: string;
     isShort?: boolean;
 }
-
-AddressAvatar.defaultProps = {
-    hasName: true,
-    isShort: false,
-};
