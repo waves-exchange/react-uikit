@@ -1,40 +1,42 @@
-import React from 'react';
-import { config, create } from 'identity-img';
-import { styled } from '../../styled';
-import { useTheme } from 'emotion-theming';
-import { always, isNil, omit } from 'ramda';
-import { TDefaultTheme } from '../../interface';
+import React, { FC } from 'react';
+import { Avatar, Box, Text, Flex } from '../..';
 
-config({ rows: 8, cells: 8 });
-
-const getSize: (data: IProps & { theme: TDefaultTheme }) => number = (data) =>
-    isNil(data.size)
-        ? data.theme.components.addressAvatar.sizes.medium
-        : data.theme.components.addressAvatar.sizes[data.size];
-
-const AvatarFunction: React.FC<IProps> = (props) => {
-    const theme = useTheme<TDefaultTheme>();
+export const AddressAvatar: FC<IAddressAvatarProps> = ({
+    address,
+    name,
+    hasName,
+    isShort,
+}) => {
+    const getShortAddress = (address: string): string =>
+        `${address.slice(0, 8)}***${address.slice(-8)}`;
 
     return (
-        <img
-            src={create(props.address, { size: getSize({ ...props, theme }) })}
-            {...omit(['address', 'size', 'theme'], props)}
-        />
+        <Flex>
+            <Box marginRight="10px">
+                <Avatar address={address} />
+            </Box>
+            <Flex flexDirection="column" justifyContent="center">
+                {hasName && (
+                    <Text variant="footnote1" color="basic.$500">
+                        {name}
+                    </Text>
+                )}
+                <Text variant="body2" color="standard.$0">
+                    {isShort ? getShortAddress(address) : address}
+                </Text>
+            </Flex>
+        </Flex>
     );
 };
 
-export const AddressAvatar = styled(AvatarFunction, {
-    shouldForwardProp: always(true),
-})((props) => ({
-    overflow: 'hidden',
-    borderRadius: '100%',
-    width: `${getSize(props)}px`,
-    height: `${getSize(props)}px`,
-}));
-
-interface IProps {
-    size?: TAvatarSizes;
+interface IAddressAvatarProps {
     address: string;
+    name: string;
+    hasName?: boolean;
+    isShort?: boolean;
 }
 
-type TAvatarSizes = keyof TDefaultTheme['components']['addressAvatar']['sizes'];
+AddressAvatar.defaultProps = {
+    hasName: true,
+    isShort: false,
+};
