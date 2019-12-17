@@ -11,9 +11,11 @@ stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
         <Box backgroundColor="main.$800" maxWidth="520px">
             <ConfirmationTitle
-                address="3PD4KPsJwN3fzT5H1JpBEJYdWinnLghGdr2"
-                name="Florieke Krebber"
-                balance="432.97655789 Waves"
+                titleInfo={{
+                    address: '3PD4KPsJwN3fzT5H1JpBEJYdWinnLghGdr2',
+                    name: 'Florieke Krebber',
+                    balance: '432.97655789 Waves',
+                }}
             />
         </Box>
     </ThemeProvider>
