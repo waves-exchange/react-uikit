@@ -14,6 +14,8 @@ export * from './components/Input/Input';
 export * from './components/InputElement/InputElement';
 export * from './components/InputPassword/InputPassword';
 export * from './components/Label/Label';
+export * from './components/Radio/Radio';
+export * from './components/RadioGroup/RadioGroup';
 export * from './components/Switch/Switch';
 export * from './components/Text/Text';
 export * from './components/IconTransfer/IconTransfer';
