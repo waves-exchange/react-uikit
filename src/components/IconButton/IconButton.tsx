@@ -21,7 +21,6 @@ export const IconButton: FC<ButtonProps & IconButtonProps> = ({
         <Button
             display="flex"
             sx={{
-                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -30,6 +29,7 @@ export const IconButton: FC<ButtonProps & IconButtonProps> = ({
                 ':disabled': _disabled,
                 ':hover:disabled': _disabledAndHover,
             }}
+            cursor="pointer"
             bg="transparent"
             borderRadius={0}
             {...rest}

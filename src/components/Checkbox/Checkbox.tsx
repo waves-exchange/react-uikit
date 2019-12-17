@@ -57,9 +57,7 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
             verticalAlign="top"
             alignItems="center"
             width={isFullWidth ? 'full' : undefined}
-            style={{
-                cursor: isDisabled ? 'not-allowed' : 'pointer',
-            }}
+            cursor={isDisabled ? 'not-allowed' : 'pointer'}
             {...rest}
         >
             <input
