@@ -15,7 +15,7 @@ export * from './components/InputPassword/InputPassword';
 export * from './components/Label/Label';
 export * from './components/Switch/Switch';
 export * from './components/Text/Text';
-export * from './components/transactions/Icons/Transfer/TransferIcon';
+export * from './components/IconTransfer/IconTransfer';
 export * from './themes/default';
 // assets
 export * from './assets/icons/check';

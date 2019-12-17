@@ -40,7 +40,10 @@ import {
     styleFn,
     typography,
     TypographyProps,
+    system,
+    ResponsiveValue,
 } from 'styled-system';
+import CSS from 'csstype';
 
 type FlexChildProps = FlexProps &
     FlexGrowProps &
@@ -74,6 +77,7 @@ export type BoxProps<E = HTMLDivElement, A = HTMLAttributes<E>> = RefAttributes<
     FlexChildProps & {
         as?: ElementType;
         sx?: InterpolationWithTheme<TDefaultTheme>;
+        cursor?: ResponsiveValue<CSS.CursorProperty>;
     };
 
 const sx: styleFn = (
@@ -97,5 +101,9 @@ export const Box = styled<'div', BoxProps>('div', {
         typography,
         flexbox
     ),
-    sx
+    system({
+        cursor: true,
+    }),
+    sx,
+    { boxSizing: 'border-box' }
 );
