@@ -11,14 +11,12 @@ stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
         <Box backgroundColor="main.$800" maxWidth="360px">
             <AddressAvatar
-                px="$16"
-                py="$8"
+                p="8px 16px"
                 address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
                 name="Coco Jumbo"
             />
             <AddressAvatar
-                px="$16"
-                py="$8"
+                p="8px 16px"
                 isShort={true}
                 address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
             />

@@ -2,6 +2,12 @@ import React, { FC } from 'react';
 import { Avatar, Box, Text, Flex, TFlexProps } from '../..';
 import { getShortAddress } from './helpers';
 
+interface IAddressAvatarProps extends TFlexProps {
+    address: string;
+    name?: string;
+    isShort?: boolean;
+}
+
 export const AddressAvatar: FC<IAddressAvatarProps> = ({
     address,
     name,
@@ -24,9 +30,3 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
         </Flex>
     </Flex>
 );
-
-interface IAddressAvatarProps extends TFlexProps {
-    address: string;
-    name?: string;
-    isShort?: boolean;
-}
