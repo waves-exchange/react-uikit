@@ -27,7 +27,7 @@ export const variants = {
     },
     transparent: {
         bg: 'transparent',
-        color: 'standard.$0',
+        color: 'standard.$1000',
         border: '1px solid',
         borderColor: 'main.$300',
         ':hover:not(:disabled)': {
