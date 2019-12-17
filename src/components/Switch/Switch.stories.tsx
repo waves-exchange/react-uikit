@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Switch } from 'components/Switch/Switch';
-import { Flex } from 'components/Flex/Flex';
-import { Text } from 'components/Text/Text';
-import { defaultTheme } from 'themes/default';
+import { Switch } from '../Switch/Switch';
+import { Flex } from '../Flex/Flex';
+import { Text } from '../Text/Text';
+import { defaultTheme } from '../../themes/default';
 import { ThemeProvider } from 'emotion-theming';
-import { Box } from 'components/Box/Box';
+import { Box } from '../Box/Box';
 
 const stories = storiesOf('Switch', module);
 

@@ -8,7 +8,7 @@ import {
     RefAttributes,
     DetailedHTMLProps,
 } from 'react';
-import { TDefaultTheme } from 'src/interface';
+import { TDefaultTheme } from '../../interface';
 import {
     AlignSelfProps,
     background,
@@ -83,6 +83,7 @@ const sx: styleFn = (
 export const Box = styled<'div', BoxProps>('div', {
     shouldForwardProp,
 })(
+    { boxSizing: 'border-box' },
     compose(
         layout,
         color,
@@ -96,6 +97,5 @@ export const Box = styled<'div', BoxProps>('div', {
         typography,
         flexbox
     ),
-    sx,
-    { boxSizing: 'border-box' }
+    sx
 );

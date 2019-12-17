@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/cjs/index.d.ts",
+  "types": "dist/esm/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://gitlab.waves.exchange/we-public/react-uikit.git"
