@@ -34,7 +34,6 @@ export const AssetLogo = styled(Box as BoxAsElement<'div', Props>)(
                 content: `"${props.name.charAt(0).toUpperCase()}"`,
                 display: 'block',
                 textAlign: 'center',
-                fontSize: `${30 * 0.43}px`,
                 color: props.theme.colors.standard.$0,
             },
         }),
