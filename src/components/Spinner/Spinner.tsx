@@ -5,23 +5,46 @@ import styled from '@emotion/styled';
 
 export const Spinner: React.FC = () => {
     return (
-        <Flex flexDirection="row" alignItems="center">
+        <Flex alignItems="center">
             <Box
                 height={32}
                 width={32}
                 sx={{ animation: `${around} 3.8s infinite` }}
                 overflow="hidden"
+                position="relative"
             >
-                <RedBox>
-                    <BlueBox />
-                </RedBox>
+                <TopBlueBox>
+                    <Box
+                        width={36}
+                        height={18}
+                        sx={{
+                            transform: 'rotate(45deg)',
+                            transformOrigin: '0 0',
+                        }}
+                    >
+                        <RedBox />
+                    </Box>
+                </TopBlueBox>
+                <BottomBlueBox>
+                    <Box
+                        width={36}
+                        height={18}
+                        sx={{
+                            transform:
+                                'rotate(-45deg) translateX(-50%) translateY(100%)',
+                            transformOrigin: '0 0',
+                        }}
+                    >
+                        <RedBox />
+                    </Box>
+                </BottomBlueBox>
             </Box>
             <Box ml={12}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="164"
                     height="46"
-                    viewBox="0 0 174 39"
+                    viewBox="0 0 174 37"
                 >
                     <path
                         fill="#FFF"
@@ -37,33 +60,30 @@ export const Spinner: React.FC = () => {
 
 const RedBox = styled(Box)({
     backgroundColor: '#E14B51',
-    height: 36,
-    width: 36,
-    position: 'relative',
-    transform: 'translate3d(-2px, -2px, 0)',
-    '::after': {
-        content: '""',
-        display: 'block',
-        position: 'absolute',
-        zIndex: 1,
-        top: 0,
-        left: 0,
-        height: 0,
-        width: 0,
-        border: '18px solid transparent',
-        borderRight: '18px solid #292F3C',
-        borderLeft: '18px solid #292F3C',
-    },
+    height: '100%',
+    width: '100%',
+    animation: `${sand} 3.8s infinite`,
+    willChange: 'transform',
 });
 
 const BlueBox = styled(Box)({
     backgroundColor: '#5A81EA',
-    height: 18,
-    width: 36,
+    height: '70.71%',
+    width: '70.71%',
     position: 'absolute',
+    overflow: 'hidden',
+});
+
+const TopBlueBox = styled(BlueBox)({
+    top: 0,
+    transform: 'rotate(-45deg)',
+    transformOrigin: '0 0',
+});
+
+const BottomBlueBox = styled(BlueBox)({
     bottom: 0,
-    animation: `${sand} 3.8s infinite`,
-    willChange: 'transform',
+    transform: 'rotate(45deg)',
+    transformOrigin: '0 100%',
 });
 
 Spinner.displayName = 'Spinner';
