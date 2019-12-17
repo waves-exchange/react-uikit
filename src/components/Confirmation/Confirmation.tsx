@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
-import { Box, Button, Flex, TFlexProps } from '../..';
-import { ConfirmationTitle } from '../ConfirmationTitle/ConfirmationTitle';
+import { Box, Button, Flex, Text, TFlexProps } from '../..';
+import { AddressAvatar } from '../AddressAvatar/AddressAvatar';
 
 interface IConfirmationProps extends TFlexProps {
-    titleInfo: {
-        address: string;
-        name: string;
-        balance: string;
-    };
+    address: string;
+    name: string;
+    balance: string;
 }
 
 export const Confirmation: FC<IConfirmationProps> = ({
-    titleInfo,
+    address,
+    name,
+    balance,
     children,
     ...rest
 }) => {
@@ -24,12 +24,23 @@ export const Confirmation: FC<IConfirmationProps> = ({
             borderRadius="$6"
             {...rest}
         >
-            <ConfirmationTitle
-                titleInfo={titleInfo}
-                borderBottomColor="basic.$1000"
-                borderBottomWidth="1px"
-                borderBottomStyle="solid"
-            />
+            <Flex justifyContent="space-between" px="$40" py="15px">
+                <Box marginRight="space.$10">
+                    <AddressAvatar
+                        address={address}
+                        isShort={true}
+                        name={name}
+                    />
+                </Box>
+                <Flex flexDirection="column" alignItems="flex-end">
+                    <Text variant="footnote1" color="basic.$500">
+                        Balance
+                    </Text>
+                    <Text variant="body2" color="standard.$0">
+                        {balance}
+                    </Text>
+                </Flex>
+            </Flex>
             <Box maxHeight="432px" overflowY="auto">
                 {children}
             </Box>

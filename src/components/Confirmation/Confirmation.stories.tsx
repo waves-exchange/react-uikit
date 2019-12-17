@@ -10,11 +10,9 @@ const stories = storiesOf('Confirmation', module);
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
         <Confirmation
-            titleInfo={{
-                address: '3PD4KPsJwN3fzT5H1JpBEJYdWinnLghGdr2',
-                name: 'Florieke Krebber',
-                balance: '432.97655789 Waves',
-            }}
+            address="3PD4KPsJwN3fzT5H1JpBEJYdWinnLghGdr2"
+            name="Florieke Krebber"
+            balance="432.97655789 Waves"
         >
             <Box>
                 <Text color="standard.$0">
