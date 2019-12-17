@@ -2,18 +2,17 @@ import React, {
     Children,
     cloneElement,
     FC,
-    InputHTMLAttributes,
     isValidElement,
     useState,
-    ChangeEvent,
+    ChangeEventHandler,
 } from 'react';
-import { Flex } from '../Flex/Flex';
+import { Flex, TFlexProps } from '../Flex/Flex';
 
-type RadioGroupProps = {
+type RadioGroupProps = TFlexProps & {
     direction?: 'row' | 'column';
     name?: string;
     value?: string;
-    onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+    onChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
 export const RadioGroup: FC<RadioGroupProps> = ({
@@ -22,9 +21,10 @@ export const RadioGroup: FC<RadioGroupProps> = ({
     name,
     value,
     onChange,
+    ...rest
 }) => {
     const [_value, _setValue] = useState(value || null);
-    const _onChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const _onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
         _setValue(e.currentTarget.value);
 
         if (typeof onChange === 'function') {
@@ -33,7 +33,7 @@ export const RadioGroup: FC<RadioGroupProps> = ({
     };
 
     return (
-        <Flex flexDirection={direction} role="radiogroup">
+        <Flex flexDirection={direction} role="radiogroup" {...rest}>
             {Children.map(children, (child) =>
                 isValidElement(child)
                     ? cloneElement(child, {
