@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { storiesOf } from '@storybook/react';
 import { defaultTheme } from '../../themes/default';
 import { ThemeProvider } from 'emotion-theming';
@@ -13,6 +13,8 @@ stories.add('simple', () => (
             address="3PD4KPsJwN3fzT5H1JpBEJYdWinnLghGdr2"
             name="Florieke Krebber"
             balance="432.97655789 Waves"
+            onSubmit={(e: SyntheticEvent): void => console.log(e)}
+            onReject={(e: SyntheticEvent): void => console.log(e)}
         >
             <Box>
                 <Text color="standard.$0">
