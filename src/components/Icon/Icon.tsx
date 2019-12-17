@@ -1,6 +1,6 @@
-import React, { forwardRef, SVGAttributes } from 'react';
+import React, { forwardRef, SVGAttributes, HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
-import { Box, BoxProps } from '../Box/Box';
+import { Box, BoxProps, BoxAsElement } from '../Box/Box';
 import { variant } from 'styled-system';
 
 const variants = {
@@ -10,7 +10,10 @@ const variants = {
     large: { size: 24 },
 };
 
-const Svg = styled(Box)<{ iconSize?: IconSize }>(
+type SVGBoxProps = BoxProps<SVGElement, HTMLAttributes<SVGElement>> &
+    SVGAttributes<SVGElement>;
+
+const Svg = styled(Box as BoxAsElement<'svg', SVGBoxProps>)(
     variant({
         prop: 'iconSize',
         variants,
@@ -31,12 +34,10 @@ interface IIcon {
 
 type IconSize = keyof typeof variants;
 
-type IconSpecificProps = {
+export type IconProps = SVGBoxProps & {
     icon: IIcon;
     iconSize?: IconSize;
 };
-
-type IconProps = IconSpecificProps & BoxProps & SVGAttributes<SVGElement>;
 
 export const Icon = forwardRef<SVGElement, IconProps>((props, ref) => {
     const {
