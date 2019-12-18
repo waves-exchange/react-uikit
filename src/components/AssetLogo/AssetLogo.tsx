@@ -12,7 +12,7 @@ import concat from 'ramda/es/concat';
 import { variants } from './styles';
 import {
     getAssetLogoColor as getAssetLogoBgColor,
-    wrapToString,
+    wrapWith,
     getHeight,
 } from './helpers';
 import { variant } from 'styled-system';
@@ -50,12 +50,7 @@ export const AssetLogo = styled(Box)<Props>(
         applySpec({
             background: pipe(prop('assetId'), getAssetLogoBgColor),
             ':before': applySpec({
-                content: pipe(
-                    prop('name'),
-                    head,
-                    toUpper,
-                    wrapToString('"', '"')
-                ),
+                content: pipe(prop('name'), head, toUpper, wrapWith('"', '"')),
                 fontSize: pipe(
                     getHeight,
                     multiply(0.43),
@@ -67,7 +62,7 @@ export const AssetLogo = styled(Box)<Props>(
             }),
         }),
         applySpec({
-            backgroundImage: pipe(prop('logo'), wrapToString('url(', ')')),
+            backgroundImage: pipe(prop('logo'), wrapWith('url(', ')')),
         })
     ),
     variant({

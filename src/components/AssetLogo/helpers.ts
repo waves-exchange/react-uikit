@@ -61,7 +61,7 @@ const charCodeAt = curry((index: number, char: string) =>
     char.charCodeAt(index)
 );
 
-export const wrapToString = curry(
+export const wrapWith = curry(
     (before: string, after: string, content: string) =>
         `${before}${content}${after}`
 );
