@@ -10,11 +10,14 @@ import head from 'ramda/es/head';
 import flip from 'ramda/es/flip';
 import concat from 'ramda/es/concat';
 import { variants } from './styles';
-import { getAssetLogoColor, wrapToQuote, getHeight } from './helpers';
+import {
+    getAssetLogoColor as getAssetLogoBgColor,
+    wrapToString,
+    getHeight,
+} from './helpers';
 import { variant } from 'styled-system';
 import css from '@styled-system/css';
 import { styled } from '../../styled';
-import always from 'ramda/es/always';
 
 type Props = {
     assetId: string;
@@ -33,6 +36,7 @@ type Props = {
 export const AssetLogo = styled(Box)<Props>(
     css({
         borderRadius: '100%',
+        backgroundSize: '100% 100%',
         ':before': {
             color: 'standard.$0',
             display: 'block',
@@ -44,9 +48,14 @@ export const AssetLogo = styled(Box)<Props>(
     ifElse(
         pipe(prop('logo'), isNil),
         applySpec({
-            background: pipe(prop('assetId'), getAssetLogoColor),
+            background: pipe(prop('assetId'), getAssetLogoBgColor),
             ':before': applySpec({
-                content: pipe(prop('name'), head, toUpper, wrapToQuote),
+                content: pipe(
+                    prop('name'),
+                    head,
+                    toUpper,
+                    wrapToString('"', '"')
+                ),
                 fontSize: pipe(
                     getHeight,
                     multiply(0.43),
@@ -58,12 +67,7 @@ export const AssetLogo = styled(Box)<Props>(
             }),
         }),
         applySpec({
-            backgroundImage: pipe(
-                prop('logo'),
-                concat('url('),
-                flip(concat)(')')
-            ),
-            backgroundSize: always('100% 100%'),
+            backgroundImage: pipe(prop('logo'), wrapToString('url(', ')')),
         })
     ),
     variant({

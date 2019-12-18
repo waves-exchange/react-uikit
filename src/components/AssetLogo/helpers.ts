@@ -1,5 +1,4 @@
 import pipe from 'ramda/es/pipe';
-import concat from 'ramda/es/concat';
 import flip from 'ramda/es/flip';
 import ifElse from 'ramda/es/ifElse';
 import isNil from 'ramda/es/isNil';
@@ -62,6 +61,11 @@ const charCodeAt = curry((index: number, char: string) =>
     char.charCodeAt(index)
 );
 
+export const wrapToString = curry(
+    (before: string, after: string, content: string) =>
+        `${before}${content}${after}`
+);
+
 export const getAssetLogoColor = pipe(
     split(''),
     map(charCodeAt(0)),
@@ -70,7 +74,6 @@ export const getAssetLogoColor = pipe(
     toArray,
     flip(path)(GOOD_COLORS_LIST)
 );
-export const wrapToQuote = pipe(concat('"'), flip(concat)('"'));
 
 export const getHeight = pipe(
     toPairs as (data: unknown) => [string, unknown][],
