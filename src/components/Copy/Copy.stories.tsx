@@ -12,7 +12,7 @@ stories.add('simple', () => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <Box
-                backgroundColor={defaultTheme.colors.main.$800}
+                backgroundColor="main.$800"
                 height="100vh"
                 p={20}
                 sx={{
@@ -23,7 +23,7 @@ stories.add('simple', () => {
                     <Text color="standard.$0" lineHeight={1.5}>
                         Icon
                     </Text>
-                    <Copy toCopyText="3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj" />
+                    <Copy toCopyText="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7" />
                 </Flex>
 
                 <Flex mb={20} flexDirection="column" alignItems="flex-start">
