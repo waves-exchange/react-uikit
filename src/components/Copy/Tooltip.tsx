@@ -6,6 +6,7 @@ export const Tooltip: React.FC = ({ children }) => {
     return (
         <Box
             position="absolute"
+            display="flex"
             left="50%"
             bottom={-8}
             sx={{ transform: 'translate(-50%, 100%)' }}
@@ -13,18 +14,17 @@ export const Tooltip: React.FC = ({ children }) => {
             px="$5"
             backgroundColor="main.$300"
             borderRadius="$2"
+            zIndex={10}
         >
-            <Box position="relative" display="inline">
-                {children}
-                <Corner />
-            </Box>
+            {children}
+            <Corner />
         </Box>
     );
 };
 
 const Corner = styled(Box)({
-    width: 15,
-    height: 15,
+    width: 10,
+    height: 10,
     position: 'absolute',
     top: 0,
     left: '50%',

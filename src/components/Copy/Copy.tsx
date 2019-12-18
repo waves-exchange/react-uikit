@@ -8,9 +8,15 @@ interface ICopyProps {
     toCopyText: string;
     text?: string;
     onCopy?: (text: string, result: boolean) => void;
+    tooltipText?: string;
 }
 
-export const Copy: React.FC<ICopyProps> = ({ toCopyText, text, onCopy }) => {
+export const Copy: React.FC<ICopyProps> = ({
+    toCopyText,
+    text,
+    onCopy,
+    tooltipText = 'Copy address',
+}) => {
     const [hovered, setHovered] = useState<boolean>(false);
     const [copied, setCopied] = useState<boolean>(false);
     const [timer, setTimer] = useState<ReturnType<typeof setTimeout> | null>(
@@ -42,11 +48,11 @@ export const Copy: React.FC<ICopyProps> = ({ toCopyText, text, onCopy }) => {
 
     const onMouseEnter = useCallback(() => {
         setHovered(true);
-    }, [setHovered]);
+    }, []);
 
     const onMouseLeave = useCallback(() => {
         setHovered(false);
-    }, [setHovered]);
+    }, []);
 
     return (
         <Flex
@@ -80,12 +86,12 @@ export const Copy: React.FC<ICopyProps> = ({ toCopyText, text, onCopy }) => {
 
             {hovered && !copied && (
                 <Tooltip>
-                    <TooltipText text="Copy address" />
+                    <TooltipText text={tooltipText} />
                 </Tooltip>
             )}
             {copied && (
                 <Tooltip>
-                    <TooltipText text="Copied" />
+                    <TooltipText text="Copied!" />
                 </Tooltip>
             )}
         </Flex>
