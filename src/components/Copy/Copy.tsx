@@ -4,6 +4,12 @@ import copy from 'copy-to-clipboard';
 import { iconCopy } from '../../assets/icons/copy';
 import { Tooltip } from './Tooltip';
 
+const TooltipText: React.FC<{ text: string }> = ({ text }) => (
+    <Text fontSize={11} color="standard.$0" lineHeight="$14">
+        {text}
+    </Text>
+);
+
 interface ICopyProps {
     toCopyText: string;
     text?: string;
@@ -82,7 +88,10 @@ export const Copy: React.FC<ICopyProps> = ({
                     {text}
                 </Text>
             )}
-            <Icon color={hovered ? '#5A81EA' : '#9BA6B2'} icon={iconCopy} />
+            <Icon
+                color={hovered ? 'primary.$300' : 'basic.$500'}
+                icon={iconCopy}
+            />
 
             {hovered && !copied && (
                 <Tooltip>
@@ -97,9 +106,3 @@ export const Copy: React.FC<ICopyProps> = ({
         </Flex>
     );
 };
-
-const TooltipText: React.FC<{ text: string }> = ({ text }) => (
-    <Text fontSize={11} color="standard.$0" lineHeight="$14">
-        {text}
-    </Text>
-);

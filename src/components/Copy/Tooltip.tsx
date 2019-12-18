@@ -1,6 +1,17 @@
 import React from 'react';
 import { Box } from '../..';
-import styled from '@emotion/styled';
+
+const Corner: React.FC = () => (
+    <Box
+        width={10}
+        height={10}
+        position="absolute"
+        top={0}
+        left="50%"
+        backgroundColor="main.$300"
+        sx={{ transform: 'translate(-50%, -50%) rotate(45deg)' }}
+    ></Box>
+);
 
 export const Tooltip: React.FC = ({ children }) => {
     return (
@@ -21,13 +32,3 @@ export const Tooltip: React.FC = ({ children }) => {
         </Box>
     );
 };
-
-const Corner = styled(Box)({
-    width: 10,
-    height: 10,
-    position: 'absolute',
-    top: 0,
-    left: '50%',
-    transform: 'translate(-50%, -50%) rotate(45deg)',
-    backgroundColor: '#555D6D',
-});
