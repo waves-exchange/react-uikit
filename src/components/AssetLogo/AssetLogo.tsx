@@ -1,19 +1,19 @@
-import { Box } from '../..';
-import isNil from 'ramda/es/isNil';
-import ifElse from 'ramda/es/ifElse';
-import prop from 'ramda/es/prop';
-import pipe from 'ramda/es/pipe';
-import applySpec from 'ramda/es/applySpec';
-import toUpper from 'ramda/es/toUpper';
-import multiply from 'ramda/es/multiply';
-import head from 'ramda/es/head';
-import flip from 'ramda/es/flip';
-import concat from 'ramda/es/concat';
-import { variants } from './styles';
-import { getAssetLogoBgColor, wrapWith, getHeight } from './helpers';
-import { variant } from 'styled-system';
 import css from '@styled-system/css';
+import applySpec from 'ramda/es/applySpec';
+import concat from 'ramda/es/concat';
+import flip from 'ramda/es/flip';
+import head from 'ramda/es/head';
+import ifElse from 'ramda/es/ifElse';
+import isNil from 'ramda/es/isNil';
+import multiply from 'ramda/es/multiply';
+import pipe from 'ramda/es/pipe';
+import prop from 'ramda/es/prop';
+import toUpper from 'ramda/es/toUpper';
+import { variant } from 'styled-system';
 import { styled } from '../../styled';
+import { Box } from '../Box/Box';
+import { getAssetLogoBgColor, getHeight, wrapWith } from './helpers';
+import { variants } from './styles';
 
 type Props = {
     assetId: string;
