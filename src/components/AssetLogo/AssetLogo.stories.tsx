@@ -16,11 +16,24 @@ stories.add('simple', () => (
         <AssetLogo
             assetId="ETk6gjBhbEN3AxrzFVMK6tpYXRHeQz5rcJ877y9Jy81y"
             name="AssetGate"
+            variant="large"
         />
         <AssetLogo
             assetId="2CjLFYkp4W4sEAxCjFG9oD3smfhvV6yQnNmiJyexbLdu"
             logo={icon}
             name="Apple Coin"
+            variant="large"
+        />
+        <AssetLogo
+            assetId="2CjLFYkp4W4sEAxCjFG9oD3smfhvV6yQnNmiJyexbLdu"
+            logo={icon}
+            name="Apple Coin"
+            variant="large"
+        />
+        <AssetLogo
+            assetId="ETk6gjBhbEN3AxrzFVMK6tpYXRHeQz5rcJ877y9Jy81y"
+            name="AssetGate"
+            size="30px"
         />
     </ThemeProvider>
 ));

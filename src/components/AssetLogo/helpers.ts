@@ -1,3 +1,16 @@
+import pipe from 'ramda/es/pipe';
+import concat from 'ramda/es/concat';
+import flip from 'ramda/es/flip';
+import ifElse from 'ramda/es/ifElse';
+import isNil from 'ramda/es/isNil';
+import head from 'ramda/es/head';
+import filter from 'ramda/es/filter';
+import always from 'ramda/es/always';
+import identity from 'ramda/es/identity';
+import toPairs from 'ramda/es/toPairs';
+import contains from 'ramda/es/contains';
+import last from 'ramda/es/last';
+
 const GOOD_COLORS_LIST = [
     '#39a12c',
     '#6a737b',
@@ -45,3 +58,27 @@ export function getAssetLogoColor(assetId: string): string {
 
     return GOOD_COLORS_LIST[sum % GOOD_COLORS_LIST.length];
 }
+
+export const wrapToQuote = pipe(concat('"'), flip(concat)('"'));
+const sizeProperties = ['size', 'height', 'width'];
+
+export const getHeight = pipe(
+    toPairs as (data: unknown) => [string, unknown][],
+    filter(pipe(head, flip(contains)(sizeProperties))),
+    head,
+    ifElse(
+        isNil,
+        always(0),
+        pipe(
+            last,
+            ifElse(
+                isNil,
+                always(0),
+                pipe(
+                    (height: string) => parseInt(height, 10),
+                    ifElse(isNaN, always(0), identity)
+                )
+            )
+        )
+    )
+);
