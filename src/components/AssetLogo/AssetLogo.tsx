@@ -10,11 +10,7 @@ import head from 'ramda/es/head';
 import flip from 'ramda/es/flip';
 import concat from 'ramda/es/concat';
 import { variants } from './styles';
-import {
-    getAssetLogoColor as getAssetLogoBgColor,
-    wrapWith,
-    getHeight,
-} from './helpers';
+import { getAssetLogoBgColor, wrapWith, getHeight } from './helpers';
 import { variant } from 'styled-system';
 import css from '@styled-system/css';
 import { styled } from '../../styled';
@@ -22,7 +18,7 @@ import { styled } from '../../styled';
 type Props = {
     assetId: string;
     /**
-     * Base64 string
+     * Icon url or base64 icon
      */
     logo?: string;
     /**

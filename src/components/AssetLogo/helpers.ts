@@ -66,7 +66,7 @@ export const wrapWith = curry(
         `${before}${content}${after}`
 );
 
-export const getAssetLogoColor = pipe(
+export const getAssetLogoBgColor = pipe(
     split(''),
     map(charCodeAt(0)),
     reduce<number, number>(add, 0),
