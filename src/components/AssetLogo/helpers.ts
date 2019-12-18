@@ -11,6 +11,7 @@ import toPairs from 'ramda/es/toPairs';
 import contains from 'ramda/es/contains';
 import last from 'ramda/es/last';
 
+const sizeProperties = ['size', 'height', 'width'];
 const GOOD_COLORS_LIST = [
     '#39a12c',
     '#6a737b',
@@ -58,9 +59,7 @@ export function getAssetLogoColor(assetId: string): string {
 
     return GOOD_COLORS_LIST[sum % GOOD_COLORS_LIST.length];
 }
-
 export const wrapToQuote = pipe(concat('"'), flip(concat)('"'));
-const sizeProperties = ['size', 'height', 'width'];
 
 export const getHeight = pipe(
     toPairs as (data: unknown) => [string, unknown][],
