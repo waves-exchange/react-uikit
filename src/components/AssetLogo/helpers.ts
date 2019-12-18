@@ -10,8 +10,16 @@ import identity from 'ramda/es/identity';
 import toPairs from 'ramda/es/toPairs';
 import contains from 'ramda/es/contains';
 import last from 'ramda/es/last';
+import curry from 'ramda/es/curry';
+import split from 'ramda/es/split';
+import map from 'ramda/es/map';
+import reduce from 'ramda/es/reduce';
+import add from 'ramda/es/add';
+import mathMod from 'ramda/es/mathMod';
+import path from 'ramda/es/path';
 
 const sizeProperties = ['size', 'height', 'width'];
+const toArray = <T>(some: T): Array<T> => (Array.isArray(some) ? some : [some]);
 const GOOD_COLORS_LIST = [
     '#39a12c',
     '#6a737b',
@@ -50,15 +58,18 @@ const GOOD_COLORS_LIST = [
     '#967400',
     '#264163',
 ];
+const charCodeAt = curry((index: number, char: string) =>
+    char.charCodeAt(index)
+);
 
-export function getAssetLogoColor(assetId: string): string {
-    const sum = assetId
-        .split('')
-        .map((char) => char.charCodeAt(0))
-        .reduce((acc, code) => acc + code, 0);
-
-    return GOOD_COLORS_LIST[sum % GOOD_COLORS_LIST.length];
-}
+export const getAssetLogoColor = pipe(
+    split(''),
+    map(charCodeAt(0)),
+    reduce<number, number>(add, 0),
+    flip(mathMod)(GOOD_COLORS_LIST.length),
+    toArray,
+    flip(path)(GOOD_COLORS_LIST)
+);
 export const wrapToQuote = pipe(concat('"'), flip(concat)('"'));
 
 export const getHeight = pipe(
