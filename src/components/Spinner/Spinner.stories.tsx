@@ -10,7 +10,7 @@ stories.add('simple', () => {
     return (
         <ThemeProvider theme={defaultTheme}>
             <Flex
-                backgroundColor={defaultTheme.colors.main.$800}
+                backgroundColor="main.$800"
                 height="100vh"
                 justifyContent="center"
             >
