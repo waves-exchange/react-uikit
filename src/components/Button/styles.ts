@@ -9,7 +9,7 @@ export const variants = {
             bg: 'primary.$700',
         },
         ':disabled': {
-            bg: 'primary.$100',
+            bg: 'primary.$900',
         },
     },
     danger: {
