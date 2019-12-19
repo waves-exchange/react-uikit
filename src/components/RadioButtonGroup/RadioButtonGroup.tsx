@@ -8,14 +8,15 @@ import React, {
 import { ButtonProps } from '../Button/Button';
 import { Flex, TFlexProps } from '../Flex/Flex';
 
-export type RadioButtonProps = ButtonProps & {
+export type RadioButtonProps<T = unknown> = Omit<ButtonProps, 'value'> & {
+    value: T;
     checked?: boolean;
 };
 
 type RadioButtonGroupProps = TFlexProps & {
     direction?: 'row' | 'column';
     name?: string;
-    value?: string;
+    value?: unknown;
     onChange?: (value: unknown) => void;
 };
 

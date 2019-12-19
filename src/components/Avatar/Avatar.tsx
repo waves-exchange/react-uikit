@@ -2,17 +2,24 @@ import React from 'react';
 import { config, create } from 'identity-img';
 import { styled } from '../../styled';
 import { always, isNil, omit } from 'ramda';
-import { sizes } from './styles';
+import { vairantSizes } from './styles';
 
 config({ rows: 8, cells: 8 });
 
-const getSize: (data: IProps) => number = ({ size }) =>
-    isNil(size) ? sizes.medium : sizes[size];
+export type TAvatarSizes = keyof typeof vairantSizes;
+
+interface IProps {
+    variantSize?: TAvatarSizes;
+    address: string;
+}
+
+const getSize: (data: IProps) => number = ({ variantSize }) =>
+    isNil(variantSize) ? vairantSizes.medium : vairantSizes[variantSize];
 
 const AvatarFunction: React.FC<IProps> = (props) => (
     <img
         src={create(props.address, { size: getSize(props) })}
-        {...omit(['address', 'size'], props)}
+        {...omit(['address', 'variantSize'], props)}
     />
 );
 
@@ -24,10 +31,3 @@ export const Avatar = styled(AvatarFunction, {
     width: `${getSize(props)}px`,
     height: `${getSize(props)}px`,
 }));
-
-interface IProps {
-    size?: TAvatarSizes;
-    address: string;
-}
-
-type TAvatarSizes = keyof typeof sizes;
