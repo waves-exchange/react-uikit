@@ -2,7 +2,8 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Spinner } from './Spinner';
 import { ThemeProvider } from 'emotion-theming';
-import { defaultTheme, Flex } from '../..';
+import { Flex } from '../Flex/Flex';
+import { defaultTheme } from '../../themes/default';
 
 const stories = storiesOf('Spinner', module);
 
