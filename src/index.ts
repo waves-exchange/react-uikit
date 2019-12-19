@@ -29,5 +29,7 @@ export * from './assets/icons/eyeActive';
 export * from './assets/icons/logo';
 export * from './assets/icons/question';
 export * from './assets/icons/invoke';
+export * from './assets/icons/transferArrow';
+export * from './assets/icons/transferCircle';
 //types
 export * from './interface';
