@@ -15,7 +15,7 @@ export const inputSizeVariants = {
 
 export const inputVariants = {
     default: {
-        backgroundColor: 'main.$800',
+        backgroundColor: 'basic.$900',
         borderColor: 'main.$500',
         borderRadius: '$4',
         color: 'standard.$0',
