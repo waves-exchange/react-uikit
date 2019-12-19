@@ -105,5 +105,4 @@ export const Box = styled<'div', BoxProps>('div', {
         cursor: true,
     }),
     sx,
-    { boxSizing: 'border-box' }
 );
