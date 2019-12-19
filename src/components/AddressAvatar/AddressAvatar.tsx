@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Avatar, Box, Text, Flex, TFlexProps } from '../..';
+import { Avatar, Text, Flex, TFlexProps } from '../..';
 import { getShortAddress } from './helpers';
 
 interface IAddressAvatarProps extends TFlexProps {
@@ -14,11 +14,9 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
     isShort,
     ...rest
 }) => (
-    <Flex {...rest}>
-        <Box mr="10px">
-            <Avatar address={address} />
-        </Box>
-        <Flex flexDirection="column" justifyContent="center">
+    <Flex alignItems="center" {...rest}>
+        <Avatar address={address} size="large" />
+        <Flex ml="$10" flexDirection="column" justifyContent="center">
             {name && (
                 <Text variant="footnote1" color="basic.$500">
                     {name}
