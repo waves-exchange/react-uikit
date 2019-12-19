@@ -5,6 +5,7 @@ import { iconCheck } from '../../assets/icons/check';
 import { iconClose } from '../../assets/icons/close';
 import { iconQuestion } from '../../assets/icons/question';
 import { iconLogo } from '../../assets/icons/logo';
+import { iconInvoke } from '../../assets/icons/invoke';
 import { Flex } from '../Flex/Flex';
 
 const stories = storiesOf('Icon', module);
@@ -21,6 +22,7 @@ stories.add('simple', () => {
             <Icon {...commonProps} icon={iconClose} />
             <Icon {...commonProps} icon={iconQuestion} />
             <Icon {...commonProps} icon={iconLogo} />
+            <Icon {...commonProps} icon={iconInvoke} />
         </Flex>
     );
 });
