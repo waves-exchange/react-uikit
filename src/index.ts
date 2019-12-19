@@ -31,5 +31,6 @@ export * from './assets/icons/question';
 export * from './assets/icons/invoke';
 export * from './assets/icons/transferArrow';
 export * from './assets/icons/transferCircle';
+export * from './assets/icons/dataTransaction';
 //types
 export * from './interface';
