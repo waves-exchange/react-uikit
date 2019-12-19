@@ -20,6 +20,8 @@ export * from './components/RadioButtonGroup/RadioButtonGroup';
 export * from './components/Switch/Switch';
 export * from './components/Text/Text';
 export * from './components/IconTransfer/IconTransfer';
+export * from './components/PasswordComplexityIndicator/PasswordComplexityIndicator';
+export * from './components/Spinner/Spinner';
 export * from './themes/default';
 // assets
 export * from './assets/icons/check';
