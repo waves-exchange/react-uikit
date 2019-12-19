@@ -38,6 +38,9 @@ export const colors = {
     warning: {
         $500: '#F8B700',
     },
+    green: {
+        $500: '#009952',
+    },
     success: {
         $500: '#008B55',
     },
