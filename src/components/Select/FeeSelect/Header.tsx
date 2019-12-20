@@ -1,0 +1,31 @@
+import React from 'react';
+import { Flex, Icon } from '../../..';
+import { Option } from './Option';
+import { iconCloseSelect } from '../../../assets/icons/closeSelect';
+import { iconOpenSelect } from '../../../assets/icons/openSelect';
+import { IOption } from '../Select.stories';
+
+interface IHeaderProps {
+    opened: boolean;
+    selected: IOption;
+}
+
+export const Header: React.FC<IHeaderProps> = ({ opened, selected }) => (
+    <Flex
+        width={440}
+        justifyContent="space-between"
+        backgroundColor="basic.$900"
+        border="1px solid"
+        borderColor="main.$600"
+        borderRadius="$4"
+        p={15}
+        sx={{ cursor: 'pointer' }}
+    >
+        <Option {...selected} />
+        {opened ? (
+            <Icon icon={iconCloseSelect} color="primary.$300" ml={10} />
+        ) : (
+            <Icon icon={iconOpenSelect} color="main.$100" ml={10} />
+        )}
+    </Flex>
+);
