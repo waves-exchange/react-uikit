@@ -9,7 +9,12 @@ import { RadioButtonGroup, RadioButtonProps } from './RadioButtonGroup';
 
 const stories = storiesOf('RadioButtonGroup', module);
 
-const RadioButton: FC<RadioButtonProps> = ({ checked, children, ...rest }) => (
+const RadioButton: FC<RadioButtonProps> = ({
+    checked,
+    children,
+    value,
+    ...rest
+}) => (
     <Button
         aria-checked={checked}
         variant={checked ? 'primary' : 'transparent'}
