@@ -6,6 +6,7 @@ import { Select } from '../Select/Select';
 import { Box } from '../Box/Box';
 import { Header } from './FeeSelect/Header';
 import { List } from './FeeSelect/List';
+import { Text } from '../Text/Text';
 
 export interface IOption {
     name: string;
@@ -39,26 +40,57 @@ const options: Array<IOption> = [
         name: 'SELECT',
         id: 'Select',
     },
+    {
+        value: '1',
+        ticker: 'ZOLOTO',
+        name: 'Zoloto',
+        id: 'Zoloto',
+    },
 ];
 
 const stories = storiesOf('Select', module);
 
 stories.add('simple', () => {
     const initialSelected = options.find((option) => option.id === 'WAVES');
-    const [selected, setSelected] = useState<IOption>(initialSelected!);
-    const onSelect = useCallback((selected) => {
-        setSelected(selected);
+
+    const [selectedA, setSelectedA] = useState<IOption>(initialSelected!);
+    const onSelectA = useCallback((selected) => {
+        setSelectedA(selected);
+    }, []);
+
+    const [selectedB, setSelectedB] = useState<IOption>(initialSelected!);
+    const onSelectB = useCallback((selected) => {
+        setSelectedB(selected);
     }, []);
 
     return (
         <ThemeProvider theme={defaultTheme}>
-            <Box backgroundColor="main.$800" height="100vh" p="$20">
+            <Box
+                backgroundColor="main.$800"
+                height="100vh"
+                p="$20"
+                color="standard.$0"
+                fontSize={13}
+            >
+                <Text>default</Text>
                 <Select
                     HeaderComponent={(opened: boolean) => (
-                        <Header opened={opened} selected={selected} />
+                        <Header opened={opened} selected={selectedA} />
                     )}
+                    mb={20}
                 >
-                    <List options={options} onSelect={onSelect} />
+                    <List options={options} onSelect={onSelectA} />
+                </Select>
+
+                <Text>disabled</Text>
+                <Select
+                    HeaderComponent={(opened: boolean) => (
+                        <Header opened={opened} selected={selectedB} />
+                    )}
+                    isDisabled={true}
+                    mb={20}
+                >
+                    <List options={options} onSelect={onSelectB} />
                 </Select>
             </Box>
         </ThemeProvider>

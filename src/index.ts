@@ -25,6 +25,10 @@ export * from './components/Spinner/Spinner';
 export * from './components/Copy/Copy';
 export * from './components/Popper/Popper';
 export * from './components/Tooltip/Tooltip';
+export * from './components/Select/Select';
+export * from './components/Select/FeeSelect/Header';
+export * from './components/Select/FeeSelect/List';
+export * from './components/Select/FeeSelect/Option';
 export * from './themes/default';
 // assets
 export * from './icons/check';
@@ -39,5 +43,7 @@ export * from './icons/transferCircle';
 export * from './icons/dataTransaction';
 export * from './icons/copy';
 export * from './icons/signMessage';
+export * from './assets/icons/closeSelect';
+export * from './assets/icons/openSelect';
 //types
 export * from './interface';
