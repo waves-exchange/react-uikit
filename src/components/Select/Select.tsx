@@ -7,11 +7,11 @@ type TSelectProps = BoxProps & {
 };
 
 export const Select: React.FC<TSelectProps> = ({
-    renderSelected,
-    isDisabled = false,
-    children,
-    ...rest
-}) => {
+                                                   renderSelected,
+                                                   isDisabled = false,
+                                                   children,
+                                                   ...rest
+                                               }) => {
     const [opened, setOpened] = useState<boolean>(false);
     const element = useRef<HTMLDivElement>(null);
 
