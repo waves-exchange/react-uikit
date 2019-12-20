@@ -10,11 +10,6 @@ import {
 
 export const defaultTheme = {
     colors,
-    // fonts: {
-    //     body: '-apple-system, sans-serif',
-    //     heading: '-apple-system, sans-serif',
-    //     monospace: 'Menlo, Consolas, monospace',
-    // },
     fontSizes,
     fontWeights,
     lineHeights,
