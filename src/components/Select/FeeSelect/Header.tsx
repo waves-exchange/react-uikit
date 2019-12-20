@@ -19,6 +19,7 @@ export const Header: React.FC<IHeaderProps> = ({ opened, selected }) => (
         borderColor="main.$600"
         borderRadius="$4"
         p={15}
+        sx={{ cursor: 'pointer' }}
     >
         <Option {...selected} />
         {opened ? (

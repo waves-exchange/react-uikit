@@ -1,13 +1,13 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import { Box, BoxProps } from '../Box/Box';
 
-interface ISelectProps {
-    HeaderComponent: (opened: boolean) => React.ReactNode;
+type TSelectProps = BoxProps & {
+    renderSelected: (opened: boolean) => React.ReactNode;
     isDisabled?: boolean;
-}
+};
 
-export const Select: React.FC<ISelectProps & BoxProps> = ({
-    HeaderComponent,
+export const Select: React.FC<TSelectProps> = ({
+    renderSelected,
     isDisabled = false,
     children,
     ...rest
@@ -16,8 +16,11 @@ export const Select: React.FC<ISelectProps & BoxProps> = ({
     const element = useRef<HTMLDivElement>(null);
 
     const onToggleOpened = useCallback(() => {
+        if (isDisabled) {
+            return null;
+        }
         setOpened(!opened);
-    }, [opened]);
+    }, [isDisabled, opened]);
 
     const onClickOut = useCallback((event) => {
         if (element.current && !element.current.contains(event.target)) {
@@ -39,11 +42,18 @@ export const Select: React.FC<ISelectProps & BoxProps> = ({
         <Box
             cursor={isDisabled ? 'default' : 'pointer'}
             ref={element}
-            onClick={() => (isDisabled ? null : onToggleOpened())}
+            onClick={onToggleOpened}
             {...rest}
         >
-            <Box>{HeaderComponent(opened)}</Box>
-            {opened && React.Children.count(children) ? children : null}
+            <Box>{renderSelected(opened)}</Box>
+
+            {opened && React.Children.count(children) ? (
+                <Box position="relative" width="100%">
+                    <Box position="absolute" width="100%">
+                        {children}
+                    </Box>
+                </Box>
+            ) : null}
         </Box>
     );
 };

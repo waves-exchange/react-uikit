@@ -11,7 +11,6 @@ interface IListProps {
 
 export const List: React.FC<IListProps> = ({ options, onSelect }) => (
     <Flex
-        width={440}
         flexDirection="column"
         justifyContent="space-between"
         borderRadius="$4"

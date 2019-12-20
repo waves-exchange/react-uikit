@@ -4,7 +4,7 @@ import { ThemeProvider } from 'emotion-theming';
 import { defaultTheme } from '../../themes/default';
 import { Select } from '../Select/Select';
 import { Box } from '../Box/Box';
-import { Header } from './FeeSelect/Header';
+import { Selected } from './FeeSelect/Selected';
 import { List } from './FeeSelect/List';
 import { Text } from '../Text/Text';
 
@@ -74,8 +74,8 @@ stories.add('simple', () => {
             >
                 <Text>default</Text>
                 <Select
-                    HeaderComponent={(opened: boolean) => (
-                        <Header opened={opened} selected={selectedA} />
+                    renderSelected={(opened: boolean) => (
+                        <Selected opened={opened} selected={selectedA} />
                     )}
                     mb={20}
                 >
@@ -84,8 +84,8 @@ stories.add('simple', () => {
 
                 <Text>disabled</Text>
                 <Select
-                    HeaderComponent={(opened: boolean) => (
-                        <Header opened={opened} selected={selectedB} />
+                    renderSelected={(opened: boolean) => (
+                        <Selected opened={opened} selected={selectedB} />
                     )}
                     isDisabled={true}
                     mb={20}
