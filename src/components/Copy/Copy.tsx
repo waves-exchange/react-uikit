@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { Flex, Icon, Text } from '../..';
+import { Text, TTextProps } from '../Text/Text';
+import { Flex, TFlexProps } from '../Flex/Flex';
+import { Icon } from '../Icon/Icon';
 import copy from 'copy-to-clipboard';
 import { iconCopy } from '../../assets/icons/copy';
 import { Tooltip } from './Tooltip';
@@ -13,15 +15,18 @@ const TooltipText: React.FC<{ text: string }> = ({ text }) => (
 interface ICopyProps {
     toCopyText: string;
     text?: string;
+    TextProps?: TTextProps;
     onCopy?: (text: string, result: boolean) => void;
     tooltipText?: string;
 }
 
-export const Copy: React.FC<ICopyProps> = ({
+export const Copy: React.FC<ICopyProps & TFlexProps> = ({
     toCopyText,
     text,
+    TextProps,
     onCopy,
     tooltipText = 'Copy address',
+    ...rest
 }) => {
     const [hovered, setHovered] = useState<boolean>(false);
     const [copied, setCopied] = useState<boolean>(false);
@@ -77,6 +82,7 @@ export const Copy: React.FC<ICopyProps> = ({
             onClick={onClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
+            {...rest}
         >
             {text && (
                 <Text
@@ -84,6 +90,7 @@ export const Copy: React.FC<ICopyProps> = ({
                     color="standard.$0"
                     lineHeight="18px"
                     mr={5}
+                    {...TextProps}
                 >
                     {text}
                 </Text>

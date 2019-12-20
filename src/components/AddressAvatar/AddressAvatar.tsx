@@ -2,12 +2,14 @@ import React, { FC } from 'react';
 import { Avatar, Text, Flex, TFlexProps } from '../..';
 import { getShortAddress } from './helpers';
 import { TAvatarSizes } from '../Avatar/Avatar';
+import { Copy } from '../Copy/Copy';
 
 interface IAddressAvatarProps extends TFlexProps {
     address: string;
     avatarSize?: TAvatarSizes;
     name?: string;
     isShort?: boolean;
+    addressWithCopy?: boolean;
 }
 
 export const AddressAvatar: FC<IAddressAvatarProps> = ({
@@ -15,6 +17,7 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
     avatarSize,
     name,
     isShort,
+    addressWithCopy = false,
     ...rest
 }) => (
     <Flex alignItems="center" {...rest}>
@@ -25,9 +28,17 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
                     {name}
                 </Text>
             )}
-            <Text variant="body2" color="standard.$0">
-                {isShort ? getShortAddress(address) : address}
-            </Text>
+            {addressWithCopy ? (
+                <Copy
+                    toCopyText={address}
+                    text={isShort ? getShortAddress(address) : address}
+                    TextProps={{ variant: 'body2', color: 'standard.$0' }}
+                />
+            ) : (
+                <Text variant="body2" color="standard.$0">
+                    {isShort ? getShortAddress(address) : address}
+                </Text>
+            )}
         </Flex>
     </Flex>
 );

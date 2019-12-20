@@ -20,6 +20,18 @@ stories.add('simple', () => (
                 isShort={true}
                 address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
             />
+            <AddressAvatar
+                p="8px 16px"
+                address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
+                name="Coco Jumbo"
+                addressWithCopy={true}
+            />
+            <AddressAvatar
+                p="8px 16px"
+                isShort={true}
+                address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
+                addressWithCopy={true}
+            />
         </Box>
     </ThemeProvider>
 ));
