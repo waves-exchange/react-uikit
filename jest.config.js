@@ -13,4 +13,16 @@ module.exports = {
     snapshotSerializers: ['jest-emotion'],
     setupFilesAfterEnv: ['<rootDir>/jest/setupFilesAfterEnv.ts'],
     rootDir: path.resolve(__dirname),
+    collectCoverageFrom: [
+        // exclude
+        "!**/src/**/*.stories.tsx",
+        "!**/src/assets/**",
+        "!**/src/themes/**",
+        "!**/src/**/constants*",
+        "!**/src/**/styles.ts",
+        "!**/src/**/*.d.ts",
+        // include
+        "**/src/**/*.tsx",
+        "**/src/**/*.ts",
+    ]
 };

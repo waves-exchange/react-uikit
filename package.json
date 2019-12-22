@@ -11,8 +11,8 @@
     "url": "https://gitlab.waves.exchange/we-public/react-uikit.git"
   },
   "scripts": {
-    "test": "jest",
-    "test:w": "jest --watch",
+    "test": "jest --watch",
+    "test:c": "jest --coverage",
     "test:d": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "start": "start-storybook -p 3001",
     "build": "npm run build:cjs && npm run build:esm",
@@ -79,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run check-types && npm test",
+      "pre-commit": "lint-staged && npm run check-types && jest",
       "post-commit": "git update-index --again"
     }
   },
