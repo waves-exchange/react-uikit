@@ -2,6 +2,17 @@
   "extends": "./tsconfig.base.json",
   "include": [
     "src/**/*.ts",
-    "src/**/*.tsx"
-  ]
+    "src/**/*.tsx",
+    "jest/**/*.ts",
+    "jest/**/*.tsx"
+  ],
+  "files": [
+    "node_modules/@testing-library/jest-dom/extend-expect.d.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+        "test-utils": ["jest/test-utils"]
+      }
+  }
 }
