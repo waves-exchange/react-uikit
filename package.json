@@ -13,6 +13,7 @@
   "scripts": {
     "test": "jest",
     "test:w": "jest --watch",
+    "test:d": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "start": "start-storybook -p 3001",
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "rimraf ./dist/cjs && tsc -p ./tsconfigs/tsconfig.cjs.json",
