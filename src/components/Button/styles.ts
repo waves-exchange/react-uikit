@@ -10,6 +10,7 @@ export const variants = {
         },
         ':disabled': {
             bg: 'primary.$900',
+            color: 'basic.$700',
         },
     },
     danger: {
@@ -23,6 +24,7 @@ export const variants = {
         },
         ':disabled': {
             bg: 'danger.$900',
+            color: 'basic.$700',
         },
     },
     transparent: {
