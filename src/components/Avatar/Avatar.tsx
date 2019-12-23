@@ -14,7 +14,7 @@ interface IProps {
 }
 
 const getSize: (data: IProps) => number = ({ variantSize }) =>
-    isNil(variantSize) ? vairantSizes.medium : vairantSizes[variantSize];
+    isNil(variantSize) ? variantSize!['medium'] : vairantSizes[variantSize];
 
 const AvatarFunction: React.FC<IProps> = (props) => (
     <img
