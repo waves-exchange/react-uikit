@@ -22,7 +22,7 @@ const InputPasswordToggler = styled(Flex)<
     TDefaultTheme
 >(({ show, theme }) => ({
     cursor: 'pointer',
-    color: show ? theme.colors.primary.$300 : theme.colors.basic.$500,
+    color: show ? theme.colors.primary.$300 : theme.colors.basic.$700,
     ':hover': {
         color: show ? theme.colors.primary.$300 : theme.colors.basic.$300,
     },
