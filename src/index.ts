@@ -22,6 +22,7 @@ export * from './components/Text/Text';
 export * from './components/IconTransfer/IconTransfer';
 export * from './components/PasswordComplexityIndicator/PasswordComplexityIndicator';
 export * from './components/Spinner/Spinner';
+export * from './components/Copy/Copy';
 export * from './themes/default';
 // assets
 export * from './assets/icons/check';
@@ -34,5 +35,6 @@ export * from './assets/icons/invoke';
 export * from './assets/icons/transferArrow';
 export * from './assets/icons/transferCircle';
 export * from './assets/icons/dataTransaction';
+export * from './assets/icons/copy';
 //types
 export * from './interface';

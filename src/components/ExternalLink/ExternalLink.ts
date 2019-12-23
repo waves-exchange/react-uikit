@@ -10,7 +10,7 @@ ExternalLink.defaultProps = {
     as: 'a',
     display: 'inline',
     textDecoration: 'none',
-    color: 'primary.$500',
+    color: 'primary.$300',
     referrerPolicy: 'strict-origin',
 };
 

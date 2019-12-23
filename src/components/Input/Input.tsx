@@ -16,7 +16,7 @@ export const inputSizeVariants = {
 export const inputVariants = {
     default: {
         backgroundColor: 'basic.$900',
-        borderColor: 'main.$500',
+        borderColor: 'main.$600',
         borderRadius: '$4',
         color: 'standard.$0',
         ':hover:not(:disabled)': {
