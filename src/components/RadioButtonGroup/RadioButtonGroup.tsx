@@ -4,6 +4,7 @@ import React, {
     FC,
     isValidElement,
     useState,
+    useEffect,
 } from 'react';
 import { ButtonProps } from '../Button/Button';
 import { Flex, TFlexProps } from '../Flex/Flex';
@@ -28,7 +29,13 @@ export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
     onChange,
     ...rest
 }) => {
-    const [_value, _setValue] = useState(value || null);
+    const [_value, _setValue] = useState<unknown>();
+
+    useEffect(() => {
+        if (typeof _value === 'undefined' && _value !== value) {
+            _setValue(value);
+        }
+    }, [_value, value]);
 
     return (
         <Flex flexDirection={direction} role="radiogroup" {...rest}>
