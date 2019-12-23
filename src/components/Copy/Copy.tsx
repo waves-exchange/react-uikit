@@ -77,6 +77,7 @@ export const Copy: React.FC<ICopyProps & TFlexProps> = ({
             position="relative"
             py={2}
             px={4}
+            ml={-4}
             borderRadius="$4"
             alignItems="center"
             onClick={onClick}
