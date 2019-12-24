@@ -2,8 +2,8 @@ import React, { FC, ReactElement } from 'react';
 import { TUser } from '../../interface';
 import { getIconType } from './helpers';
 import { Icon, IconProps } from '../Icon/Icon';
-import { iconTransferArrow } from '../../assets/icons/transferArrow';
-import { iconTransferCircle } from '../../assets/icons/transferCircle';
+import { iconTransferArrow } from '../../icons/transferArrow';
+import { iconTransferCircle } from '../../icons/transferCircle';
 
 type TProps = {
     tx: TTransferIconParams;

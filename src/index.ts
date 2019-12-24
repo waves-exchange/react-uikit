@@ -25,16 +25,16 @@ export * from './components/Spinner/Spinner';
 export * from './components/Copy/Copy';
 export * from './themes/default';
 // assets
-export * from './assets/icons/check';
-export * from './assets/icons/close';
-export * from './assets/icons/eye';
-export * from './assets/icons/eyeActive';
-export * from './assets/icons/logo';
-export * from './assets/icons/question';
-export * from './assets/icons/invoke';
-export * from './assets/icons/transferArrow';
-export * from './assets/icons/transferCircle';
-export * from './assets/icons/dataTransaction';
-export * from './assets/icons/copy';
+export * from './icons/check';
+export * from './icons/close';
+export * from './icons/eye';
+export * from './icons/eyeActive';
+export * from './icons/logo';
+export * from './icons/question';
+export * from './icons/invoke';
+export * from './icons/transferArrow';
+export * from './icons/transferCircle';
+export * from './icons/dataTransaction';
+export * from './icons/copy';
 //types
 export * from './interface';
