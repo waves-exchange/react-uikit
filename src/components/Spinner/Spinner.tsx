@@ -3,7 +3,7 @@ import { around, sand } from './keyframes';
 import styled from '@emotion/styled';
 import { Flex } from '../Flex/Flex';
 import { Box } from '../Box/Box';
-import { iconExchange } from '../../assets/icons/exchange';
+import { iconExchange } from '../../icons/exchange';
 import { Icon } from '../Icon/Icon';
 
 const RedBox = styled(Box)({

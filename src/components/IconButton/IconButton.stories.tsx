@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { IconButton } from './IconButton';
 import { Icon } from '../Icon/Icon';
-import { iconQuestion } from '../../assets/icons/question';
+import { iconQuestion } from '../../icons/question';
 
 const stories = storiesOf('IconButton', module);
 

@@ -11,7 +11,7 @@ import {
 } from 'styled-system';
 import { styled } from '../../styled';
 import { Icon } from '../Icon/Icon';
-import { iconQuestion } from '../../assets/icons/question';
+import { iconQuestion } from '../../icons/question';
 import { Flex } from '../Flex/Flex';
 
 class HelpComponent extends Component<TProps, IState> {

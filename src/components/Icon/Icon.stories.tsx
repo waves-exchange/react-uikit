@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Icon } from './Icon';
-import { iconCheck } from '../../assets/icons/check';
-import { iconClose } from '../../assets/icons/close';
-import { iconQuestion } from '../../assets/icons/question';
-import { iconLogo } from '../../assets/icons/logo';
-import { iconInvoke } from '../../assets/icons/invoke';
+import { iconCheck } from '../../icons/check';
+import { iconClose } from '../../icons/close';
+import { iconQuestion } from '../../icons/question';
+import { iconLogo } from '../../icons/logo';
+import { iconInvoke } from '../../icons/invoke';
 import { Flex } from '../Flex/Flex';
 
 const stories = storiesOf('Icon', module);
