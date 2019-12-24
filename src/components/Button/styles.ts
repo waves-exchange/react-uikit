@@ -16,7 +16,6 @@ export const variants = {
             bg: 'primary.$900',
             color: 'basic.$700',
         },
-        transition: 'default',
     },
     danger: {
         bg: 'danger.$300',
@@ -35,7 +34,6 @@ export const variants = {
             bg: 'danger.$900',
             color: 'basic.$700',
         },
-        transition: 'default',
     },
     transparent: {
         bg: 'transparent',
@@ -60,7 +58,6 @@ export const variants = {
             border: '1px solid',
             borderColor: 'main.$500',
         },
-        transition: 'default',
     },
 };
 
