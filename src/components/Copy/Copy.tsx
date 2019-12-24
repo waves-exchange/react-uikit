@@ -3,7 +3,7 @@ import { Text, TTextProps } from '../Text/Text';
 import { Flex, TFlexProps } from '../Flex/Flex';
 import { Icon } from '../Icon/Icon';
 import copy from 'copy-to-clipboard';
-import { iconCopy } from '../../assets/icons/copy';
+import { iconCopy } from '../../icons/copy';
 import { Tooltip } from './Tooltip';
 
 const TooltipText: React.FC<{ text: string }> = ({ text }) => (

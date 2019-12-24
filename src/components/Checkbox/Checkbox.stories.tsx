@@ -8,7 +8,7 @@ import { Checkbox } from './Checkbox';
 import { defaultControlBoxStyles } from './styles';
 import mergeDeepRight from 'ramda/es/mergeDeepRight';
 import { Icon } from '../Icon/Icon';
-import { iconCheck } from '../../assets/icons/check';
+import { iconCheck } from '../../icons/check';
 
 // TODO нужны тесты на чек иконки, на корректную работу label for + чекбокс
 

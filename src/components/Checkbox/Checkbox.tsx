@@ -4,7 +4,7 @@ import { Icon } from '../Icon/Icon';
 import { ControlBox, IControlBoxStyles } from '../ControlBox/ControlBox';
 import { mergeDeepRight } from 'ramda';
 import { defaultControlBoxStyles } from './styles';
-import { iconCheck } from '../../assets/icons/check';
+import { iconCheck } from '../../icons/check';
 
 /**
  * Usage notes:
