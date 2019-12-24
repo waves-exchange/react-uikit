@@ -78,6 +78,7 @@ export type BoxProps<E = HTMLDivElement, A = HTMLAttributes<E>> = RefAttributes<
         as?: ElementType;
         sx?: InterpolationWithTheme<TDefaultTheme>;
         cursor?: ResponsiveValue<CSS.CursorProperty>;
+        transition?: ResponsiveValue<CSS.TransitionProperty>;
     };
 
 const sx: styleFn = (
@@ -103,6 +104,10 @@ export const Box = styled<'div', BoxProps>('div', {
     ),
     system({
         cursor: true,
+        transition: {
+            property: 'transition',
+            scale: 'transitions',
+        },
     }),
-    sx,
+    sx
 );
