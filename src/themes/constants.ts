@@ -105,6 +105,6 @@ export const sizes = {
     medium: '48px',
 };
 
-export const transition = {
+export const transitions = {
     default: '0.3s',
 };
