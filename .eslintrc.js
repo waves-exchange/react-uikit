@@ -254,7 +254,7 @@ module.exports = {
     },
     {
       files: [
-        'src/assets/**/*.*'
+        'src/icons/**/*.*'
       ],
       rules: {
         'max-len': 'off'

@@ -35,5 +35,6 @@ stories.add('simple', () => (
             name="AssetGate"
             size="30px"
         />
+        <AssetLogo assetId={null} name="Waves" variant="large" />
     </ThemeProvider>
 ));
