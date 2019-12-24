@@ -18,7 +18,9 @@ const getSize: (data: IProps) => number = ({ variantSize }) =>
 
 const AvatarFunction: React.FC<IProps> = (props) => (
     <img
-        src={create(props.address, { size: getSize(props) })}
+        src={create(props.address, {
+            size: getSize(props) * window.devicePixelRatio,
+        })}
         {...omit(['address', 'variantSize'], props)}
     />
 );
