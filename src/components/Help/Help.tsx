@@ -135,7 +135,6 @@ class HelpComponent extends Component<TProps, IState> {
     private readonly onMouseLeave = (): void => {
         this.clearTimeout();
         this.timer = setTimeout(() => {
-            console.log('hovered: false');
             this.setState({ hovered: false });
         }, 500);
     };

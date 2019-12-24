@@ -85,7 +85,6 @@ const getBarBgColor = ({
     // max amount of colored bars should be <= rank
     const isLessThenMax = barIndex <= rank - 1;
 
-    console.log({ barIndex, rank });
     if (isEmply(pw)) {
         return 'main.$500';
     } else if (isShort(pw, minPwLen) && isLessThenMax) {
