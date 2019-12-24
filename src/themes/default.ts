@@ -6,6 +6,7 @@ import {
     sizes,
     lineHeights,
     radii,
+    transition,
 } from './constants';
 
 export const defaultTheme = {
@@ -16,6 +17,7 @@ export const defaultTheme = {
     space,
     sizes,
     radii,
+    transition,
     borderWidths: [0, 1],
     breakpoints: ['576px', '768px', '992px', '1200px'],
     shadows: {
