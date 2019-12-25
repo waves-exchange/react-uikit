@@ -29,7 +29,9 @@ export const inputVariants = {
             backgroundColor: 'main.$700',
         },
         '&[aria-invalid="true"]': {
-            borderColor: 'danger.$300',
+            '&, &:hover, &:focus': {
+                borderColor: 'danger.$300',
+            },
         },
     },
 };
