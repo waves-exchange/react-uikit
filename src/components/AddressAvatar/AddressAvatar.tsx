@@ -22,7 +22,12 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
 }) => (
     <Flex alignItems="center" {...rest}>
         <Avatar address={address} variantSize={avatarSize || 'large'} />
-        <Flex ml="$10" flexDirection="column" justifyContent="center">
+        <Flex
+            ml="$10"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="flex-start"
+        >
             {name && (
                 <Text variant="footnote1" color="basic.$500">
                     {name}
