@@ -2,7 +2,11 @@ export const variants = {
     primary: {
         bg: 'primary.$300',
         color: 'standard.$0',
+        outline: 'none',
         ':hover:not(:disabled)': {
+            bg: 'primary.$500',
+        },
+        ':focus:not(:disabled)': {
             bg: 'primary.$500',
         },
         ':active': {
@@ -16,7 +20,11 @@ export const variants = {
     danger: {
         bg: 'danger.$300',
         color: 'standard.$0',
+        outline: 'none',
         ':hover:not(:disabled)': {
+            bg: 'danger.$500',
+        },
+        ':focus:not(:disabled)': {
             bg: 'danger.$500',
         },
         ':active': {
@@ -32,7 +40,12 @@ export const variants = {
         color: 'standard.$1000',
         border: '1px solid',
         borderColor: 'main.$300',
+        outline: 'none',
         ':hover:not(:disabled)': {
+            border: '1px solid',
+            borderColor: 'main.$200',
+        },
+        ':focus:not(:disabled)': {
             border: '1px solid',
             borderColor: 'main.$200',
         },
