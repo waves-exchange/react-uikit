@@ -40,4 +40,5 @@ Button.defaultProps = {
     type: 'button',
     border: 0,
     borderRadius: '$4',
+    transition: 'default',
 };
