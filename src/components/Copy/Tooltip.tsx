@@ -16,11 +16,14 @@ const Corner: React.FC = () => (
 export const Tooltip: React.FC = ({ children }) => {
     return (
         <Box
+            sx={{
+                whiteSpace: 'nowrap',
+                transform: 'translate(-50%, 100%)',
+            }}
             position="absolute"
             display="flex"
             left="50%"
             bottom={-8}
-            sx={{ transform: 'translate(-50%, 100%)' }}
             py="$3"
             px="$5"
             backgroundColor="main.$300"
