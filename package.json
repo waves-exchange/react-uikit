@@ -40,7 +40,7 @@
     "@styled-system/should-forward-prop": "5.1.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "9.1.4",
-    "@types/jest": "^24.0.24",
+    "@types/jest": "^24.0.25",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
     "@types/styled-system": "5.1.1",
@@ -57,8 +57,8 @@
     "eslint-plugin-react": "7.14.3",
     "eslint-plugin-react-hooks": "2.0.1",
     "husky": "3.0.5",
-    "jest": "24.9.0",
-    "jest-emotion": "^10.0.26",
+    "jest": "^24.9.0",
+    "jest-emotion": "^10.0.27",
     "lint-staged": "9.2.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -92,6 +92,7 @@
     ]
   },
   "dependencies": {
+    "@popperjs/core": "^2.0.0-rc.1",
     "@styled-system/css": "^5.1.4",
     "@types/ramda": "^0.26.36",
     "@waves/ts-lib-crypto": "^1.4.1",
