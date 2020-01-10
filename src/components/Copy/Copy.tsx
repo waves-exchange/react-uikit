@@ -1,116 +1,94 @@
-import React, { useCallback, useState } from 'react';
-import { Text, TTextProps } from '../Text/Text';
-import { Flex, TFlexProps } from '../Flex/Flex';
+import React, { useCallback, useState, FC } from 'react';
+
+import { LightCopy } from './LightCopy';
+import { Flex } from '../Flex/Flex';
 import { Icon } from '../Icon/Icon';
-import copy from 'copy-to-clipboard';
 import { iconCopy } from '../../icons/copy';
-import { Tooltip } from './Tooltip';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { BoxProps } from '../Box/Box';
 
-const TooltipText: React.FC<{ text: string }> = ({ text }) => (
-    <Text fontSize={11} color="standard.$0" lineHeight="$14">
-        {text}
-    </Text>
-);
+type CopyProps = BoxProps & {
+    text: string;
+    inititialTooltipLabel: string;
+    copiedTooltipLabel: string;
+    onTextCopy?(text: string): void;
+};
 
-interface ICopyProps {
-    toCopyText: string;
-    text?: string;
-    TextProps?: TTextProps;
-    onCopy?: (text: string, result: boolean) => void;
-    tooltipText?: string;
-}
+export const iconTestId = 'copy-icon';
 
-export const Copy: React.FC<ICopyProps & TFlexProps> = ({
-    toCopyText,
+export const Copy: FC<CopyProps> = ({
+    children,
+    inititialTooltipLabel,
+    copiedTooltipLabel,
+    onTextCopy,
     text,
-    TextProps,
-    onCopy,
-    tooltipText = 'Copy address',
     ...rest
 }) => {
-    const [hovered, setHovered] = useState<boolean>(false);
-    const [copied, setCopied] = useState<boolean>(false);
-    const [timer, setTimer] = useState<ReturnType<typeof setTimeout> | null>(
-        null
-    );
+    const [resetTimeout, setResetTimeout] = useState(-1);
+    const [label, setLabel] = useState(inititialTooltipLabel);
 
-    const onClick = useCallback(() => {
-        const result = copy(toCopyText);
+    const handleClick = useCallback<(copiedText: string) => void>(() => {
+        clearTimeout(resetTimeout);
 
-        if (timer) {
-            clearTimeout(timer);
-            setTimer(null);
-        }
+        setLabel(copiedTooltipLabel);
+        onTextCopy && onTextCopy(text);
 
-        if (onCopy) {
-            onCopy(toCopyText, result);
-        }
-
-        if (result) {
-            setCopied(true);
-            setTimer(
-                setTimeout(() => {
-                    setCopied(false);
-                    setTimer(null);
-                }, 1000)
-            );
-        }
-    }, [toCopyText, timer, onCopy]);
-
-    const onMouseEnter = useCallback(() => {
-        setHovered(true);
-    }, []);
-
-    const onMouseLeave = useCallback(() => {
-        setHovered(false);
-    }, []);
+        setResetTimeout(
+            window.setTimeout(() => {
+                setLabel(inititialTooltipLabel);
+            }, 4000)
+        );
+    }, [
+        copiedTooltipLabel,
+        inititialTooltipLabel,
+        onTextCopy,
+        resetTimeout,
+        text,
+    ]);
 
     return (
-        <Flex
-            sx={{
-                ':hover': {
-                    backgroundColor: 'basic.$900',
-                    cursor: 'pointer',
-                },
-            }}
-            display="inline-flex"
-            position="relative"
-            py={2}
-            px={4}
-            ml={-4}
-            borderRadius="$4"
-            alignItems="center"
-            onClick={onClick}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-            {...rest}
-        >
-            {text && (
-                <Text
-                    fontSize={13}
-                    color="standard.$0"
-                    lineHeight="18px"
-                    mr={5}
-                    {...TextProps}
+        <LightCopy text={text} onTextCopy={handleClick} {...rest}>
+            <Tooltip
+                label={label}
+                fontSize="$11"
+                px="6px"
+                py="3px"
+                color="standard.$0"
+                backgroundColor="main.$500"
+                hasArrow={true}
+                arrowSize="4px"
+                arrowColor="main.$500"
+                placement="bottom"
+                borderRadius="$4"
+                offset={2}
+                showDelay={200}
+            >
+                <Flex
+                    sx={{
+                        cursor: 'pointer',
+                        ':hover': {
+                            '& > svg': {
+                                color: 'primary.$300',
+                            },
+                            backgroundColor: 'basic.$900',
+                        },
+                    }}
+                    display="inline-flex"
+                    position="relative"
+                    py={2}
+                    px={4}
+                    borderRadius="$4"
+                    alignItems="center"
                 >
-                    {text}
-                </Text>
-            )}
-            <Icon
-                color={hovered ? 'primary.$300' : 'basic.$500'}
-                icon={iconCopy}
-            />
-
-            {hovered && !copied && (
-                <Tooltip>
-                    <TooltipText text={tooltipText} />
-                </Tooltip>
-            )}
-            {copied && (
-                <Tooltip>
-                    <TooltipText text="Copied!" />
-                </Tooltip>
-            )}
-        </Flex>
+                    {children}
+                    <Icon
+                        data-testid={iconTestId}
+                        color="basic.$500"
+                        icon={iconCopy}
+                        ml={children ? '5px' : 0}
+                    />
+                </Flex>
+            </Tooltip>
+        </LightCopy>
     );
 };
