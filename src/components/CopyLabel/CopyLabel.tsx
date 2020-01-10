@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Text, TTextProps } from '../Text/Text';
-import { Box } from '../Box/Box';
+import { Box, BoxProps } from '../Box/Box';
 import copy from 'copy-to-clipboard';
 
 interface ICopyLabel {
@@ -9,7 +9,7 @@ interface ICopyLabel {
     TextProps?: TTextProps;
 }
 
-export const CopyLabel: React.FC<ICopyLabel> = ({
+export const CopyLabel: React.FC<ICopyLabel & BoxProps> = ({
     text,
     onCopy,
     TextProps,
