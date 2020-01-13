@@ -77,6 +77,7 @@ export const Copy: FC<CopyProps> = ({
                     position="relative"
                     py={2}
                     px={4}
+                    ml={-4}
                     borderRadius="$4"
                     alignItems="center"
                 >
