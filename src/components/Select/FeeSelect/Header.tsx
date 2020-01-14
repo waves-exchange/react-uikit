@@ -12,7 +12,6 @@ interface IHeaderProps {
 
 export const Header: React.FC<IHeaderProps> = ({ opened, selected }) => (
     <Flex
-        width={440}
         justifyContent="space-between"
         backgroundColor="basic.$900"
         border="1px solid"
