@@ -26,7 +26,7 @@ export * from './components/Copy/Copy';
 export * from './components/Popper/Popper';
 export * from './components/Tooltip/Tooltip';
 export * from './components/Select/Select';
-export * from './components/Select/FeeSelect/Header';
+export * from './components/Select/FeeSelect/Selected';
 export * from './components/Select/FeeSelect/List';
 export * from './components/Select/FeeSelect/Option';
 export * from './themes/default';

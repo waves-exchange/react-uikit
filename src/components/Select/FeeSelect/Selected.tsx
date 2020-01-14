@@ -5,12 +5,12 @@ import { iconCloseSelect } from '../../../assets/icons/closeSelect';
 import { iconOpenSelect } from '../../../assets/icons/openSelect';
 import { IOption } from '../Select.stories';
 
-interface IHeaderProps {
+interface ISelectedProps {
     opened: boolean;
     selected: IOption;
 }
 
-export const Header: React.FC<IHeaderProps> = ({ opened, selected }) => (
+export const Selected: React.FC<ISelectedProps> = ({ opened, selected }) => (
     <Flex
         justifyContent="space-between"
         backgroundColor="basic.$900"
