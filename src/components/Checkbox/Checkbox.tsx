@@ -5,6 +5,7 @@ import { ControlBox, IControlBoxStyles } from '../ControlBox/ControlBox';
 import { mergeDeepRight } from 'ramda';
 import { defaultControlBoxStyles } from './styles';
 import { iconCheck } from '../../icons/check';
+import { VISUALLY_HIDDEN_CSS } from '../../constants';
 
 /**
  * Usage notes:
@@ -61,17 +62,7 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
             {...rest}
         >
             <input
-                style={{
-                    border: '0px',
-                    clip: 'rect(0px, 0px, 0px, 0px)',
-                    height: '1px',
-                    width: '1px',
-                    margin: '-1px',
-                    padding: '0px',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    position: 'absolute',
-                }}
+                style={VISUALLY_HIDDEN_CSS}
                 id={id}
                 type="checkbox"
                 name={name}

@@ -109,6 +109,7 @@ export const Tooltip: FC<TooltipProps> = ({
                     color: arrowColor,
                 })}
                 maxWidth={maxWidth}
+                zIndex={1}
                 {...rest}
             >
                 {typeof label === 'function' ? label() : label}

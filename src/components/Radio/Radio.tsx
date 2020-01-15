@@ -3,6 +3,7 @@ import React, { FC, InputHTMLAttributes } from 'react';
 import { ControlBox, IControlBoxStyles } from '../ControlBox/ControlBox';
 import { Flex, TFlexProps } from '../Flex/Flex';
 import { defaultControlBoxStyles } from './styles';
+import { VISUALLY_HIDDEN_CSS } from '../../constants';
 
 export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
     TFlexProps & {
@@ -51,17 +52,7 @@ export const Radio: FC<RadioProps> = ({
                 onBlur={onBlur}
                 onFocus={onFocus}
                 defaultChecked={readOnly ? undefined : defaultChecked}
-                style={{
-                    border: '0px',
-                    clip: 'rect(0px, 0px, 0px, 0px)',
-                    height: '1px',
-                    width: '1px',
-                    margin: '-1px',
-                    padding: '0px',
-                    overflow: 'hidden',
-                    whiteSpace: 'nowrap',
-                    position: 'absolute',
-                }}
+                style={VISUALLY_HIDDEN_CSS}
             />
 
             {!customControlBox && (

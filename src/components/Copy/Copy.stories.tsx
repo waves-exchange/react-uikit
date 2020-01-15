@@ -1,37 +1,32 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Copy } from './Copy';
-import { Box, defaultTheme, Text, Flex } from '../..';
+import { Flex } from '../Flex/Flex';
+import { defaultTheme } from '../../themes/default';
 import { ThemeProvider } from 'emotion-theming';
+import { Text } from '../Text/Text';
+import { Copy } from './Copy';
 
 const stories = storiesOf('Copy', module);
 
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Box
-            backgroundColor="main.$800"
-            height="100vh"
-            p={20}
-            sx={{
-                WebkitFontSmoothing: 'antialiased',
-            }}
-        >
-            <Flex mb={20} flexDirection="column" alignItems="flex-start">
-                <Text color="standard.$0" lineHeight={1.5}>
-                    Icon
+        <Flex p={20} backgroundColor="main.$800" flexDirection="column">
+            <Copy
+                inititialTooltipLabel="Copy address"
+                copiedTooltipLabel="Copied!"
+                text="this is text to be copied"
+                ml={50}
+            />
+            <Copy
+                mt={30}
+                inititialTooltipLabel="Copy address"
+                copiedTooltipLabel="Copied!"
+                text="this is text to be copied"
+            >
+                <Text variant="body2" color="standard.$0">
+                    3PCAB4sHXgvtu5NPoen6
                 </Text>
-                <Copy toCopyText="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7" />
-            </Flex>
-
-            <Flex mb={20} flexDirection="column" alignItems="flex-start">
-                <Text color="standard.$0" lineHeight={1.5}>
-                    Icon and Text
-                </Text>
-                <Copy
-                    toCopyText="3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj"
-                    text="3PCAB4sHXgvtu5NPoen6EXR5yaNbvsEA8Fj"
-                />
-            </Flex>
-        </Box>
+            </Copy>
+        </Flex>
     </ThemeProvider>
 ));
