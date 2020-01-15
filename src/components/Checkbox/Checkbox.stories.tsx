@@ -100,6 +100,15 @@ stories.add('simple', () => {
                 >
                     custom
                 </Checkbox>
+                <Checkbox
+                    isReadOnly={false}
+                    defaultChecked={true}
+                    isChecked={false}
+                    pt={10}
+                    controlBoxStyles={cbStyles}
+                >
+                    disabled checked
+                </Checkbox>
             </Flex>
         </ThemeProvider>
     );
