@@ -36,5 +36,6 @@ export * from './icons/transferArrow';
 export * from './icons/transferCircle';
 export * from './icons/dataTransaction';
 export * from './icons/copy';
+export * from './icons/signMessage';
 //types
 export * from './interface';
