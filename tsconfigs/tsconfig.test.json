@@ -4,5 +4,11 @@
     "../src/**/*.d.ts",
     "../src/**/*.test.ts",
     "../src/**/*.test.tsx"
-  ]
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "test-utils": ["../jest/test-utils.tsx"]
+    }
+  }
 }

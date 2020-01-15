@@ -162,7 +162,7 @@ module.exports = {
     '@typescript-eslint/await-thenable': 'error',
     '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/indent': 'off',
-    '@typescript-eslint/interface-name-prefix': ['warn', 'always'],
+    '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/member-ordering': 'warn',
     '@typescript-eslint/no-array-constructor': 'error',
     '@typescript-eslint/no-empty-function': 'error',
