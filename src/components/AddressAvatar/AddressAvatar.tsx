@@ -35,10 +35,14 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
             )}
             {addressWithCopy ? (
                 <Copy
-                    toCopyText={address}
-                    text={isShort ? getShortAddress(address) : address}
-                    TextProps={{ variant: 'body2', color: 'standard.$0' }}
-                />
+                    inititialTooltipLabel="Copy address"
+                    copiedTooltipLabel="Copied!"
+                    text={address}
+                >
+                    <Text variant="body2" color="standard.$0">
+                        {isShort ? getShortAddress(address) : address}
+                    </Text>
+                </Copy>
             ) : (
                 <Text variant="body2" color="standard.$0">
                     {isShort ? getShortAddress(address) : address}
