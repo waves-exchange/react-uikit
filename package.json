@@ -12,6 +12,9 @@
   },
   "scripts": {
     "test": "jest",
+    "test:c": "jest --coverage",
+    "test:d": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+    "test:w": "jest --watch",
     "start": "start-storybook -p 3001",
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "rimraf ./dist/cjs && tsc -p ./tsconfigs/tsconfig.cjs.json",
@@ -35,8 +38,9 @@
     "@storybook/addon-viewport": "5.2.8",
     "@storybook/react": "5.2.8",
     "@styled-system/should-forward-prop": "5.1.2",
+    "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "9.1.4",
-    "@types/jest": "24.0.18",
+    "@types/jest": "^24.0.24",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
     "@types/styled-system": "5.1.1",
@@ -54,7 +58,7 @@
     "eslint-plugin-react-hooks": "2.0.1",
     "husky": "3.0.5",
     "jest": "24.9.0",
-    "jest-emotion": "10.0.17",
+    "jest-emotion": "^10.0.26",
     "lint-staged": "9.2.5",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -74,30 +78,9 @@
     "styled-system": "*",
     "tslib": "*"
   },
-  "jest": {
-    "globals": {
-      "ts-jest": {
-        "tsConfig": "<rootDir>/tsconfigs/tsconfig.test.json"
-      }
-    },
-    "transform": {
-      "\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "\\.test\\.tsx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "json"
-    ],
-    "moduleNameMapper": {
-      "^components/(.*)$": "<rootDir>/src/components/$1",
-      "^themes/(.*)$": "<rootDir>/src/themes/$1"
-    }
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run check-types && npm test",
+      "pre-commit": "lint-staged && npm run check-types && npm run test",
       "post-commit": "git update-index --again"
     }
   },
