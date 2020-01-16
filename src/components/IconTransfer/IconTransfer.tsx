@@ -5,6 +5,10 @@ import { Icon, IconProps } from '../Icon/Icon';
 import { iconTransferArrow } from '../../icons/transferArrow';
 import { iconTransferCircle } from '../../icons/transferCircle';
 
+export const transferIconSendTestId = 'send';
+export const transferIconReceiveTestId = 'receive';
+export const transferIconCircularTestId = 'circular';
+
 type TProps = {
     tx: TTransferIconParams;
     user: TUser;
@@ -23,7 +27,14 @@ export const IconTransfer: FC<TProps & Omit<IconProps, 'icon'>> = ({
 }): ReactElement => {
     switch (getIconType(tx, user)) {
         case 'send':
-            return <Icon icon={iconTransferArrow} color="#FFAF00" {...rest} />;
+            return (
+                <Icon
+                    icon={iconTransferArrow}
+                    color="#FFAF00"
+                    {...rest}
+                    data-testid={transferIconSendTestId}
+                />
+            );
         case 'receive':
             return (
                 <Icon
@@ -31,10 +42,18 @@ export const IconTransfer: FC<TProps & Omit<IconProps, 'icon'>> = ({
                     icon={iconTransferArrow}
                     color="#81C926"
                     {...rest}
+                    data-testid={transferIconReceiveTestId}
                 />
             );
         case 'circular':
         default:
-            return <Icon icon={iconTransferCircle} color="#EF4829" {...rest} />;
+            return (
+                <Icon
+                    icon={iconTransferCircle}
+                    color="#EF4829"
+                    {...rest}
+                    data-testid={transferIconCircularTestId}
+                />
+            );
     }
 };

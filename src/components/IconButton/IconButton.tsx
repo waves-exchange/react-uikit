@@ -2,6 +2,8 @@ import { CSSObject } from '@emotion/core';
 import React, { FC } from 'react';
 import { Button, ButtonProps } from '../Button/Button';
 
+export const iconButtonTestId = 'icon-button';
+
 type IconButtonProps = {
     _hover?: CSSObject;
     _focus?: CSSObject;
@@ -24,15 +26,16 @@ export const IconButton: FC<ButtonProps & IconButtonProps> = ({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                ':hover:disabled': _disabledAndHover,
                 ':focus': _focus,
                 ':hover': _hover,
                 ':disabled': _disabled,
-                ':hover:disabled': _disabledAndHover,
             }}
             cursor="pointer"
             bg="transparent"
             borderRadius={0}
             {...rest}
+            data-testid={iconButtonTestId}
         >
             {children}
         </Button>
