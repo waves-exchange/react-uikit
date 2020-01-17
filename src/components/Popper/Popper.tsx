@@ -3,7 +3,6 @@ import React, {
     useRef,
     useCallback,
     forwardRef,
-    useMemo,
     useLayoutEffect,
 } from 'react';
 import {
@@ -13,8 +12,9 @@ import {
     Instance,
 } from '@popperjs/core';
 import { Box, BoxProps } from '../Box/Box';
+import { mergeOptions } from './helpers';
 
-type PopperModifierOptions = {
+export type PopperModifierOptions = {
     arrowPadding?: number; // prevents arrow from shifting to very edge of popper(needed when popper has border radius)
     offset?: number[]; // displace a popper from its anchor element
 };
@@ -32,35 +32,28 @@ export const Popper: FC<Popper> = ({
     anchorEl,
     children,
     isOpen,
-    options = { placement: 'left', strategy: 'absolute' },
+    options = {},
     modifierOptions = { arrowPadding: 5, offset: [0, 8] },
     ...rest
 }) => {
     const popperElemRef = useRef<HTMLElement>();
     const popperInstanceRef = useRef<Instance>();
 
-    const mergedOptions = useMemo(
-        () => ({
+    const defaultOptions: Partial<Options> = {
+        placement: 'left',
+        strategy: 'absolute',
+    };
+    const defaultModifierOptions: PopperModifierOptions = {
+        arrowPadding: 5,
+        offset: [0, 8],
+    };
+    const mergedOptions = mergeOptions(
+        {
+            ...defaultOptions,
             ...options,
-            modifiers: [
-                ...(options.modifiers || []),
-                {
-                    name: 'arrow',
-                    enabled: Boolean(arrowEl),
-                    options: {
-                        padding: modifierOptions.arrowPadding,
-                        element: arrowEl,
-                    },
-                },
-                {
-                    name: 'offset',
-                    options: {
-                        offset: [0, 10],
-                    },
-                },
-            ],
-        }),
-        [arrowEl, modifierOptions.arrowPadding, options]
+        },
+        { ...defaultModifierOptions, ...modifierOptions },
+        arrowEl
     );
 
     const handlePopperRender = useCallback(() => {

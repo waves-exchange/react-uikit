@@ -20,10 +20,12 @@ interface CustomRenderOptions extends RenderOptions {
 
 type CustomRender = (
     Component: React.ReactElement,
-    options: CustomRenderOptions
+    options?: CustomRenderOptions
 ) => RenderResult;
 
-const customRender: CustomRender = (Component, { theme, ...options }) => {
+const customRender: CustomRender = (Component, options = { theme: {} }) => {
+    const { theme } = options;
+
     return render(
         <ProvidersWrapper theme={theme}>{Component}</ProvidersWrapper>,
         options
