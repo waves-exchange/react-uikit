@@ -13,6 +13,9 @@ import { VISUALLY_HIDDEN_CSS } from '../../constants';
  * or render prop ControlBox with your styles: () => <ControlBox {...styles} />
  * see storybook for examples
  */
+export const checkBoxTestId = 'checkbox';
+export const checkBoxInputTestId = 'checkbox-input';
+export const controlBoxTestId = 'control-box';
 
 interface CheckboxSpecificProps {
     controlBoxStyles?: IControlBoxStyles;
@@ -59,6 +62,7 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
             alignItems="center"
             width={isFullWidth ? 'full' : undefined}
             cursor={isDisabled ? 'not-allowed' : 'pointer'}
+            data-testid={checkBoxTestId}
             {...rest}
         >
             <input
@@ -80,11 +84,16 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
                 }
                 disabled={isDisabled}
                 readOnly={isReadOnly}
+                data-testid={checkBoxInputTestId}
             />
             {controlBox ? (
                 controlBox()
             ) : (
-                <ControlBox sx={baseStyles} {...restControlStyles}>
+                <ControlBox
+                    sx={baseStyles}
+                    {...restControlStyles}
+                    data-testid={controlBoxTestId}
+                >
                     <Icon icon={iconCheck} />
                 </ControlBox>
             )}
