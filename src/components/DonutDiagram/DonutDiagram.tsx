@@ -8,6 +8,8 @@ interface IProps {
     valueColor?: string;
     border?: number;
     size?: number;
+    animationTime?: number;
+    easing?: string;
 }
 
 const defaultProps = {
@@ -15,6 +17,8 @@ const defaultProps = {
     valueColor: 'primary.$300',
     border: 12,
     size: 112,
+    animationTime: 300,
+    easing: 'linear',
 };
 
 type SVGBoxProps = BoxProps<SVGElement, HTMLAttributes<SVGElement>> &
@@ -28,12 +32,14 @@ const Svg = styled(Box as BoxAsElement<'svg', SVGBoxProps>)({
     },
 });
 
-export const DonutDiagram: React.FC<IProps> = ({
+export const DonutDiagram: React.FC<BoxProps & IProps> = ({
     value,
     baseColor,
     valueColor,
     border,
     size,
+    animationTime,
+    easing,
 }) => {
     const circumference = Math.PI * (size! - border!);
     const dashValue = circumference * value;
@@ -74,6 +80,7 @@ export const DonutDiagram: React.FC<IProps> = ({
                         cx: size! / 2,
                         cy: size! / 2,
                         r: size! / 2 - border! / 2,
+                        transition: `${animationTime! / 100}s ${easing}`,
                     }}
                 />
             </Svg>
