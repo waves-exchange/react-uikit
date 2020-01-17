@@ -1,22 +1,7 @@
 import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import { Copy, iconTestId } from './Copy';
-import '@testing-library/jest-dom/extend-expect';
-
-jest.mock('popper.js', () => {
-    const PopperJS = jest.requireActual('popper.js');
-
-    return class {
-        static placements = PopperJS.placements;
-
-        constructor() {
-            return {
-                destroy: jest.fn(),
-                scheduleUpdate: jest.fn(),
-            };
-        }
-    };
-});
+import '@testing-library/jest-dom/extend-expect'; // TODO выпилить, когда типы начнут приезжать из коробки
 
 jest.useFakeTimers();
 
