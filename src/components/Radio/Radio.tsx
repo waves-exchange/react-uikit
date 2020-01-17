@@ -5,6 +5,10 @@ import { Flex, TFlexProps } from '../Flex/Flex';
 import { defaultControlBoxStyles } from './styles';
 import { VISUALLY_HIDDEN_CSS } from '../../constants';
 
+export const radioTestId = 'radio';
+export const radioInputTestId = 'radio-input';
+export const radioControlBoxTestId = 'radio-control-box';
+
 export type RadioProps = InputHTMLAttributes<HTMLInputElement> &
     TFlexProps & {
         controlBoxStyles?: IControlBoxStyles;
@@ -41,6 +45,7 @@ export const Radio: FC<RadioProps> = ({
             alignItems="center"
             sx={{ cursor: 'pointer' }}
             {...rest}
+            data-testid={radioTestId}
         >
             <input
                 type="radio"
@@ -53,6 +58,7 @@ export const Radio: FC<RadioProps> = ({
                 onFocus={onFocus}
                 defaultChecked={readOnly ? undefined : defaultChecked}
                 style={VISUALLY_HIDDEN_CSS}
+                data-testid={radioInputTestId}
             />
 
             {!customControlBox && (
@@ -60,6 +66,7 @@ export const Radio: FC<RadioProps> = ({
                     type="radio"
                     sx={baseStyles}
                     {...restControlStyles}
+                    data-testid={radioControlBoxTestId}
                 />
             )}
 
