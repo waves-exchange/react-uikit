@@ -1,0 +1,120 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkbox /> renders control box with correct styles 1`] = `
+.emotion-1 {
+  box-sizing: border-box;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid;
+  color: white;
+  border-color: main.$600;
+  background-color: basic.$900;
+  border-radius: $4;
+  -webkit-transition: all 120ms,background-color 120ms,box-shadow 250ms;
+  transition: all 120ms,background-color 120ms,box-shadow 250ms;
+  width: 18px;
+  height: 18px;
+}
+
+input[type=checkbox]:hover:not(:disabled):not(:checked) + .emotion-1 {
+  border-color: main.$200;
+}
+
+input[type=checkbox]:disabled + .emotion-1 {
+  border-color: main.$500;
+  background-color: main.$1000;
+}
+
+input[type=checkbox]:checked:disabled + .emotion-1,
+input[type=checkbox][aria-checked=mixed]:disabled + .emotion-1 {
+  background-color: primary.$900;
+  border-color: primary.$900;
+}
+
+input[type=checkbox]:checked:hover:not(:disabled) + .emotion-1,
+input[type=checkbox][aria-checked=mixed]:hover:not(:disabled) + .emotion-1 {
+  border-color: primary.$300;
+}
+
+input[type=checkbox]:hover:disabled:checked + .emotion-1 {
+  border-color: primary.$900;
+}
+
+.emotion-1 > * {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+}
+
+input[type=checkbox]:checked + .emotion-1,
+input[type=checkbox][aria-checked=mixed] + .emotion-1 {
+  background-color: primary.$300;
+  border-color: primary.$300;
+}
+
+input[type=checkbox]:checked + .emotion-1:hover,
+input[type=checkbox][aria-checked=mixed] + .emotion-1:hover {
+  border-color: main.$200;
+}
+
+input[type=checkbox]:checked + .emotion-1 > *,
+input[type=checkbox][aria-checked=mixed] + .emotion-1 > * {
+  opacity: 1;
+}
+
+.emotion-0 {
+  box-sizing: border-box;
+  color: currentColor;
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.emotion-0:not(:root) {
+  overflow: hidden;
+}
+
+<div
+  aria-hidden="true"
+  class="emotion-1"
+  data-testid="control-box"
+>
+  <svg
+    class="emotion-0"
+    viewBox="0 0 14 14"
+  >
+    <g
+      fill="currentColor"
+      fill-rule="evenodd"
+    >
+      <path
+        d="M10.315 3.5L5.56 8.176 3.68 6.333 2.5 7.492 5.56 10.5l5.94-5.842z"
+        fill="currentColor"
+      />
+    </g>
+  </svg>
+</div>
+`;
