@@ -9,6 +9,9 @@ import {
     BARS,
 } from './helpers';
 
+export const passwordComplexityIndicatorTestId = 'pw-strength-indicator';
+export const barsContainerTestId = 'pw-strength-indicator-bars-container';
+
 interface Props {
     password: string;
     minPasswordLength: number;
@@ -42,8 +45,9 @@ export const PasswordComplexityIndicator: FC<Props & TFlexProps> = ({
             flexDirection="column"
             alignItems="flex-end"
             {...rest}
+            data-testid={passwordComplexityIndicatorTestId}
         >
-            <Flex width="100%">
+            <Flex width="100%" data-testid={barsContainerTestId}>
                 {Array.from({ length: BARS }).map((_, barIndex) => {
                     return (
                         <Box
@@ -53,6 +57,7 @@ export const PasswordComplexityIndicator: FC<Props & TFlexProps> = ({
                                 minPasswordLength,
                                 barIndex
                             )}
+                            key={barIndex}
                         />
                     );
                 })}

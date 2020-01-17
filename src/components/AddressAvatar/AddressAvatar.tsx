@@ -4,6 +4,9 @@ import { getShortAddress } from './helpers';
 import { TAvatarSizes } from '../Avatar/Avatar';
 import { Copy } from '../Copy/Copy';
 
+export const addressAvatarTestId = 'address-avatar';
+export const copyTestId = 'address-avatar-copy';
+
 interface IAddressAvatarProps extends TFlexProps {
     address: string;
     avatarSize?: TAvatarSizes;
@@ -14,14 +17,14 @@ interface IAddressAvatarProps extends TFlexProps {
 
 export const AddressAvatar: FC<IAddressAvatarProps> = ({
     address,
-    avatarSize,
+    avatarSize = 'large',
     name,
     isShort,
     addressWithCopy = false,
     ...rest
 }) => (
-    <Flex alignItems="center" {...rest}>
-        <Avatar address={address} variantSize={avatarSize || 'large'} />
+    <Flex alignItems="center" {...rest} data-testid={addressAvatarTestId}>
+        <Avatar address={address} variantSize={avatarSize} />
         <Flex
             ml="$10"
             flexDirection="column"
@@ -38,6 +41,7 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
                     inititialTooltipLabel="Copy address"
                     copiedTooltipLabel="Copied!"
                     text={address}
+                    data-testid={copyTestId}
                 >
                     <Text variant="body2" color="standard.$0">
                         {isShort ? getShortAddress(address) : address}
