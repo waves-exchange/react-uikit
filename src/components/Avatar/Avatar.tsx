@@ -1,27 +1,28 @@
 import React from 'react';
 import { config, create } from 'identity-img';
 import { styled } from '../../styled';
-import { always, isNil, omit } from 'ramda';
-import { vairantSizes } from './styles';
+import { always, omit } from 'ramda';
+import { variantSizes } from './styles';
+import { getSize } from './helpers';
 
 config({ rows: 8, cells: 8 });
 
-export type TAvatarSizes = keyof typeof vairantSizes;
+export const avatarTestId = 'avatar';
 
-interface IProps {
+export type TAvatarSizes = keyof typeof variantSizes;
+
+export interface AvatarProps {
     variantSize?: TAvatarSizes;
     address: string;
 }
 
-const getSize: (data: IProps) => number = ({ variantSize }) =>
-    isNil(variantSize) ? variantSize!['medium'] : vairantSizes[variantSize];
-
-const AvatarFunction: React.FC<IProps> = (props) => (
+const AvatarFunction: React.FC<AvatarProps> = (props) => (
     <img
         src={create(props.address, {
             size: getSize(props) * window.devicePixelRatio,
         })}
         {...omit(['address', 'variantSize'], props)}
+        data-testid={avatarTestId}
     />
 );
 
