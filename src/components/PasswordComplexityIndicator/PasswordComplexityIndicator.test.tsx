@@ -13,7 +13,9 @@ describe('<PasswordComplexityIndicator>', () => {
 
     it('renders correct password hint', () => {
         // empty password hint
-        jest.spyOn(helpers, 'getPasswordHint').mockReturnValue('empty');
+        const getPasswordHintMock = jest.spyOn(helpers, 'getPasswordHint');
+
+        getPasswordHintMock.mockReturnValueOnce('empty');
 
         const { getByText, rerender } = render(
             <PasswordComplexityIndicator
@@ -25,7 +27,7 @@ describe('<PasswordComplexityIndicator>', () => {
         getByText(`must be at least ${minPasswordLength} characters`);
 
         // short password hint
-        jest.spyOn(helpers, 'getPasswordHint').mockReturnValue('short');
+        getPasswordHintMock.mockReturnValueOnce('short');
 
         rerender(
             <PasswordComplexityIndicator
@@ -37,7 +39,7 @@ describe('<PasswordComplexityIndicator>', () => {
         getByText(`must be at least ${minPasswordLength} characters`);
 
         // weak password hint
-        jest.spyOn(helpers, 'getPasswordHint').mockReturnValue('weak');
+        getPasswordHintMock.mockReturnValueOnce('weak');
 
         rerender(
             <PasswordComplexityIndicator
@@ -49,7 +51,7 @@ describe('<PasswordComplexityIndicator>', () => {
         getByText('weak password');
 
         // secure password hint
-        jest.spyOn(helpers, 'getPasswordHint').mockReturnValue('secure');
+        getPasswordHintMock.mockReturnValueOnce('secure');
 
         rerender(
             <PasswordComplexityIndicator
