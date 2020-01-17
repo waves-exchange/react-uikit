@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Radio> merges default and passed control box styles 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: 4px;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: circle;
+  background-color: main.$300;
+  border-color: main.$300;
+  cursor: pointer;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.emotion-0::before {
+  content: "";
+  display: block;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  border-radius: circle;
+  width: 12px;
+  height: 12px;
+  background-color: standard.$0;
+  border: 2px solid;
+  border-color: standard.$0;
+}
+
+input[type=radio]:hover:not(:disabled):not(:checked) + .emotion-0 {
+  background-color: red;
+  border-color: main.$200;
+}
+
+input[type=radio]:disabled + .emotion-0 {
+  background-color: red;
+  border-color: main.$600;
+  cursor: default;
+}
+
+input[type=radio]:checked:disabled + .emotion-0::before,
+input[type=radio][aria-checked=mixed]:disabled + .emotion-0::before {
+  background-color: red;
+}
+
+.emotion-0 > * {
+  opacity: 0;
+}
+
+input[type=radio]:checked + .emotion-0::before,
+input[type=radio][aria-checked=mixed] + .emotion-0::before {
+  background-color: red;
+}
+
+input[type=radio]:checked + .emotion-0 > *,
+input[type=radio][aria-checked=mixed] + .emotion-0 > * {
+  opacity: 1;
+}
+
+<div
+  aria-hidden="true"
+  class="emotion-0"
+  data-testid="radio-control-box"
+  type="radio"
+/>
+`;
