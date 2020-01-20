@@ -129,7 +129,7 @@ stories.add('with value and onChange', () => (
             color="standard.$0"
         >
             <Box mb="20px">
-                <Tabs onChange={(value: string): void => alert(value)}>
+                <Tabs onChange={(value): void => alert(value)}>
                     <TabsList
                         borderBottom="1px solid"
                         borderColor="main.$700"

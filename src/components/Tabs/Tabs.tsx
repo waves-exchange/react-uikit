@@ -1,5 +1,6 @@
 import React, {
     FC,
+    ReactElement,
     Children,
     isValidElement,
     cloneElement,
@@ -13,36 +14,35 @@ import { Flex, TFlexProps } from '../Flex/Flex';
 
 type TabContextType = {
     selectedIndex: number;
-    onChangeTab: (index: number, value: unknown) => void;
+    onChangeTab: (index: number, value: any) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const TabContext = createContext<TabContextType>(undefined as any);
+export const TabContext = createContext<TabContextType>({
+    selectedIndex: 0,
+    onChangeTab: () => void 0,
+});
 
-type TabsProps = Omit<BoxProps, 'onChange'> & {
+type TabsProps<T> = Omit<BoxProps, 'onChange'> & {
     selectedIndex?: number;
-    value?: unknown;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    onChange?: (value: any) => void;
+    value?: T;
+    onChange?: (value: T | undefined) => void;
 };
 
-export const Tabs: FC<TabsProps> = ({
-    selectedIndex,
-    onChange,
-    children,
-    ...rest
-}) => {
+type TabsFC = <T>(props: TabsProps<T>) => ReactElement;
+
+export const Tabs: TabsFC = (props) => {
+    const { selectedIndex, onChange, children, ...rest } = props;
     const [index, setIndex] = useState(selectedIndex || 0);
 
     const onChangeTab = useCallback(
-        (index: number, boundValue: unknown) => {
+        (index: number, boundValue: typeof props.value) => {
             setIndex(index);
 
             if (typeof onChange === 'function') {
                 onChange(boundValue);
             }
         },
-        [setIndex, onChange]
+        [props, onChange]
     );
 
     const context: TabContextType = {
