@@ -4,19 +4,15 @@ import styled from '@emotion/styled';
 
 interface IProps {
     value: number;
-    baseColor?: string;
-    valueColor?: string;
-    border?: number;
-    size?: number;
+    baseColor: string;
+    valueColor: string;
+    border: number | 'none';
+    size: number;
     animationTime?: number;
     easing?: string;
 }
 
 const defaultProps = {
-    baseColor: '#80c726',
-    valueColor: 'primary.$300',
-    border: 12,
-    size: 112,
     animationTime: 300,
     easing: 'linear',
 };
@@ -36,18 +32,19 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
     value,
     baseColor,
     valueColor,
-    border,
+    border: borderProp,
     size,
     animationTime,
     easing,
 }) => {
-    const circumference = Math.PI * (size! - border!);
+    const border: number =
+        borderProp === 'none' ? size / 2 : (borderProp as number);
+    const circumference = Math.PI * (size - border);
     const dashValue = circumference * value;
 
     return (
         <Box
-            width={size}
-            height={size}
+            size={size}
             sx={{
                 transform: 'rotate(-90deg)',
             }}
@@ -55,8 +52,7 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
             <Svg
                 as="svg"
                 viewBox={`0 0 ${size} ${size}`}
-                width={size}
-                height={size}
+                size={size}
                 xmlns="http://www.w3.org/2000/svg"
             >
                 <Box
@@ -65,9 +61,9 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
                         stroke: baseColor,
                         strokeWidth: border,
                         fill: 'none',
-                        cx: size! / 2,
-                        cy: size! / 2,
-                        r: size! / 2 - border! / 2,
+                        cx: size / 2,
+                        cy: size / 2,
+                        r: size / 2 - border / 2,
                     }}
                 />
                 <Box
@@ -77,9 +73,9 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
                         strokeWidth: border,
                         strokeDasharray: `${dashValue}, ${circumference}`,
                         fill: 'none',
-                        cx: size! / 2,
-                        cy: size! / 2,
-                        r: size! / 2 - border! / 2,
+                        cx: size / 2,
+                        cy: size / 2,
+                        r: size / 2 - border / 2,
                         transition: `${animationTime! / 100}s ${easing}`,
                     }}
                 />
