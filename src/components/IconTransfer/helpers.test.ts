@@ -22,7 +22,7 @@ describe('getIconType', () => {
         suitMocksFactory('isAlias', true);
 
         describe('sender is me', () => {
-            suitMocksFactory('isSenderMe', true);
+            suitMocksFactory('checkIsSenderMe', true);
 
             it('returns "circular" if user aliases has this alias', () => {
                 const user = { aliases: [userAlias] } as any;
@@ -44,7 +44,7 @@ describe('getIconType', () => {
         });
 
         describe('sender is not me', () => {
-            suitMocksFactory('isSenderMe', false);
+            suitMocksFactory('checkIsSenderMe', false);
 
             it("returns 'receive'", () => {
                 const expected = 'receive';
@@ -59,7 +59,7 @@ describe('getIconType', () => {
         suitMocksFactory('isAlias', false);
 
         describe('sender is me', () => {
-            suitMocksFactory('isSenderMe', true);
+            suitMocksFactory('checkIsSenderMe', true);
 
             it('returns "circular" if user address === transaction recepient', () => {
                 const address = 'address';
@@ -85,7 +85,7 @@ describe('getIconType', () => {
             });
         });
         describe('sender is not me', () => {
-            suitMocksFactory('isSenderMe', false);
+            suitMocksFactory('checkIsSenderMe', false);
 
             it('returns "receive"', () => {
                 const expected = 'receive';
