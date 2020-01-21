@@ -29,6 +29,7 @@ export * from './components/Select/Select';
 export * from './components/Select/FeeSelect/Selected';
 export * from './components/Select/FeeSelect/List';
 export * from './components/Select/FeeSelect/Option';
+export * from './components/Tabs/Tabs';
 export * from './themes/default';
 // assets
 export * from './icons/check';
