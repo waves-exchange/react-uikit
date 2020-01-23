@@ -1,13 +1,12 @@
 import React from 'react';
 import { Flex, Icon } from '../../..';
-import { Option } from './Option';
+import { Option, FeeOption } from './Option';
 import { iconCloseSelect } from '../../../assets/icons/closeSelect';
 import { iconOpenSelect } from '../../../assets/icons/openSelect';
-import { IOption } from '../Select.stories';
 
 interface ISelectedProps {
     opened: boolean;
-    selected: IOption;
+    selected: FeeOption;
 }
 
 export const Selected: React.FC<ISelectedProps> = ({ opened, selected }) => (
