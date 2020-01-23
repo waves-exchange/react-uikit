@@ -1,12 +1,11 @@
 import React from 'react';
 import { Flex } from '../../Flex/Flex';
 import { Box } from '../../Box/Box';
-import { Option } from './Option';
-import { IOption } from '../Select.stories';
+import { Option, FeeOption } from './Option';
 
 interface IListProps {
-    options: Array<IOption>;
-    onSelect: (option: IOption) => void;
+    options: Array<FeeOption>;
+    onSelect: (option: FeeOption) => void;
 }
 
 export const List: React.FC<IListProps> = ({ options, onSelect }) => (

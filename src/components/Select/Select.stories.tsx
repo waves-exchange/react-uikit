@@ -7,15 +7,9 @@ import { Box } from '../Box/Box';
 import { Selected } from './FeeSelect/Selected';
 import { List } from './FeeSelect/List';
 import { Text } from '../Text/Text';
+import { FeeOption } from './FeeSelect/Option';
 
-export interface IOption {
-    name: string;
-    ticker: string;
-    value: string;
-    id: string;
-}
-
-const options: Array<IOption> = [
+const options: Array<FeeOption> = [
     {
         value: '0.01',
         ticker: 'WAVES',
@@ -53,12 +47,12 @@ const stories = storiesOf('Select', module);
 stories.add('simple', () => {
     const initialSelected = options.find((option) => option.id === 'WAVES');
 
-    const [selectedA, setSelectedA] = useState<IOption>(initialSelected!);
+    const [selectedA, setSelectedA] = useState<FeeOption>(initialSelected!);
     const onSelectA = useCallback((selected) => {
         setSelectedA(selected);
     }, []);
 
-    const [selectedB, setSelectedB] = useState<IOption>(initialSelected!);
+    const [selectedB, setSelectedB] = useState<FeeOption>(initialSelected!);
     const onSelectB = useCallback((selected) => {
         setSelectedB(selected);
     }, []);

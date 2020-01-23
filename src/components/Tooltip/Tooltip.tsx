@@ -8,6 +8,8 @@ import React, {
     ReactNode,
     useCallback,
     useState,
+    useEffect,
+    useLayoutEffect,
     Ref,
 } from 'react';
 import { BoxProps } from '../Box/Box';
@@ -39,6 +41,7 @@ export type TooltipProps = BoxProps & {
     offset?: number;
     placement?: Placement;
     hasMouseHandler?: boolean;
+    postPositionCb?: (arrowRef: HTMLDivElement | null) => void;
 };
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -54,12 +57,21 @@ export const Tooltip: FC<TooltipProps> = ({
     offset = 8,
     placement = 'bottom',
     hasMouseHandler = true,
+    postPositionCb,
     ...rest
 }) => {
     const [isOpen, setIsOpen] = useState(isOpenProp || isDefaultOpen);
     const [anchorEl, setAnchorEl] = useState(null);
     const [arrowRef, setArrowRef] = useState(null);
     const [delayTimeout, setDelayTimeout] = useState<number>();
+
+    useEffect(() => {
+        if (typeof isOpenProp !== undefined) setIsOpen(isOpenProp);
+    }, [isOpenProp]);
+
+    useLayoutEffect(() => {
+        postPositionCb && postPositionCb(arrowRef);
+    });
 
     const anchorRef = useCallback((node) => {
         if (node !== null) {
@@ -68,6 +80,8 @@ export const Tooltip: FC<TooltipProps> = ({
     }, []);
 
     const handleMouseEnter: MouseEventHandler = () => {
+        if (typeof isOpenProp !== 'undefined') return;
+
         if (hasMouseHandler) {
             if (showDelay && delayTimeout) {
                 clearTimeout(delayTimeout);
@@ -77,6 +91,8 @@ export const Tooltip: FC<TooltipProps> = ({
     };
 
     const handleMouseLeave: MouseEventHandler = () => {
+        if (typeof isOpenProp !== 'undefined') return;
+
         if (hasMouseHandler) {
             if (showDelay) {
                 setDelayTimeout(
