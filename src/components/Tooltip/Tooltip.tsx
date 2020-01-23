@@ -18,7 +18,7 @@ import { getPopperArrowStyle } from './styles';
   Usage Notes:
   There are two types of tooltip:
 
-  1. Text tooltip - text passed to "label" prop. To style text tooltip simply 
+  1. Text tooltip - text passed to "label" prop. To style text tooltip simply
      pass style props to <Tooltip />
   2. Custom tooltip - react component passed to "label" prop. Styling happens
      within the passed component, no style props should be passed to <Tooltip />
@@ -38,6 +38,7 @@ export type TooltipProps = BoxProps & {
     showDelay?: number;
     offset?: number;
     placement?: Placement;
+    hasMouseHandler?: boolean;
 };
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -52,6 +53,7 @@ export const Tooltip: FC<TooltipProps> = ({
     showDelay,
     offset = 8,
     placement = 'bottom',
+    hasMouseHandler = true,
     ...rest
 }) => {
     const [isOpen, setIsOpen] = useState(isOpenProp || isDefaultOpen);
@@ -66,19 +68,23 @@ export const Tooltip: FC<TooltipProps> = ({
     }, []);
 
     const handleMouseEnter: MouseEventHandler = () => {
-        if (showDelay && delayTimeout) {
-            clearTimeout(delayTimeout);
+        if (hasMouseHandler) {
+            if (showDelay && delayTimeout) {
+                clearTimeout(delayTimeout);
+            }
+            setIsOpen(true);
         }
-        setIsOpen(true);
     };
 
     const handleMouseLeave: MouseEventHandler = () => {
-        if (showDelay) {
-            setDelayTimeout(
-                window.setTimeout(() => setIsOpen(false), showDelay)
-            );
-        } else {
-            setIsOpen(false);
+        if (hasMouseHandler) {
+            if (showDelay) {
+                setDelayTimeout(
+                    window.setTimeout(() => setIsOpen(false), showDelay)
+                );
+            } else {
+                setIsOpen(false);
+            }
         }
     };
 

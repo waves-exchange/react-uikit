@@ -36,6 +36,7 @@ stories.add('simple', () => {
                 </Tooltip>
 
                 <Tooltip
+                    hasMouseHandler={false}
                     label="Lorem ipsum dolor sit amet"
                     isOpen={true}
                     hasArrow={true}
