@@ -1,6 +1,6 @@
 {
   "name": "@waves.exchange/react-uikit",
-  "version": "0.3.14",
+  "version": "0.3.15",
   "description": "",
   "license": "MIT",
   "main": "dist/cjs/index.js",
