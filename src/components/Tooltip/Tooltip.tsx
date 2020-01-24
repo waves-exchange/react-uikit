@@ -15,6 +15,7 @@ import React, {
 import { BoxProps } from '../Box/Box';
 import { Popper, PopperArrow } from '../Popper/Popper';
 import { getPopperArrowStyle } from './styles';
+import { path } from 'ramda';
 
 /*
   Usage Notes:
@@ -79,7 +80,7 @@ export const Tooltip: FC<TooltipProps> = ({
         }
     }, []);
 
-    const handleMouseEnter: MouseEventHandler = () => {
+    const handleMouseEnter = useCallback<MouseEventHandler>(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (hasMouseHandler) {
@@ -88,9 +89,9 @@ export const Tooltip: FC<TooltipProps> = ({
             }
             setIsOpen(true);
         }
-    };
+    }, [delayTimeout, hasMouseHandler, isOpenProp, showDelay]);
 
-    const handleMouseLeave: MouseEventHandler = () => {
+    const handleMouseLeave = useCallback<MouseEventHandler>(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (hasMouseHandler) {
@@ -102,7 +103,7 @@ export const Tooltip: FC<TooltipProps> = ({
                 setIsOpen(false);
             }
         }
-    };
+    }, [hasMouseHandler, isOpenProp, showDelay]);
 
     let child = Children.only(children);
 
@@ -114,8 +115,42 @@ export const Tooltip: FC<TooltipProps> = ({
         });
     }
 
+    // код ниже решает проблему с тем, что задизейбленные html элементы
+    // не инициируют события мыши, что ломает работу тултипа
+    const useDisabledChildHack = Boolean(path(['props', 'disabled'], child));
+    const [overlayStyles, setOverlayStyles] = useState({});
+
+    useEffect(() => {
+        if (anchorEl && useDisabledChildHack) {
+            const {
+                width,
+                height,
+                x,
+                y,
+            } = (anchorEl as any).getBoundingClientRect();
+
+            setOverlayStyles({
+                top: `${y}px`,
+                left: `${x}px`,
+                width: `${width}px`,
+                height: `${height}px`,
+            });
+        }
+    }, [anchorEl, useDisabledChildHack]);
+
     return (
-        <div>
+        <div style={{ position: 'relative' }}>
+            {useDisabledChildHack ? (
+                <div
+                    style={{
+                        position: 'fixed',
+                        cursor: 'not-allowed',
+                        ...overlayStyles,
+                    }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                />
+            ) : null}
             {child}
             <Popper
                 anchorEl={anchorEl as any}
