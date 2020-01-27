@@ -1,21 +1,27 @@
 import React from 'react';
-import { Flex } from '../../Flex/Flex';
+import { Flex, TFlexProps } from '../../Flex/Flex';
 import { Text } from '../../Text/Text';
 
-export interface FeeOption {
+export type FeeOption = TFlexProps & {
     name: string;
     ticker: string;
     value: string;
     id: string;
-}
+};
 
-export const Option: React.FC<FeeOption> = ({ name, ticker, value }) => (
+export const Option: React.FC<FeeOption> = ({
+    name,
+    ticker,
+    value,
+    ...rest
+}) => (
     <Flex
         justifyContent="space-between"
         flex={1}
         color="standard.$0"
         fontSize="$13"
         lineHeight="$18"
+        {...rest}
     >
         <Text>{name}</Text>
         <Text>
