@@ -9,6 +9,8 @@ import React, {
 import { ButtonProps } from '../Button/Button';
 import { Flex, TFlexProps } from '../Flex/Flex';
 
+export const radioButtonGroupTestId = 'radio';
+
 export type RadioButtonProps<T = unknown> = Omit<ButtonProps, 'value'> & {
     value: T;
     checked?: boolean;
@@ -38,7 +40,12 @@ export const RadioButtonGroup: FC<RadioButtonGroupProps> = ({
     }, [_value, value]);
 
     return (
-        <Flex flexDirection={direction} role="radiogroup" {...rest}>
+        <Flex
+            flexDirection={direction}
+            role="radiogroup"
+            {...rest}
+            data-testid={radioButtonGroupTestId}
+        >
             {Children.map(children, (child) => {
                 if (isValidElement(child)) {
                     const _onClick = (): void => {
