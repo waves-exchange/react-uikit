@@ -32,6 +32,11 @@ export * from './components/Select/FeeSelect/Selected';
 export * from './components/Select/FeeSelect/List';
 export * from './components/Select/FeeSelect/Option';
 export * from './components/Tabs/Tabs';
+export * from './components/Slider/Slider';
+export * from './components/Slider/SliderFilledTrack';
+export * from './components/Slider/SliderTrack';
+export * from './components/Slider/SliderThumb';
+export * from './components/Slider/SliderLegendLabel';
 export * from './themes/default';
 // assets
 export * from './icons/check';
