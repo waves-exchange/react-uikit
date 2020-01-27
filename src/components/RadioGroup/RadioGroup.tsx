@@ -8,6 +8,8 @@ import React, {
 } from 'react';
 import { Flex, TFlexProps } from '../Flex/Flex';
 
+export const radioGroupTestId = 'radio';
+
 type RadioGroupProps = TFlexProps & {
     direction?: 'row' | 'column';
     name?: string;
@@ -33,7 +35,12 @@ export const RadioGroup: FC<RadioGroupProps> = ({
     };
 
     return (
-        <Flex flexDirection={direction} role="radiogroup" {...rest}>
+        <Flex
+            flexDirection={direction}
+            role="radiogroup"
+            {...rest}
+            data-testid={radioGroupTestId}
+        >
             {Children.map(children, (child) =>
                 isValidElement(child)
                     ? cloneElement(child, {
