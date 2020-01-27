@@ -66,7 +66,7 @@ stories.add('simple', () => {
                 color="standard.$0"
                 fontSize={13}
             >
-                <Text>default</Text>
+                <Text>Default</Text>
                 <Select
                     renderSelected={(opened: boolean) => (
                         <Selected opened={opened} selected={selectedA} />
@@ -76,7 +76,7 @@ stories.add('simple', () => {
                     <List options={options} onSelect={onSelectA} />
                 </Select>
 
-                <Text>disabled</Text>
+                <Text>Disabled</Text>
                 <Select
                     renderSelected={(opened: boolean) => (
                         <Selected opened={opened} selected={selectedB} />
@@ -85,6 +85,41 @@ stories.add('simple', () => {
                     mb={20}
                 >
                     <List options={options} onSelect={onSelectB} />
+                </Select>
+
+                <Text>Default. Placement='top'</Text>
+                <Select
+                    renderSelected={(opened: boolean) => (
+                        <Selected opened={opened} selected={selectedA} />
+                    )}
+                    placement="top"
+                    mb={20}
+                >
+                    <List options={options} onSelect={onSelectA} />
+                </Select>
+
+                <Text>Custom styles</Text>
+                <Select
+                    renderSelected={(opened: boolean) => (
+                        <Selected
+                            opened={opened}
+                            selected={selectedA}
+                            selectedOptionStylesProps={{ fontSize: '26px' }}
+                            borderColor="main.$100"
+                            borderRadius={15}
+                            backgroundColor="main.$300"
+                        />
+                    )}
+                    mb={20}
+                >
+                    <List
+                        options={options}
+                        onSelect={onSelectA}
+                        optionStylesProps={{ color: 'primary.$300' }}
+                        backgroundColor="main.$300"
+                        mt={20}
+                        mb={20}
+                    />
                 </Select>
             </Box>
         </ThemeProvider>
