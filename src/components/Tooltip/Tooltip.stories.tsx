@@ -36,7 +36,6 @@ stories.add('simple', () => {
                 </Tooltip>
 
                 <Tooltip
-                    hasMouseHandler={false}
                     label="Lorem ipsum dolor sit amet"
                     isOpen={true}
                     hasArrow={true}
@@ -58,6 +57,16 @@ stories.add('simple', () => {
                     hasArrow={true}
                 >
                     <Button {...commonAnchorProps}>custom tooltip</Button>
+                </Tooltip>
+
+                <Tooltip
+                    label="Lorem ipsum dolor sit amet"
+                    hasArrow={true}
+                    {...commonTooltipProps}
+                >
+                    <Button disabled={true} {...commonAnchorProps} mt="0px">
+                        arrow tooltip
+                    </Button>
                 </Tooltip>
             </Box>
         </ThemeProvider>

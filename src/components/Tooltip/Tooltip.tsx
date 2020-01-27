@@ -41,7 +41,6 @@ export type TooltipProps = BoxProps & {
     showDelay?: number;
     offset?: number;
     placement?: Placement;
-    hasMouseHandler?: boolean;
     postPositionCb?: (arrowRef: HTMLDivElement | null) => void;
 };
 
@@ -57,7 +56,6 @@ export const Tooltip: FC<TooltipProps> = ({
     showDelay,
     offset = 8,
     placement = 'bottom',
-    hasMouseHandler = true,
     postPositionCb,
     ...rest
 }) => {
@@ -83,27 +81,23 @@ export const Tooltip: FC<TooltipProps> = ({
     const handleMouseEnter = useCallback<MouseEventHandler>(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
-        if (hasMouseHandler) {
-            if (showDelay && delayTimeout) {
-                clearTimeout(delayTimeout);
-            }
-            setIsOpen(true);
+        if (showDelay && delayTimeout) {
+            clearTimeout(delayTimeout);
         }
-    }, [delayTimeout, hasMouseHandler, isOpenProp, showDelay]);
+        setIsOpen(true);
+    }, [delayTimeout, isOpenProp, showDelay]);
 
     const handleMouseLeave = useCallback<MouseEventHandler>(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
-        if (hasMouseHandler) {
-            if (showDelay) {
-                setDelayTimeout(
-                    window.setTimeout(() => setIsOpen(false), showDelay)
-                );
-            } else {
-                setIsOpen(false);
-            }
+        if (showDelay) {
+            setDelayTimeout(
+                window.setTimeout(() => setIsOpen(false), showDelay)
+            );
+        } else {
+            setIsOpen(false);
         }
-    }, [hasMouseHandler, isOpenProp, showDelay]);
+    }, [isOpenProp, showDelay]);
 
     let child = Children.only(children);
 
@@ -122,18 +116,14 @@ export const Tooltip: FC<TooltipProps> = ({
 
     useEffect(() => {
         if (anchorEl && useDisabledChildHack) {
-            const {
-                width,
-                height,
-                x,
-                y,
-            } = (anchorEl as any).getBoundingClientRect();
+            const { width, height } = (anchorEl as any).getBoundingClientRect();
 
             setOverlayStyles({
-                top: `${y}px`,
-                left: `${x}px`,
+                top: '0px',
+                left: '0px',
                 width: `${width}px`,
                 height: `${height}px`,
+                zIndex: 10,
             });
         }
     }, [anchorEl, useDisabledChildHack]);
@@ -143,7 +133,7 @@ export const Tooltip: FC<TooltipProps> = ({
             {useDisabledChildHack ? (
                 <div
                     style={{
-                        position: 'fixed',
+                        position: 'absolute',
                         cursor: 'not-allowed',
                         ...overlayStyles,
                     }}
