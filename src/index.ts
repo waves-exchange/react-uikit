@@ -24,6 +24,7 @@ export * from './components/IconTransfer/IconTransfer';
 export * from './components/PasswordComplexityIndicator/PasswordComplexityIndicator';
 export * from './components/Spinner/Spinner';
 export * from './components/Copy/Copy';
+export * from './components/Copy/LightCopy';
 export * from './components/Popper/Popper';
 export * from './components/Tooltip/Tooltip';
 export * from './components/Select/Select';
