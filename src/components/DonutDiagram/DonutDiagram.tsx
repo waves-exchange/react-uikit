@@ -55,27 +55,27 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
                 size={size}
                 xmlns="http://www.w3.org/2000/svg"
             >
-                <Box
+                <Svg
                     as="circle"
+                    cx={size / 2}
+                    cy={size / 2}
+                    r={size / 2 - border / 2}
                     sx={{
                         stroke: baseColor,
                         strokeWidth: border,
                         fill: 'none',
-                        cx: size / 2,
-                        cy: size / 2,
-                        r: size / 2 - border / 2,
                     }}
                 />
-                <Box
+                <Svg
                     as="circle"
+                    cx={size / 2}
+                    cy={size / 2}
+                    r={size / 2 - border / 2}
                     sx={{
                         stroke: valueColor,
                         strokeWidth: border,
                         strokeDasharray: `${dashValue}, ${circumference}`,
                         fill: 'none',
-                        cx: size / 2,
-                        cy: size / 2,
-                        r: size / 2 - border / 2,
                         transition: `${animationTime! / 100}s ${easing}`,
                     }}
                 />
