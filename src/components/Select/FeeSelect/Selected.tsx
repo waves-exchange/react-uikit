@@ -1,15 +1,22 @@
 import React from 'react';
-import { Flex, Icon } from '../../..';
+import { Flex, TFlexProps } from '../../Flex/Flex';
 import { Option, FeeOption } from './Option';
 import { iconCloseSelect } from '../../../assets/icons/closeSelect';
 import { iconOpenSelect } from '../../../assets/icons/openSelect';
+import { Icon } from '../../Icon/Icon';
 
-interface ISelectedProps {
+type TSelectedProps = TFlexProps & {
     opened: boolean;
     selected: FeeOption;
-}
+    selectedOptionStylesProps?: TFlexProps;
+};
 
-export const Selected: React.FC<ISelectedProps> = ({ opened, selected }) => (
+export const Selected: React.FC<TSelectedProps> = ({
+    opened,
+    selected,
+    selectedOptionStylesProps,
+    ...rest
+}) => (
     <Flex
         justifyContent="space-between"
         backgroundColor="basic.$900"
@@ -17,8 +24,9 @@ export const Selected: React.FC<ISelectedProps> = ({ opened, selected }) => (
         borderColor="main.$600"
         borderRadius="$4"
         p={15}
+        {...rest}
     >
-        <Option {...selected} />
+        <Option {...selected} {...selectedOptionStylesProps} />
         {opened ? (
             <Icon icon={iconCloseSelect} color="primary.$300" ml={10} />
         ) : (

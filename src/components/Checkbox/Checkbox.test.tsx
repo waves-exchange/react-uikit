@@ -127,7 +127,7 @@ describe('<Checkbox />', () => {
         });
     });
     describe('prop: "onChange"', () => {
-        it('calls if isReadOnly === true', () => {
+        it('calls if isReadOnly !== true', () => {
             const defaultProps = defaultPropsFactory({ isReadOnly: false });
             const { onChange } = defaultProps;
 
@@ -140,7 +140,7 @@ describe('<Checkbox />', () => {
             expect(onChange).toHaveBeenCalledTimes(1);
         });
 
-        it("doesn't call if isReadOnly prop === true", () => {
+        it("doesn't call if isReadOnly === true", () => {
             const defaultProps = defaultPropsFactory({ isReadOnly: true });
             const { onChange } = defaultProps;
 
