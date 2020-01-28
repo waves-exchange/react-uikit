@@ -47,6 +47,7 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
             size={size}
             sx={{
                 transform: 'rotate(-90deg)',
+                willChange: 'transform',
             }}
         >
             <Svg
