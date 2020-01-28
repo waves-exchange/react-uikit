@@ -39,15 +39,15 @@ export const variants = {
         bg: 'transparent',
         color: 'standard.$0',
         border: '1px solid',
-        borderColor: 'main.$100',
+        borderColor: 'main.$200',
         outline: 'none',
         ':hover:not(:disabled)': {
             border: '1px solid',
-            borderColor: 'main.$200',
+            borderColor: 'main.$100',
         },
         ':focus:not(:disabled)': {
             border: '1px solid',
-            borderColor: 'main.$200',
+            borderColor: 'main.$100',
         },
         ':active': {
             border: '1px solid',
