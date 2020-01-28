@@ -3,7 +3,7 @@ import { Flex, TFlexProps } from '../../Flex/Flex';
 import { Box } from '../../Box/Box';
 import { Option, FeeOption } from './Option';
 
-type TListProps = TFlexProps & {
+type TListProps = Omit<TFlexProps, 'onSelect'> & {
     options: Array<FeeOption>;
     onSelect: (option: FeeOption) => void;
     optionStylesProps?: TFlexProps;
