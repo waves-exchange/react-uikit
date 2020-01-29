@@ -8,8 +8,13 @@
   "types": "dist/esm/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.waves.exchange/we-public/react-uikit.git"
+    "url": "https://github.com/waves-exchange/react-uikit.git"
   },
+  "bugs": {
+    "url": "https://github.com/waves-exchange/react-uikit/issues",
+    "email": "support@waves.exchange"
+  },
+  "homepage": "https://waves.exchange",
   "scripts": {
     "test": "jest",
     "test:c": "jest --coverage",
