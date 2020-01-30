@@ -59,4 +59,14 @@ describe('<AddressAvatar', () => {
 
         getByText(shortAddress);
     });
+
+    it('renders alias if passed', () => {
+        const alias = 'alias:T:merry';
+
+        const { getByText } = render(
+            <AddressAvatar address={address} alias={alias} />
+        );
+
+        getByText(alias);
+    });
 });
