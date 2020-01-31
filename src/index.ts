@@ -51,6 +51,10 @@ export * from './icons/transferCircle';
 export * from './icons/dataTransaction';
 export * from './icons/copy';
 export * from './icons/signMessage';
+export * from './icons/leaseTransaction';
+export * from './icons/cancelLeaseTransaction';
+export * from './icons/aliasTransaction';
+export * from './icons/reissueTransaction';
 export * from './assets/icons/closeSelect';
 export * from './assets/icons/openSelect';
 //types
