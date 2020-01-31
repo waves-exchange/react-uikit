@@ -2,17 +2,15 @@ import React from 'react';
 import { Flex, TFlexProps } from '../../Flex/Flex';
 import { Text } from '../../Text/Text';
 
-export type FeeOption = TFlexProps & {
+export type FeeOption = {
+    id: string | null;
     name: string;
     ticker: string;
     value: string;
-    id: string;
 };
 
-export const Option: React.FC<FeeOption> = ({
-    name,
-    ticker,
-    value,
+export const Option: React.FC<TFlexProps & { option: FeeOption }> = ({
+    option: { name, value },
     ...rest
 }) => (
     <Flex
@@ -25,7 +23,7 @@ export const Option: React.FC<FeeOption> = ({
     >
         <Text>{name}</Text>
         <Text>
-            {value} {ticker}
+            {value} {name}
         </Text>
     </Flex>
 );

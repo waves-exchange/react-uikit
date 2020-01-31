@@ -26,7 +26,7 @@ export const Selected: React.FC<TSelectedProps> = ({
         p={15}
         {...rest}
     >
-        <Option {...selected} {...selectedOptionStylesProps} />
+        <Option option={selected} {...selectedOptionStylesProps} />
         {opened ? (
             <Icon icon={iconCloseSelect} color="primary.$300" ml={10} />
         ) : (

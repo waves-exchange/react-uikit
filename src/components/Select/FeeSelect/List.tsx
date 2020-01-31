@@ -42,7 +42,7 @@ export const List: React.FC<TListProps> = ({
     >
         {options.map((option) => (
             <Box
-                key={option.id}
+                key={option.id || 'WAVES'}
                 sx={{
                     ':hover': {
                         backgroundColor: 'main.$600',
@@ -52,7 +52,7 @@ export const List: React.FC<TListProps> = ({
                 py={12}
                 onClick={() => onSelect(option)}
             >
-                <Option {...option} {...optionStylesProps} />
+                <Option option={option} {...optionStylesProps} />
             </Box>
         ))}
     </Flex>
