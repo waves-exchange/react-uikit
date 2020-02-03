@@ -145,6 +145,10 @@ type TabPanelProps = BoxProps & {
 };
 
 export const TabPanel: FC<TabPanelProps> = (
-    { children, selected },
+    { children, selected, display = 'block' },
     ...rest
-) => <Box {...rest}>{selected ? children : null}</Box>;
+) => (
+    <Box {...rest} display={selected ? display : 'none'}>
+        {children}
+    </Box>
+);
