@@ -62,5 +62,8 @@ export * from './icons/massTransfer';
 export * from './icons/setAssetScript';
 export * from './assets/icons/closeSelect';
 export * from './assets/icons/openSelect';
+export * from './icons/ledgerMini';
+export * from './icons/wavesKeeperMini';
+export * from './icons/smartMini';
 //types
 export * from './interface';

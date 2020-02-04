@@ -32,6 +32,22 @@ stories.add('simple', () => (
                 address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
                 addressWithCopy={true}
             />
+            <AddressAvatar
+                p="8px 16px"
+                name="Coco Jumbo"
+                address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
+                addressWithCopy={true}
+                isLedger={true}
+            />
+            <AddressAvatar
+                p="8px 16px"
+                name="Coco Jumbo"
+                address="3Mz9N7YPfZPWGd4yYaX6H53Gcgrq6ifYiH7"
+                addressWithCopy={true}
+                isLedger={true}
+                isSmart={true}
+                hasMigrationAchievement={true}
+            />
         </Box>
     </ThemeProvider>
 ));
