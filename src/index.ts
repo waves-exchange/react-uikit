@@ -58,6 +58,7 @@ export * from './icons/reissueTransaction';
 export * from './icons/issueTransaction';
 export * from './icons/burnTransaction';
 export * from './icons/massTransfer';
+export * from './icons/setAssetScript';
 export * from './assets/icons/closeSelect';
 export * from './assets/icons/openSelect';
 //types
