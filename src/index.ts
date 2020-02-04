@@ -55,6 +55,9 @@ export * from './icons/leaseTransaction';
 export * from './icons/cancelLeaseTransaction';
 export * from './icons/aliasTransaction';
 export * from './icons/reissueTransaction';
+export * from './icons/issueTransaction';
+export * from './icons/burnTransaction';
+export * from './icons/massTransfer';
 export * from './assets/icons/closeSelect';
 export * from './assets/icons/openSelect';
 //types

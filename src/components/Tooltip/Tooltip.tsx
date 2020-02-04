@@ -1,4 +1,4 @@
-import { Placement } from '@popperjs/core';
+import { Placement, Options } from '@popperjs/core';
 import React, {
     Children,
     cloneElement,
@@ -42,6 +42,7 @@ export type TooltipProps = BoxProps & {
     offset?: number;
     placement?: Placement;
     postPositionCb?: (arrowRef: HTMLDivElement | null) => void;
+    popperOptions?: Partial<Options>;
 };
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -57,6 +58,7 @@ export const Tooltip: FC<TooltipProps> = ({
     offset = 8,
     placement = 'bottom',
     postPositionCb,
+    popperOptions,
     ...rest
 }) => {
     const [isOpen, setIsOpen] = useState(isOpenProp || isDefaultOpen);
@@ -146,7 +148,7 @@ export const Tooltip: FC<TooltipProps> = ({
                 anchorEl={anchorEl as any}
                 arrowEl={arrowRef as any}
                 isOpen={isOpen}
-                options={{ placement }}
+                options={{ placement, ...popperOptions }}
                 modifierOptions={{
                     offset: [0, offset],
                 }}
