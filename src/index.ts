@@ -60,6 +60,8 @@ export * from './icons/issueTransaction';
 export * from './icons/burnTransaction';
 export * from './icons/massTransfer';
 export * from './icons/setAssetScript';
+export * from './icons/sponsorshipEnableTransaction';
+export * from './icons/sponsorshipDisableTransaction';
 export * from './assets/icons/closeSelect';
 export * from './assets/icons/openSelect';
 export * from './icons/ledgerMini';
