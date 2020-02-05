@@ -10,6 +10,7 @@ import {
     multiply,
     pipe,
     prop,
+    omit,
     toUpper,
 } from 'ramda';
 import { variant } from 'styled-system';
@@ -19,7 +20,6 @@ import { Box } from '../Box/Box';
 import { getAssetLogoBgColor, getHeight, wrapWith } from './helpers';
 import { variants } from './styles';
 import { iconWavesLogo } from '../../icons/waves-logo';
-import omit from 'ramda/es/omit';
 
 type Props = {
     assetId: string | null;
