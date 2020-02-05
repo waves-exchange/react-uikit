@@ -6,7 +6,7 @@ import { storiesOf } from '@storybook/react';
 import { ControlBox } from '../ControlBox/ControlBox';
 import { Checkbox } from './Checkbox';
 import { defaultControlBoxStyles } from './styles';
-import mergeDeepRight from 'ramda/es/mergeDeepRight';
+import { mergeDeepRight } from 'ramda';
 import { Icon } from '../Icon/Icon';
 import { iconCheck } from '../../icons/check';
 

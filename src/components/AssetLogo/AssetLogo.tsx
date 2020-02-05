@@ -1,15 +1,18 @@
 import React from 'react';
 import css from '@styled-system/css';
-import applySpec from 'ramda/es/applySpec';
-import concat from 'ramda/es/concat';
-import flip from 'ramda/es/flip';
-import head from 'ramda/es/head';
-import ifElse from 'ramda/es/ifElse';
-import isNil from 'ramda/es/isNil';
-import multiply from 'ramda/es/multiply';
-import pipe from 'ramda/es/pipe';
-import prop from 'ramda/es/prop';
-import toUpper from 'ramda/es/toUpper';
+import {
+    applySpec,
+    concat,
+    flip,
+    head,
+    ifElse,
+    isNil,
+    multiply,
+    pipe,
+    prop,
+    omit,
+    toUpper,
+} from 'ramda';
 import { variant } from 'styled-system';
 import { styled } from '../../styled';
 import { Icon } from '../Icon/Icon';
@@ -17,7 +20,6 @@ import { Box } from '../Box/Box';
 import { getAssetLogoBgColor, getHeight, wrapWith } from './helpers';
 import { variants } from './styles';
 import { iconWavesLogo } from '../../icons/waves-logo';
-import omit from 'ramda/es/omit';
 
 type Props = {
     assetId: string | null;

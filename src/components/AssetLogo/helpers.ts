@@ -1,21 +1,23 @@
-import add from 'ramda/es/add';
-import always from 'ramda/es/always';
-import contains from 'ramda/es/contains';
-import curry from 'ramda/es/curry';
-import filter from 'ramda/es/filter';
-import flip from 'ramda/es/flip';
-import head from 'ramda/es/head';
-import identity from 'ramda/es/identity';
-import ifElse from 'ramda/es/ifElse';
-import isNil from 'ramda/es/isNil';
-import last from 'ramda/es/last';
-import map from 'ramda/es/map';
-import mathMod from 'ramda/es/mathMod';
-import path from 'ramda/es/path';
-import pipe from 'ramda/es/pipe';
-import reduce from 'ramda/es/reduce';
-import split from 'ramda/es/split';
-import toPairs from 'ramda/es/toPairs';
+import {
+    add,
+    always,
+    contains,
+    curry,
+    filter,
+    flip,
+    head,
+    identity,
+    ifElse,
+    isNil,
+    last,
+    map,
+    mathMod,
+    path,
+    pipe,
+    reduce,
+    split,
+    toPairs,
+} from 'ramda';
 
 const sizeProperties = ['size', 'height', 'width'];
 const toArray = <T>(some: T): Array<T> => (Array.isArray(some) ? some : [some]);
