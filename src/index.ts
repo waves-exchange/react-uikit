@@ -1,3 +1,4 @@
+export * from './components/AssetLogo/AssetLogo';
 export * from './components/Avatar/Avatar';
 export * from './components/AddressAvatar/AddressAvatar';
 export * from './components/Box/Box';
