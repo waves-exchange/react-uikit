@@ -27,7 +27,7 @@ const Svg = styled(Box as BoxAsElement<'svg', SVGBoxProps>)(
     }
 );
 
-interface IIcon {
+export interface IIcon {
     path: JSX.Element;
     viewBox?: string;
 }

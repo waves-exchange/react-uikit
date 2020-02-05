@@ -14,6 +14,10 @@ interface IAddressAvatarProps extends TFlexProps {
     isShort?: boolean;
     addressWithCopy?: boolean;
     alias?: string;
+    isSmart?: boolean;
+    isWavesKeeper?: boolean;
+    isLedger?: boolean;
+    hasMigrationAchievement?: boolean;
 }
 
 export const AddressAvatar: FC<IAddressAvatarProps> = ({
@@ -23,6 +27,10 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
     isShort,
     alias,
     addressWithCopy = false,
+    isSmart = false,
+    isWavesKeeper = false,
+    isLedger = false,
+    hasMigrationAchievement = false,
     ...rest
 }) => {
     const displayAddress =
@@ -34,7 +42,14 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
 
     return (
         <Flex alignItems="center" {...rest} data-testid={addressAvatarTestId}>
-            <Avatar address={address} variantSize={avatarSize} />
+            <Avatar
+                address={address}
+                variantSize={avatarSize}
+                isSmart={isSmart}
+                isWavesKeeper={isWavesKeeper}
+                isLedger={isLedger}
+                hasMigrationAchievement={hasMigrationAchievement}
+            />
             <Flex
                 ml="$10"
                 flexDirection="column"
