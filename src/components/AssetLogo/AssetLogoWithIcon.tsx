@@ -1,25 +1,27 @@
-import React, { FC, ReactNode } from 'react';
 import { Options } from '@popperjs/core';
-import { AssetLogo, AssetLogoProps } from './AssetLogo';
-import { BoxProps, Box } from '../Box/Box';
-import { Tooltip } from '../Tooltip/Tooltip';
+import React, { FC, ReactNode } from 'react';
+import { Box, BoxProps } from '../Box/Box';
 import { Flex } from '../Flex/Flex';
-import { Icon } from '../Icon/Icon';
+import { Icon, IIcon } from '../Icon/Icon';
 import { Text } from '../Text/Text';
-import { iconSmartMini } from '../../icons/smartMini';
+import { Tooltip } from '../Tooltip/Tooltip';
+import { AssetLogo, AssetLogoProps } from './AssetLogo';
 
-type SmartAssetLogoProps = BoxProps &
+type AssetLogoWithIconProps = BoxProps &
     AssetLogoProps &
-    Record<'popperOptions', Partial<Options>> &
-    Record<'isSmart', boolean>;
+    Record<'popperOptions', Partial<Options>> & {
+        showIcon: boolean;
+        icon: IIcon;
+    };
 
-export const SmartAssetLogo: FC<SmartAssetLogoProps> = ({
+export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
     assetId,
-    isSmart,
     name,
     logo,
     variant,
     popperOptions,
+    showIcon,
+    icon,
     ...rest
 }) => {
     return (
@@ -30,7 +32,7 @@ export const SmartAssetLogo: FC<SmartAssetLogoProps> = ({
                 logo={logo}
                 variant={variant}
             />
-            {isSmart && (
+            {showIcon && (
                 <Tooltip
                     arrowSize="4px"
                     hasArrow={true}
@@ -58,7 +60,7 @@ export const SmartAssetLogo: FC<SmartAssetLogoProps> = ({
                                 flex="none"
                             >
                                 <Icon
-                                    icon={iconSmartMini}
+                                    icon={icon}
                                     size={10}
                                     color="standard.$0"
                                 />
@@ -92,11 +94,7 @@ export const SmartAssetLogo: FC<SmartAssetLogoProps> = ({
                         backgroundColor="main.$800"
                         cursor="pointer"
                     >
-                        <Icon
-                            icon={iconSmartMini}
-                            size={8}
-                            color="standard.$0"
-                        />
+                        <Icon icon={icon} size={8} color="standard.$0" />
                     </Flex>
                 </Tooltip>
             )}

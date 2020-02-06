@@ -1,5 +1,5 @@
 export * from './components/AssetLogo/AssetLogo';
-export * from './components/AssetLogo/SmartAssetLogo';
+export * from './components/AssetLogo/AssetLogoWithIcon';
 export * from './components/Avatar/Avatar';
 export * from './components/AddressAvatar/AddressAvatar';
 export * from './components/Box/Box';
@@ -68,6 +68,7 @@ export * from './assets/icons/openSelect';
 export * from './icons/ledgerMini';
 export * from './icons/wavesKeeperMini';
 export * from './icons/smartMini';
+export * from './icons/sponsorshipMini';
 //types
 export * from './interface';
 //hooks
