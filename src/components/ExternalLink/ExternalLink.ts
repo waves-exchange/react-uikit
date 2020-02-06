@@ -12,6 +12,7 @@ ExternalLink.defaultProps = {
     textDecoration: 'none',
     color: 'primary.$300',
     referrerPolicy: 'strict-origin',
+    target: '_blank',
 };
 
 // TODO storybook
