@@ -1,4 +1,5 @@
 export * from './components/AssetLogo/AssetLogo';
+export * from './components/AssetLogo/SmartAssetLogo';
 export * from './components/Avatar/Avatar';
 export * from './components/AddressAvatar/AddressAvatar';
 export * from './components/Box/Box';
@@ -69,3 +70,5 @@ export * from './icons/wavesKeeperMini';
 export * from './icons/smartMini';
 //types
 export * from './interface';
+//hooks
+export * from './hooks/useBoundedTooltip';

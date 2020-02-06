@@ -21,7 +21,7 @@ import { getAssetLogoBgColor, getHeight, wrapWith } from './helpers';
 import { variants } from './styles';
 import { iconWavesLogo } from '../../icons/waves-logo';
 
-type Props = {
+export type AssetLogoProps = {
     assetId: string | null;
     /**
      * Icon url or base64 icon
@@ -42,7 +42,7 @@ export const AssetLogo = styled(
         (props) => <Icon {...omit(NAMES, props)} icon={iconWavesLogo} />,
         (props) => <Box {...omit(NAMES, props)}></Box>
     )
-)<Props>(
+)<AssetLogoProps>(
     css({
         borderRadius: '100%',
         backgroundSize: '100% 100%',
