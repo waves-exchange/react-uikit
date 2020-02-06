@@ -20,6 +20,7 @@ export const SmartAssetLogo: FC<SmartAssetLogoProps> = ({
     logo,
     variant,
     popperOptions,
+    size,
     ...rest
 }) => {
     return (
@@ -29,6 +30,7 @@ export const SmartAssetLogo: FC<SmartAssetLogoProps> = ({
                 name={name}
                 logo={logo}
                 variant={variant}
+                size={size}
             />
             {isSmart && (
                 <Tooltip
