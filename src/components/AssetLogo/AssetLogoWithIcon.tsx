@@ -10,8 +10,7 @@ import { AssetLogo, AssetLogoProps } from './AssetLogo';
 type AssetLogoWithIconProps = BoxProps &
     AssetLogoProps &
     Record<'popperOptions', Partial<Options>> & {
-        showIcon: boolean;
-        icon: IIcon;
+        icon?: IIcon;
     };
 
 export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
@@ -20,8 +19,8 @@ export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
     logo,
     variant,
     popperOptions,
-    showIcon,
     icon,
+    size,
     ...rest
 }) => {
     return (
@@ -31,8 +30,9 @@ export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
                 name={name}
                 logo={logo}
                 variant={variant}
+                size={size}
             />
-            {showIcon && (
+            {icon && (
                 <Tooltip
                     arrowSize="4px"
                     hasArrow={true}
