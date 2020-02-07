@@ -8,9 +8,11 @@ import { Tooltip } from '../Tooltip/Tooltip';
 import { AssetLogo, AssetLogoProps } from './AssetLogo';
 
 type AssetLogoWithIconProps = BoxProps &
-    AssetLogoProps &
-    Record<'popperOptions', Partial<Options>> & {
-        icon?: IIcon;
+    AssetLogoProps & {
+        icon: IIcon;
+        iconLabel: string;
+        iconVisible: boolean;
+        popperOptions: Partial<Options>;
     };
 
 export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
@@ -20,6 +22,8 @@ export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
     variant,
     popperOptions,
     icon,
+    iconLabel,
+    iconVisible,
     size,
     ...rest
 }) => {
@@ -32,7 +36,7 @@ export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
                 variant={variant}
                 size={size}
             />
-            {icon && (
+            {iconVisible && (
                 <Tooltip
                     arrowSize="4px"
                     hasArrow={true}
@@ -66,7 +70,7 @@ export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
                                 />
                             </Flex>
                             <Text ml="$10" variant="body2">
-                                Smart asset
+                                {iconLabel}
                             </Text>
                         </Flex>
                     )}
