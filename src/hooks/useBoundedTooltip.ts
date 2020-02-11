@@ -10,8 +10,8 @@ type UseBoundedTooltip = (args: {
 };
 
 export const useBoundedTooltip: UseBoundedTooltip = ({
-    left = 80,
-    right = 80,
+    left = 0,
+    right = 0,
 }) => {
     const [tooltipBoundingEl, setTooltipBoundingEl] = useState();
     const [popperOptions, setPopperOptions] = useState({});

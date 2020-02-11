@@ -1,36 +1,27 @@
 import React, { FC } from 'react';
-import { Avatar, Text, Flex, TFlexProps } from '../..';
-import { getShortAddress } from './helpers';
-import { TAvatarSizes } from '../Avatar/Avatar';
+import { Flex } from '../Flex/Flex';
 import { Copy } from '../Copy/Copy';
+import { Text } from '../Text/Text';
+import { BoxProps } from '../Box/Box';
 
-export const addressAvatarTestId = 'address-avatar';
-export const copyTestId = 'address-avatar-copy';
+const getShortAddress = (address: string): string =>
+    `${address.slice(0, 8)}***${address.slice(-8)}`;
 
-interface IAddressAvatarProps extends TFlexProps {
+type Props = BoxProps & {
     address: string;
-    avatarSize?: TAvatarSizes;
-    name?: string;
     isShort?: boolean;
-    addressWithCopy?: boolean;
+    withCopy?: boolean;
     alias?: string;
-    isSmart?: boolean;
-    isWavesKeeper?: boolean;
-    isLedger?: boolean;
-    hasMigrationAchievement?: boolean;
-}
+    name?: string;
+};
 
-export const AddressAvatar: FC<IAddressAvatarProps> = ({
-    address,
-    avatarSize = 'large',
-    name,
+export const AddressLabel: FC<Props> = ({
     isShort,
     alias,
-    addressWithCopy = false,
-    isSmart = false,
-    isWavesKeeper = false,
-    isLedger = false,
-    hasMigrationAchievement = false,
+    name,
+    withCopy,
+    address,
+    children,
     ...rest
 }) => {
     const displayAddress =
@@ -41,15 +32,8 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
             : address;
 
     return (
-        <Flex alignItems="center" {...rest} data-testid={addressAvatarTestId}>
-            <Avatar
-                address={address}
-                variantSize={avatarSize}
-                isSmart={isSmart}
-                isWavesKeeper={isWavesKeeper}
-                isLedger={isLedger}
-                hasMigrationAchievement={hasMigrationAchievement}
-            />
+        <Flex alignItems="center" {...rest}>
+            {children}
             <Flex
                 ml="$10"
                 flexDirection="column"
@@ -61,12 +45,11 @@ export const AddressAvatar: FC<IAddressAvatarProps> = ({
                         {name}
                     </Text>
                 )}
-                {addressWithCopy ? (
+                {withCopy ? (
                     <Copy
                         inititialTooltipLabel="Copy address"
                         copiedTooltipLabel="Copied!"
                         text={address}
-                        data-testid={copyTestId}
                     >
                         <Text variant="body2" color="standard.$0">
                             {displayAddress}
