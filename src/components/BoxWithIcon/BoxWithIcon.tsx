@@ -92,7 +92,7 @@ const TooltipIcon: FC<TooltipIconProps> = ({
                 >
                     <Icon icon={icon} size={10} color="standard.$0" />
                 </Flex>
-                <Text ml="$10" variant="body2">
+                <Text ml="$10" variant="body2" sx={{ whiteSpace: 'nowrap' }}>
                     {iconLabel}
                 </Text>
             </Flex>
