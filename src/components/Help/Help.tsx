@@ -71,6 +71,7 @@ class HelpComponent extends Component<TProps, IState> {
                       ref={this.arrow}
                       border="solid 5px transparent"
                       borderBottom={`solid 5px ${theme.colors.primary.$300}`}
+                      key="Help.Arrow"
                   />,
                   <Box
                       position="absolute"
@@ -82,6 +83,7 @@ class HelpComponent extends Component<TProps, IState> {
                       onMouseEnter={this.onMouseEnter}
                       onMouseLeave={this.onMouseLeave}
                       ref={this.box}
+                      key="Help.Box"
                   >
                       {this.props.children}
                   </Box>,
