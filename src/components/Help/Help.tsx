@@ -64,31 +64,29 @@ class HelpComponent extends Component<TProps, IState> {
         const hovered = this.state.hovered;
         const theme = this.props.theme;
 
-        const content = hovered
-            ? [
-                  <Box
-                      position="absolute"
-                      ref={this.arrow}
-                      border="solid 5px transparent"
-                      borderBottom={`solid 5px ${theme.colors.primary.$300}`}
-                      key="Help.Arrow"
-                  />,
-                  <Box
-                      position="absolute"
-                      background={theme.colors.main.$700}
-                      borderTop={`solid 4px ${theme.colors.primary.$300}`}
-                      padding="12px 16px 16px 16px"
-                      borderRadius={4}
-                      overflow="hidden"
-                      onMouseEnter={this.onMouseEnter}
-                      onMouseLeave={this.onMouseLeave}
-                      ref={this.box}
-                      key="Help.Box"
-                  >
-                      {this.props.children}
-                  </Box>,
-              ]
-            : null;
+        const content = hovered ? (
+            <>
+                <Box
+                    position="absolute"
+                    ref={this.arrow}
+                    border="solid 5px transparent"
+                    borderBottom={`solid 5px ${theme.colors.primary.$300}`}
+                />
+                <Box
+                    position="absolute"
+                    background={theme.colors.main.$700}
+                    borderTop={`solid 4px ${theme.colors.primary.$300}`}
+                    padding="12px 16px 16px 16px"
+                    borderRadius={4}
+                    overflow="hidden"
+                    onMouseEnter={this.onMouseEnter}
+                    onMouseLeave={this.onMouseLeave}
+                    ref={this.box}
+                >
+                    {this.props.children}
+                </Box>
+            </>
+        ) : null;
 
         return (
             <Fragment>
