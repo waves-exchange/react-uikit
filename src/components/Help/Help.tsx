@@ -32,11 +32,13 @@ class HelpComponent extends Component<TProps, IState> {
     ): number {
         switch (mode) {
             case 'right':
-                return icon.right - box.right + 16;
+                return Math.round(icon.right - box.right) + 16;
             case 'center':
-                return icon.x + icon.width / 2 - (box.x + box.width / 2);
+                return Math.round(
+                    icon.x + icon.width / 2 - (box.x + box.width / 2)
+                );
             case 'left':
-                return icon.left - box.left - 16;
+                return Math.round(icon.left - box.left) - 16;
             default:
                 throw new Error(`Align ${mode} is not supported!`);
         }
@@ -49,12 +51,14 @@ class HelpComponent extends Component<TProps, IState> {
     ): number {
         switch (mode) {
             case 'bottom':
-                return icon.bottom - box.top + 10;
+                return Math.round(icon.bottom - box.top) + 10;
             case 'top':
-                return -(box.height + 10);
+                return -(Math.round(box.height) + 10);
             case 'left':
             case 'right':
-                return icon.top + icon.height / 2 - (box.top + box.height / 2);
+                return Math.round(
+                    icon.top + icon.height / 2 - (box.top + box.height / 2)
+                );
             default:
                 throw new Error(`Align ${mode} is not supported!`);
         }
@@ -153,11 +157,12 @@ class HelpComponent extends Component<TProps, IState> {
         const align = this.props.align ?? 'auto';
         const direction = this.props.direction ?? 'auto';
 
-        const arrowX =
+        const arrowX = Math.round(
             iconRect.left +
-            iconRect.width / 2 -
-            (arrowRect.left + arrowRect.width / 2);
-        const arrowY = iconRect.bottom - arrowRect.top;
+                iconRect.width / 2 -
+                (arrowRect.left + arrowRect.width / 2)
+        );
+        const arrowY = Math.round(iconRect.bottom - arrowRect.top);
 
         this.arrow.current!.style.transform = `translate(${arrowX}px, ${arrowY}px)`;
 
