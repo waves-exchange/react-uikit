@@ -39,8 +39,13 @@ export class FormattedInput extends React.Component<
 
     componentDidUpdate(): void {
         console.log('UPDATE');
+        const { formatSeparator } = this.props;
         const { formattedValue, oldLength, oldIdx } = this.state;
-        const newIdx = Math.max(0, formattedValue.length - oldLength + oldIdx);
+        let newIdx = Math.max(0, formattedValue.length - oldLength + oldIdx);
+
+        if (formattedValue[oldIdx] === formatSeparator) {
+            newIdx = newIdx - 1;
+        }
 
         if (this.inputRef && this.inputRef.current) {
             this.inputRef.current.selectionStart = newIdx;
