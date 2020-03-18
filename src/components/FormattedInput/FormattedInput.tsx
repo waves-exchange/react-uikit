@@ -1,9 +1,11 @@
 import React from 'react';
 import { Input, InputProps } from '../..';
-import { getFormattedValue, parseFormattedValue } from './helpers';
+import { getFormattedValue, parseFormattedValue, handleDots } from './helpers';
+
+type ChangeFunction = (event: React.ChangeEvent<HTMLInputElement>) => void;
 
 type FormattedInputProps = InputProps & {
-    onChange?: (value: any) => void;
+    onChange?: ChangeFunction;
     formatSeparator: string;
     decimals: number;
 };
@@ -20,6 +22,7 @@ export class FormattedInput extends React.Component<
     FormattedInputState
 > {
     private readonly inputRef = React.createRef<HTMLInputElement>();
+    private dotInput = false;
 
     constructor(props: FormattedInputProps) {
         super(props);
@@ -36,21 +39,6 @@ export class FormattedInput extends React.Component<
         };
     }
 
-    componentDidUpdate(): void {
-        const { formatSeparator } = this.props;
-        const { formattedValue, oldLength, oldIdx } = this.state;
-        let newIdx = Math.max(0, formattedValue.length - oldLength + oldIdx);
-
-        if (formattedValue[oldIdx] === formatSeparator) {
-            newIdx = newIdx - 1;
-        }
-
-        if (this.inputRef && this.inputRef.current) {
-            this.inputRef.current.selectionStart = newIdx;
-            this.inputRef.current.selectionEnd = newIdx;
-        }
-    }
-
     render(): React.ReactNode {
         const { onChange, ...rest } = this.props;
         const { formattedValue } = this.state;
@@ -62,45 +50,59 @@ export class FormattedInput extends React.Component<
                 onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
                     this.handleChange(event)
                 }
+                onKeyDown={(e: React.KeyboardEvent): void =>
+                    this.handleKeyboard(e)
+                }
                 {...rest}
             />
         );
+    }
+
+    componentDidUpdate(): void {
+        const { formatSeparator } = this.props;
+        const { formattedValue, oldLength, oldIdx } = this.state;
+        let newIdx = Math.max(0, formattedValue.length - oldLength + oldIdx);
+
+        if (formattedValue[newIdx - 1] === formatSeparator) {
+            newIdx = newIdx - 1;
+        }
+
+        if (this.inputRef && this.inputRef.current) {
+            this.inputRef.current.selectionStart = newIdx;
+            this.inputRef.current.selectionEnd = newIdx;
+        }
     }
 
     shouldComponentUpdate(): boolean {
         return true;
     }
 
+    private handleKeyboard(event: React.KeyboardEvent): void {
+        if (event.key === '.') {
+            this.dotInput = true;
+        }
+    }
+
     private handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
         event.preventDefault();
 
         const { onChange, decimals, formatSeparator } = this.props;
-        const { current: inputNode } = this.inputRef;
 
-        this.setState({
-            oldIdx: Number(inputNode?.selectionStart),
-            oldLength: Number(inputNode?.value.length),
-        });
+        this.saveInputCursor();
+
+        if (decimals === 0 && this.dotInput) {
+            this.dotInput = false;
+
+            return;
+        }
 
         const eventValue = event.target.value;
-        // decimals === 0
-        //     ? event.target.value.replace(/\./g, '')
-        //     : event.target.value;
 
-        let newValue = parseFormattedValue(eventValue, formatSeparator);
+        const parsedValue = parseFormattedValue(eventValue, formatSeparator);
+        let newValue = '';
 
-        if (!isNaN(Number(newValue))) {
-            const splitted = newValue.split('.');
-
-            if (splitted.length > 1) {
-                const afterDot = splitted[1]
-                    ? splitted[1].slice(0, decimals)
-                    : '';
-
-                newValue = [splitted[0], '.', afterDot].join('');
-            }
-        } else if (!newValue.trim()) {
-            newValue = '';
+        if (!isNaN(Number(parsedValue))) {
+            newValue = handleDots(parsedValue, decimals);
         } else {
             return;
         }
@@ -110,7 +112,37 @@ export class FormattedInput extends React.Component<
         });
 
         if (onChange) {
-            onChange({ value: newValue });
+            this.dispatchChange(onChange, event, newValue);
         }
+    }
+
+    private saveInputCursor(): void {
+        const { current: inputNode } = this.inputRef;
+
+        this.setState({
+            oldIdx: Number(inputNode?.selectionStart),
+            oldLength: Number(inputNode?.value.length),
+        });
+    }
+
+    private dispatchChange(
+        onChange: ChangeFunction,
+        event: React.ChangeEvent<HTMLInputElement>,
+        newValue: string
+    ): void {
+        const newTarget = {
+            value: newValue,
+            ...event.target,
+        };
+        const newNativeTarget = {
+            value: newValue,
+            ...event.nativeEvent,
+        };
+
+        onChange({
+            target: newTarget,
+            nativeEvent: newNativeTarget,
+            ...event,
+        });
     }
 }

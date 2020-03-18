@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-    render,
-    fireEvent,
-    RenderResult,
-    waitForElement,
-} from '@testing-library/react';
+import { render, fireEvent, RenderResult } from '@testing-library/react';
 import { matchers } from 'jest-emotion';
 import { FormattedInput } from './FormattedInput';
 import { ThemeProvider } from 'emotion-theming';
@@ -122,17 +117,34 @@ describe('FormattedInput', () => {
         expect((input as HTMLInputElement).value).toBe('1,234.567');
     });
 
-    it('delete numbers', async () => {
+    it('decrease amount of numbers', () => {
         const { getByLabelText } = renderComaInput();
         const input = getByLabelText('formatted-input');
 
         fireEvent.change(input, { target: { value: '1234567' } });
-        const elem = await waitForElement(() => input);
-
-        fireEvent.change(elem, { target: { value: '134567' } });
+        fireEvent.change(input, { target: { value: '134567' } });
 
         expect((input as HTMLInputElement).value).toBe('134,567');
     });
+
+    // Не пашет тест, TODO сделать, чтобы работал
+    // it('deletion by backspace', async () => {
+    //     const { getByLabelText } = renderComaInput();
+    //     const input = getByLabelText('formatted-input');
+    //
+    //     fireEvent.change(input, { target: { value: '123' } });
+    //
+    //     await wait(() => expect((input as HTMLInputElement).value).toBe('123'));
+    //
+    //     input.focus();
+    //     fireEvent.keyDown(input, {
+    //         key: 'Backspace',
+    //         code: 'Backspace',
+    //         keyCode: 8,
+    //     });
+    //
+    //     expect((input as HTMLInputElement).value).toBe('12');
+    // });
 
     it('renders space separators', () => {
         const { getByLabelText } = renderSpaceInput();

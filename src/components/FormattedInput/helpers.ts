@@ -29,3 +29,19 @@ export const parseFormattedValue = (
 
     return value ? value.replace(findSeparators, '') : '';
 };
+
+export const handleDots = (value: string, decimals: number): string => {
+    const splitted = value.split('.');
+
+    if (splitted.length > 1) {
+        const afterDot = splitted[1] ? splitted[1].slice(0, decimals) : '';
+
+        if (decimals === 0) {
+            return splitted[0];
+        }
+
+        return [splitted[0], '.', afterDot].join('');
+    } else {
+        return value;
+    }
+};
