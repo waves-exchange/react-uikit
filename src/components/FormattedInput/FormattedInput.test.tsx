@@ -1,5 +1,10 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import {
+    render,
+    fireEvent,
+    RenderResult,
+    waitForElement,
+} from '@testing-library/react';
 import { matchers } from 'jest-emotion';
 import { FormattedInput } from './FormattedInput';
 import { ThemeProvider } from 'emotion-theming';
@@ -7,32 +12,24 @@ import { ThemeProvider } from 'emotion-theming';
 expect.extend(matchers);
 
 describe('FormattedInput', () => {
-    let theme: any;
-
-    beforeEach(() => {
-        theme = {
-            sizes: {
-                medium: '42px',
+    const theme = {
+        sizes: {
+            medium: '42px',
+        },
+        colors: {
+            standard: {
+                $0: 'white',
             },
-            colors: {
-                standard: {
-                    $0: 'white',
-                },
-                danger: {
-                    $300: 'red',
-                },
+            danger: {
+                $300: 'red',
             },
-        };
-    });
+        },
+    };
 
     it('renders', () => {
         const { container } = render(
             <ThemeProvider theme={theme}>
-                <FormattedInput
-                    decimals={3}
-                    formatSeparator=","
-                    onChange={() => null}
-                />
+                <FormattedInput decimals={3} formatSeparator="," />
             </ThemeProvider>
         );
 
@@ -42,35 +39,107 @@ describe('FormattedInput', () => {
         expect(input).toHaveStyleRule('color', 'white');
     });
 
-    it('renders invalid', () => {
-        const { container } = render(
+    const renderComaInput = (): RenderResult =>
+        render(
             <ThemeProvider theme={theme}>
                 <FormattedInput
+                    aria-label="formatted-input"
                     decimals={3}
                     formatSeparator=","
-                    onChange={() => null}
-                    aria-invalid={true}
                 />
             </ThemeProvider>
         );
 
-        expect(container.firstChild).toHaveStyleRule('border-color', 'red', {
-            target: '[aria-invalid="true"]',
-        });
+    const renderSpaceInput = (): RenderResult =>
+        render(
+            <ThemeProvider theme={theme}>
+                <FormattedInput
+                    aria-label="formatted-input"
+                    decimals={3}
+                    formatSeparator=" "
+                />
+            </ThemeProvider>
+        );
+
+    it('renders regular', () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '123' } });
+        expect((input as HTMLInputElement).value).toBe('123');
     });
 
-    it('renders with custom padding-right', () => {
-        const { container } = render(
-            <ThemeProvider theme={theme}>
-                <FormattedInput
-                    decimals={3}
-                    formatSeparator=","
-                    onChange={() => null}
-                    paddingRight="55px"
-                />
-            </ThemeProvider>
-        );
+    it('renders separators', () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
 
-        expect(container.firstChild).toHaveStyleRule('padding-right', '55px');
+        fireEvent.change(input, { target: { value: '1234' } });
+
+        expect((input as HTMLInputElement).value).toBe('1,234');
+    });
+
+    it('renders dot', () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '123.' } });
+        expect((input as HTMLInputElement).value).toBe('123.');
+    });
+
+    it('renders separators and dot', () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '1234.' } });
+
+        expect((input as HTMLInputElement).value).toBe('1,234.');
+    });
+
+    it('renders separators dot and after dot', () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '1234.5' } });
+
+        expect((input as HTMLInputElement).value).toBe('1,234.5');
+    });
+
+    it('renders separators dot and after dot full', () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '1234.556' } });
+
+        expect((input as HTMLInputElement).value).toBe('1,234.556');
+    });
+
+    it('renders separators dot and after dot extra', () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '1234.5678' } });
+
+        expect((input as HTMLInputElement).value).toBe('1,234.567');
+    });
+
+    it('delete numbers', async () => {
+        const { getByLabelText } = renderComaInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '1234567' } });
+        const elem = await waitForElement(() => input);
+
+        fireEvent.change(elem, { target: { value: '134567' } });
+
+        expect((input as HTMLInputElement).value).toBe('134,567');
+    });
+
+    it('renders space separators', () => {
+        const { getByLabelText } = renderSpaceInput();
+        const input = getByLabelText('formatted-input');
+
+        fireEvent.change(input, { target: { value: '1234567' } });
+
+        expect((input as HTMLInputElement).value).toBe('1 234 567');
     });
 });

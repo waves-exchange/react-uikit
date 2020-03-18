@@ -19,14 +19,14 @@ stories.add('simple', () => (
                 <label>
                     Default
                     <FormattedInput
-                        formatSeparator=","
-                        decimals={2}
+                        formatSeparator=" "
+                        decimals={0}
                         onChange={(event: any): void => {
-                            console.log(
-                                '%c event',
-                                'color: #e5b6ed',
-                                event.value
-                            );
+                            // console.log(
+                            //     '%c event',
+                            //     'color: #e5b6ed',
+                            //     event.value
+                            // );
                         }}
                     />
                 </label>

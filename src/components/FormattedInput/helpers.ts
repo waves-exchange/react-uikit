@@ -21,5 +21,11 @@ export const getFormattedValue = (value: string, separator: string): string => {
     }
 };
 
-export const parseFormattedValue = (value: string | undefined): string =>
-    value ? value.replace(/,/g, '') : '';
+export const parseFormattedValue = (
+    value: string | undefined,
+    separator: string
+): string => {
+    const findSeparators = new RegExp(separator, 'g');
+
+    return value ? value.replace(findSeparators, '') : '';
+};

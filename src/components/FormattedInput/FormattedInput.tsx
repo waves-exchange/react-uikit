@@ -3,7 +3,7 @@ import { Input, InputProps } from '../..';
 import { getFormattedValue, parseFormattedValue } from './helpers';
 
 type FormattedInputProps = InputProps & {
-    onChange: (value: any) => void;
+    onChange?: (value: any) => void;
     formatSeparator: string;
     decimals: number;
 };
@@ -34,11 +34,9 @@ export class FormattedInput extends React.Component<
                 formatSeparator
             ),
         };
-        // const { decimals, formatSeparator, value, onChange, ...rest } = props;
     }
 
     componentDidUpdate(): void {
-        console.log('UPDATE');
         const { formatSeparator } = this.props;
         const { formattedValue, oldLength, oldIdx } = this.state;
         let newIdx = Math.max(0, formattedValue.length - oldLength + oldIdx);
@@ -84,14 +82,12 @@ export class FormattedInput extends React.Component<
             oldLength: Number(inputNode?.value.length),
         });
 
-        if (
-            event.target.value ===
-            parseFormattedValue(this.state.formattedValue)
-        ) {
-            return;
-        }
+        const eventValue = event.target.value;
+        // decimals === 0
+        //     ? event.target.value.replace(/\./g, '')
+        //     : event.target.value;
 
-        let newValue = parseFormattedValue(event.target.value);
+        let newValue = parseFormattedValue(eventValue, formatSeparator);
 
         if (!isNaN(Number(newValue))) {
             const splitted = newValue.split('.');
@@ -101,7 +97,7 @@ export class FormattedInput extends React.Component<
                     ? splitted[1].slice(0, decimals)
                     : '';
 
-                newValue = `${splitted[0]}.${afterDot}`;
+                newValue = [splitted[0], '.', afterDot].join('');
             }
         } else if (!newValue.trim()) {
             newValue = '';
@@ -113,6 +109,8 @@ export class FormattedInput extends React.Component<
             formattedValue: getFormattedValue(newValue, formatSeparator),
         });
 
-        onChange({ value: newValue });
+        if (onChange) {
+            onChange({ value: newValue });
+        }
     }
 }
