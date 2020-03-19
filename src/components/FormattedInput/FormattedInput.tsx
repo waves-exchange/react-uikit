@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, InputProps } from '../..';
+import { Input, InputProps } from '../Input/Input';
 import { getFormattedValue, parseFormattedValue, handleDots } from './helpers';
 
 type ChangeFunction = (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -45,15 +45,11 @@ export class FormattedInput extends React.Component<
 
         return (
             <Input
+                {...rest}
                 ref={this.inputRef}
                 value={formattedValue}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
-                    this.handleChange(event)
-                }
-                onKeyDown={(e: React.KeyboardEvent): void =>
-                    this.handleKeyboard(e)
-                }
-                {...rest}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyboard}
             />
         );
     }
@@ -77,13 +73,15 @@ export class FormattedInput extends React.Component<
         return true;
     }
 
-    private handleKeyboard(event: React.KeyboardEvent): void {
+    private readonly handleKeyboard = (event: React.KeyboardEvent): void => {
         if (event.key === '.') {
             this.dotInput = true;
         }
-    }
+    };
 
-    private handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    private readonly handleChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ): void => {
         event.preventDefault();
 
         const { onChange, decimals, formatSeparator } = this.props;
@@ -114,7 +112,7 @@ export class FormattedInput extends React.Component<
         if (onChange) {
             this.dispatchChange(onChange, event, newValue);
         }
-    }
+    };
 
     private saveInputCursor(): void {
         const { current: inputNode } = this.inputRef;

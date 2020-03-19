@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, RenderResult } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { matchers } from 'jest-emotion';
 import { FormattedInput } from './FormattedInput';
 import { ThemeProvider } from 'emotion-theming';
@@ -34,8 +34,10 @@ describe('FormattedInput', () => {
         expect(input).toHaveStyleRule('color', 'white');
     });
 
-    const renderComaInput = (): RenderResult =>
-        render(
+    let input: HTMLInputElement;
+
+    beforeEach(() => {
+        const { getByLabelText } = render(
             <ThemeProvider theme={theme}>
                 <FormattedInput
                     aria-label="formatted-input"
@@ -45,96 +47,56 @@ describe('FormattedInput', () => {
             </ThemeProvider>
         );
 
-    const renderSpaceInput = (): RenderResult =>
-        render(
-            <ThemeProvider theme={theme}>
-                <FormattedInput
-                    aria-label="formatted-input"
-                    decimals={3}
-                    formatSeparator=" "
-                />
-            </ThemeProvider>
-        );
+        input = getByLabelText('formatted-input') as HTMLInputElement;
+    });
 
     it('renders regular', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '123' } });
-        expect((input as HTMLInputElement).value).toBe('123');
+        expect(input.value).toBe('123');
     });
 
     it('renders separators', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '1234' } });
-
-        expect((input as HTMLInputElement).value).toBe('1,234');
+        expect(input.value).toBe('1,234');
     });
 
     it('renders dot', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '123.' } });
-        expect((input as HTMLInputElement).value).toBe('123.');
+        expect(input.value).toBe('123.');
     });
 
     it('renders separators and dot', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '1234.' } });
-
-        expect((input as HTMLInputElement).value).toBe('1,234.');
+        expect(input.value).toBe('1,234.');
     });
 
     it('renders separators dot and after dot', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '1234.5' } });
-
-        expect((input as HTMLInputElement).value).toBe('1,234.5');
+        expect(input.value).toBe('1,234.5');
     });
 
     it('renders separators dot and after dot full', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '1234.556' } });
-
-        expect((input as HTMLInputElement).value).toBe('1,234.556');
+        expect(input.value).toBe('1,234.556');
     });
 
     it('renders separators dot and after dot extra', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '1234.5678' } });
-
-        expect((input as HTMLInputElement).value).toBe('1,234.567');
+        expect(input.value).toBe('1,234.567');
     });
 
     it('decrease amount of numbers', () => {
-        const { getByLabelText } = renderComaInput();
-        const input = getByLabelText('formatted-input');
-
         fireEvent.change(input, { target: { value: '1234567' } });
         fireEvent.change(input, { target: { value: '134567' } });
 
-        expect((input as HTMLInputElement).value).toBe('134,567');
+        expect(input.value).toBe('134,567');
     });
 
     // Не пашет тест, TODO сделать, чтобы работал
     // it('deletion by backspace', async () => {
-    //     const { getByLabelText } = renderComaInput();
-    //     const input = getByLabelText('formatted-input');
-    //
     //     fireEvent.change(input, { target: { value: '123' } });
     //
-    //     await wait(() => expect((input as HTMLInputElement).value).toBe('123'));
+    //     await wait(() => expect(input.value).toBe('123'));
     //
     //     input.focus();
     //     fireEvent.keyDown(input, {
@@ -143,15 +105,23 @@ describe('FormattedInput', () => {
     //         keyCode: 8,
     //     });
     //
-    //     expect((input as HTMLInputElement).value).toBe('12');
+    //     expect(input.value).toBe('12');
     // });
 
     it('renders space separators', () => {
-        const { getByLabelText } = renderSpaceInput();
-        const input = getByLabelText('formatted-input');
+        const { getByLabelText } = render(
+            <ThemeProvider theme={theme}>
+                <FormattedInput
+                    aria-label="space-input"
+                    decimals={3}
+                    formatSeparator=" "
+                />
+            </ThemeProvider>
+        );
 
-        fireEvent.change(input, { target: { value: '1234567' } });
+        const spaceInput = getByLabelText('space-input') as HTMLInputElement;
 
-        expect((input as HTMLInputElement).value).toBe('1 234 567');
+        fireEvent.change(spaceInput, { target: { value: '1234567' } });
+        expect(spaceInput.value).toBe('1 234 567');
     });
 });

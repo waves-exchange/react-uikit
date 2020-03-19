@@ -1,9 +1,3 @@
-// export const getFormattedValue = (value = ''): string =>
-//     value
-//         .toString()
-//         .replace(/^[+-]?\d+/, (int) =>
-//             int.replace(/(\d)(?=(\d{3})+$)/g, '$1,')
-//         );
 export const getFormattedValue = (value: string, separator: string): string => {
     if (isNaN(Number(value))) {
         return '';
@@ -17,7 +11,7 @@ export const getFormattedValue = (value: string, separator: string): string => {
     if (valueArr.length === 1) {
         return first;
     } else {
-        return [first, valueArr[1]].join('.');
+        return `${first}.${valueArr[1]}`;
     }
 };
 
@@ -33,14 +27,14 @@ export const parseFormattedValue = (
 export const handleDots = (value: string, decimals: number): string => {
     const splitted = value.split('.');
 
+    if (decimals === 0) {
+        return splitted[0];
+    }
+
     if (splitted.length > 1) {
         const afterDot = splitted[1] ? splitted[1].slice(0, decimals) : '';
 
-        if (decimals === 0) {
-            return splitted[0];
-        }
-
-        return [splitted[0], '.', afterDot].join('');
+        return `${splitted[0]}.${afterDot}`;
     } else {
         return value;
     }
