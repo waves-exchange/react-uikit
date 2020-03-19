@@ -69,10 +69,6 @@ export class FormattedInput extends React.Component<
         }
     }
 
-    shouldComponentUpdate(): boolean {
-        return true;
-    }
-
     private readonly handleKeyboard = (event: React.KeyboardEvent): void => {
         if (event.key === '.') {
             this.dotInput = true;
