@@ -18,6 +18,7 @@ export * from './components/IconButton/IconButton';
 export * from './components/Input/Input';
 export * from './components/InputElement/InputElement';
 export * from './components/InputPassword/InputPassword';
+export * from './components/FormattedInput/FormattedInput';
 export * from './components/Label/Label';
 export * from './components/Radio/Radio';
 export * from './components/RadioGroup/RadioGroup';
