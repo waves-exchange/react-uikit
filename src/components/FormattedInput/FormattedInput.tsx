@@ -54,8 +54,20 @@ export class FormattedInput extends React.Component<
         );
     }
 
-    componentDidUpdate(): void {
-        const { formatSeparator } = this.props;
+    componentDidUpdate(prevProps: FormattedInputProps): void {
+        const { formatSeparator, value } = this.props;
+
+        if (value !== prevProps.value) {
+            this.setState({
+                formattedValue: getFormattedValue(
+                    value ? value.toString() : '',
+                    formatSeparator
+                ),
+            });
+
+            return;
+        }
+
         const { formattedValue, oldLength, oldIdx } = this.state;
         let newIdx = Math.max(0, formattedValue.length - oldLength + oldIdx);
 
@@ -125,18 +137,18 @@ export class FormattedInput extends React.Component<
         newValue: string
     ): void {
         const newTarget = {
-            value: newValue,
             ...event.target,
+            value: newValue,
         };
         const newNativeTarget = {
-            value: newValue,
             ...event.nativeEvent,
+            value: newValue,
         };
 
         onChange({
+            ...event,
             target: newTarget,
             nativeEvent: newNativeTarget,
-            ...event,
         });
     }
 }
