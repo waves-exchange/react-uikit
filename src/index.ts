@@ -1,5 +1,9 @@
+export * from './components/AssetLogo/AssetLogo';
+export * from './components/AssetLogo/AssetLogoWithIcon';
 export * from './components/Avatar/Avatar';
-export * from './components/AddressAvatar/AddressAvatar';
+export * from './components/Avatar/AddressAvatar';
+export * from './components/Avatar/AddressLabel';
+export * from './components/BoxWithIcon/BoxWithIcon';
 export * from './components/Box/Box';
 export * from './components/Button/Button';
 export * from './components/Checkbox/Checkbox';
@@ -51,7 +55,23 @@ export * from './icons/transferCircle';
 export * from './icons/dataTransaction';
 export * from './icons/copy';
 export * from './icons/signMessage';
+export * from './icons/leaseTransaction';
+export * from './icons/cancelLeaseTransaction';
+export * from './icons/aliasTransaction';
+export * from './icons/reissueTransaction';
+export * from './icons/issueTransaction';
+export * from './icons/burnTransaction';
+export * from './icons/massTransfer';
+export * from './icons/setAssetScript';
+export * from './icons/sponsorshipEnableTransaction';
+export * from './icons/sponsorshipDisableTransaction';
 export * from './assets/icons/closeSelect';
 export * from './assets/icons/openSelect';
+export * from './icons/ledgerMini';
+export * from './icons/wavesKeeperMini';
+export * from './icons/smartMini';
+export * from './icons/sponsorshipMini';
 //types
 export * from './interface';
+//hooks
+export * from './hooks/useBoundedTooltip';

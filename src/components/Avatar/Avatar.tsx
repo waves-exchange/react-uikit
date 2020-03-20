@@ -1,36 +1,30 @@
-import React from 'react';
-import { config, create } from 'identity-img';
-import { styled } from '../../styled';
-import { always, omit } from 'ramda';
+import React, { FC } from 'react';
+import { Box, BoxProps } from '../Box/Box';
 import { variantSizes } from './styles';
-import { getSize } from './helpers';
 
-config({ rows: 8, cells: 8 });
+type Props = {
+    img: string;
+    variantSize?: keyof typeof variantSizes;
+};
 
-export const avatarTestId = 'avatar';
-
-export type TAvatarSizes = keyof typeof variantSizes;
-
-export interface AvatarProps {
-    variantSize?: TAvatarSizes;
-    address: string;
-}
-
-const AvatarFunction: React.FC<AvatarProps> = (props) => (
-    <img
-        src={create(props.address, {
-            size: getSize(props) * window.devicePixelRatio,
-        })}
-        {...omit(['address', 'variantSize'], props)}
-        data-testid={avatarTestId}
-    />
-);
-
-export const Avatar = styled(AvatarFunction, {
-    shouldForwardProp: always(true),
-})((props) => ({
-    overflow: 'hidden',
-    borderRadius: '100%',
-    width: `${getSize(props)}px`,
-    height: `${getSize(props)}px`,
-}));
+export const Avatar: FC<BoxProps & Props> = ({
+    img,
+    variantSize = 'medium',
+    ...rest
+}) => {
+    return (
+        <Box
+            size={variantSizes[variantSize]}
+            display="inline-block"
+            borderRadius="circle"
+            {...rest}
+        >
+            <img
+                src={img}
+                width="100%"
+                height="100%"
+                style={{ borderRadius: '9999px' }}
+            />
+        </Box>
+    );
+};
