@@ -1,0 +1,48 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { ThemeProvider } from 'emotion-theming';
+import { defaultTheme } from '../../themes/default';
+import { Box } from '../Box/Box';
+import { Flex } from '../Flex/Flex';
+import { Text } from '../Text/Text';
+import { FormattedInput } from './FormattedInput';
+
+const stories = storiesOf('FormattedInput', module);
+
+stories.add('simple', () => (
+    <ThemeProvider theme={defaultTheme}>
+        <Box
+            height="100vh"
+            p="$20"
+            backgroundColor="main.$800"
+            color="standard.$0"
+        >
+            <Box mb="$30">
+                <label>
+                    <Flex flexDirection="column" mb="$5">
+                        <Text>separator: "&nbsp;"</Text>
+                        <Text>decimals: 0</Text>
+                    </Flex>
+                    <FormattedInput
+                        formatSeparator=" "
+                        decimals={0}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ): void => {
+                            console.log(event);
+                        }}
+                    />
+                </label>
+            </Box>
+            <Box mb="$30">
+                <label>
+                    <Flex flexDirection="column" mb="$5">
+                        <Text>separator: ","</Text>
+                        <Text>decimals: 2</Text>
+                    </Flex>
+                    <FormattedInput formatSeparator="," decimals={2} />
+                </label>
+            </Box>
+        </Box>
+    </ThemeProvider>
+));
