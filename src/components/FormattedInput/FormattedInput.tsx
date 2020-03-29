@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Input, InputProps } from '../Input/Input';
 import { getFormattedValue, parseFormattedValue, handleDots } from './helpers';
 
@@ -17,7 +17,7 @@ interface FormattedInputState {
     formattedValue: string;
 }
 
-export class FormattedInput extends React.Component<
+export class FormattedInput extends Component<
     FormattedInputProps,
     FormattedInputState
 > {
@@ -55,12 +55,12 @@ export class FormattedInput extends React.Component<
     }
 
     componentDidUpdate(prevProps: FormattedInputProps): void {
-        const { formatSeparator, value } = this.props;
+        const { formatSeparator, value, decimals } = this.props;
 
         if (value !== prevProps.value) {
             this.setState({
                 formattedValue: getFormattedValue(
-                    value ? value.toString() : '',
+                    value ? handleDots(value.toString(), decimals) : '',
                     formatSeparator
                 ),
             });
