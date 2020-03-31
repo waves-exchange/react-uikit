@@ -8,6 +8,7 @@ type FormattedInputProps = InputProps & {
     onChange?: ChangeFunction;
     formatSeparator: string;
     decimals: number;
+    prefix?: string;
 };
 
 interface FormattedInputState {
@@ -26,7 +27,7 @@ export class FormattedInput extends Component<
 
     constructor(props: FormattedInputProps) {
         super(props);
-        const { value, formatSeparator } = props;
+        const { value, formatSeparator, prefix } = props;
 
         this.state = {
             oldIdx: 0,
@@ -34,7 +35,8 @@ export class FormattedInput extends Component<
             value,
             formattedValue: getFormattedValue(
                 value ? value.toString() : '',
-                formatSeparator
+                formatSeparator,
+                prefix
             ),
         };
     }
@@ -55,13 +57,14 @@ export class FormattedInput extends Component<
     }
 
     componentDidUpdate(prevProps: FormattedInputProps): void {
-        const { formatSeparator, value, decimals } = this.props;
+        const { formatSeparator, value, decimals, prefix } = this.props;
 
         if (value !== prevProps.value) {
             this.setState({
                 formattedValue: getFormattedValue(
                     value ? handleDots(value.toString(), decimals) : '',
-                    formatSeparator
+                    formatSeparator,
+                    prefix
                 ),
             });
 
@@ -92,7 +95,7 @@ export class FormattedInput extends Component<
     ): void => {
         event.preventDefault();
 
-        const { onChange, decimals, formatSeparator } = this.props;
+        const { onChange, decimals, formatSeparator, prefix } = this.props;
 
         this.saveInputCursor();
 
@@ -104,7 +107,11 @@ export class FormattedInput extends Component<
 
         const eventValue = event.target.value;
 
-        const parsedValue = parseFormattedValue(eventValue, formatSeparator);
+        const parsedValue = parseFormattedValue(
+            eventValue,
+            formatSeparator,
+            prefix
+        );
         let newValue = '';
 
         if (!isNaN(Number(parsedValue))) {
@@ -114,7 +121,11 @@ export class FormattedInput extends Component<
         }
 
         this.setState({
-            formattedValue: getFormattedValue(newValue, formatSeparator),
+            formattedValue: getFormattedValue(
+                newValue,
+                formatSeparator,
+                prefix
+            ),
         });
 
         if (onChange) {

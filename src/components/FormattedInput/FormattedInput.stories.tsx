@@ -43,6 +43,20 @@ stories.add('simple', () => (
                     <FormattedInput formatSeparator="," decimals={2} />
                 </label>
             </Box>
+            <Box mb="$30">
+                <label>
+                    <Flex flexDirection="column" mb="$5">
+                        <Text>separator: ","</Text>
+                        <Text>decimals: 2</Text>
+                        <Text>prefix: &asymp; </Text>
+                    </Flex>
+                    <FormattedInput
+                        formatSeparator=","
+                        decimals={2}
+                        prefix="&asymp; "
+                    />
+                </label>
+            </Box>
         </Box>
     </ThemeProvider>
 ));
