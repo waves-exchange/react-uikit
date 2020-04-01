@@ -44,7 +44,7 @@ export const inputVariants = {
     default: defaultStyles,
     defaultWE: {
         ...defaultStyles,
-        '&[aria-valid="true"]': {
+        '&[aria-checked="true"]': {
             borderColor: 'green.$500',
         },
     },
