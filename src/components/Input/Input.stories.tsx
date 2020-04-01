@@ -35,6 +35,13 @@ stories.add('simple', () => (
                     <Input aria-invalid={true} />
                 </label>
             </Box>
+
+            <Box mb="$20">
+                <label>
+                    Default Waves Exchange
+                    <Input variant="defaultWE" variantSize="mediumWE" />
+                </label>
+            </Box>
         </Box>
     </ThemeProvider>
 ));

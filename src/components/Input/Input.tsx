@@ -11,27 +11,41 @@ export const inputSizeVariants = {
         paddingLeft: '$20',
         paddingRight: '$20',
     },
+    mediumWE: {
+        fontSize: '$13',
+        height: 'medium',
+        paddingLeft: 16,
+        paddingRight: 16,
+    },
+};
+
+const defaultStyles = {
+    backgroundColor: 'basic.$900',
+    borderColor: 'main.$600',
+    borderRadius: '$4',
+    color: 'standard.$0',
+    ':hover:not(:disabled)': {
+        borderColor: 'main.$200',
+    },
+    ':focus:not(:disabled)': {
+        borderColor: 'primary.$300',
+    },
+    ':disabled': {
+        backgroundColor: 'main.$700',
+    },
+    '&[aria-invalid="true"]': {
+        '&, &:hover, &:focus': {
+            borderColor: 'danger.$300',
+        },
+    },
 };
 
 export const inputVariants = {
-    default: {
-        backgroundColor: 'basic.$900',
-        borderColor: 'main.$600',
-        borderRadius: '$4',
-        color: 'standard.$0',
-        ':hover:not(:disabled)': {
-            borderColor: 'main.$200',
-        },
-        ':focus:not(:disabled)': {
-            borderColor: 'primary.$300',
-        },
-        ':disabled': {
-            backgroundColor: 'main.$700',
-        },
-        '&[aria-invalid="true"]': {
-            '&, &:hover, &:focus': {
-                borderColor: 'danger.$300',
-            },
+    default: defaultStyles,
+    defaultWE: {
+        ...defaultStyles,
+        '&[aria-valid="true"]': {
+            borderColor: 'green.$500',
         },
     },
 };
