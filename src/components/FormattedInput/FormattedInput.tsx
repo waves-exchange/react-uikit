@@ -9,6 +9,7 @@ type FormattedInputProps = InputProps & {
     formatSeparator: string;
     decimals: number;
     prefix?: string;
+    lengthLimit?: number;
 };
 
 interface FormattedInputState {
@@ -95,7 +96,20 @@ export class FormattedInput extends Component<
     ): void => {
         event.preventDefault();
 
-        const { onChange, decimals, formatSeparator, prefix } = this.props;
+        const {
+            onChange,
+            decimals,
+            formatSeparator,
+            prefix,
+            lengthLimit,
+        } = this.props;
+
+        const valueLength = event.target.value.split(formatSeparator).join('')
+            .length;
+
+        if (lengthLimit && +valueLength > lengthLimit) {
+            return;
+        }
 
         this.saveInputCursor();
 
