@@ -57,6 +57,20 @@ stories.add('simple', () => (
                     />
                 </label>
             </Box>
+            <Box mb="$30">
+                <label>
+                    <Flex flexDirection="column" mb="$5">
+                        <Text>separator: ","</Text>
+                        <Text>decimals: 10</Text>
+                        <Text>lengthLimit: 10</Text>
+                    </Flex>
+                    <FormattedInput
+                        formatSeparator=","
+                        decimals={2}
+                        lengthLimit={10}
+                    />
+                </label>
+            </Box>
         </Box>
     </ThemeProvider>
 ));
