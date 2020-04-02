@@ -80,6 +80,9 @@ export class FormattedInput extends Component<
         }
 
         if (this.inputRef && this.inputRef.current) {
+            if (this.inputRef.current.selectionStart === newIdx) {
+                return;
+            }
             this.inputRef.current.selectionStart = newIdx;
             this.inputRef.current.selectionEnd = newIdx;
         }
