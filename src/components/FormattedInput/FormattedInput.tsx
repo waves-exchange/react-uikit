@@ -60,7 +60,7 @@ export class FormattedInput extends Component<
     componentDidUpdate(prevProps: FormattedInputProps): void {
         const { formatSeparator, value, decimals, prefix } = this.props;
 
-        if (value !== prevProps.value) {
+        if (value !== prevProps.value || prefix !== prevProps.prefix) {
             this.setState({
                 formattedValue: getFormattedValue(
                     value ? handleDots(value.toString(), decimals) : '',
