@@ -40,7 +40,7 @@ export const AssetLogoWithIcon: FC<AssetLogoWithIconProps> = ({
                 <Tooltip
                     arrowSize="4px"
                     hasArrow={true}
-                    arrowColor="#5A81EA" // TODO научить тултип понимать цвета из темы
+                    arrowColor="primary.$300"
                     offset={4}
                     maxWidth="360px"
                     label={(): ReactNode => (

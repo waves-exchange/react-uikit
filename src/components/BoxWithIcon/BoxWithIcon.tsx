@@ -69,7 +69,7 @@ const TooltipIcon: FC<TooltipIconProps> = ({
     <Tooltip
         arrowSize="4px"
         hasArrow={true}
-        arrowColor="#5A81EA" // TODO научить тултип понимать цвета из темы
+        arrowColor="primary.$300"
         offset={4}
         label={(): ReactNode => (
             <Flex
