@@ -14,6 +14,9 @@ import { Icon } from '../Icon/Icon';
 import { iconQuestion } from '../../icons/question';
 import { Flex } from '../Flex/Flex';
 
+const yOffset = 10;
+const xOffset = 16;
+
 class HelpComponent extends Component<TProps, IState> {
     public readonly state = { hovered: false };
     private readonly box: RefObject<HTMLDivElement> = createRef<
@@ -22,7 +25,7 @@ class HelpComponent extends Component<TProps, IState> {
     private readonly arrow: RefObject<HTMLDivElement> = createRef<
         HTMLDivElement
     >();
-    private readonly icon = createRef<SVGElement>();
+    private readonly icon = createRef<HTMLDivElement>();
     private timer: ReturnType<typeof setTimeout> | null = null;
 
     private static getSnapHorizontalX(
@@ -32,13 +35,13 @@ class HelpComponent extends Component<TProps, IState> {
     ): number {
         switch (mode) {
             case 'right':
-                return Math.round(icon.right - box.right) + 16;
+                return Math.round(icon.right - box.right) + xOffset;
             case 'center':
                 return Math.round(
                     icon.x + icon.width / 2 - (box.x + box.width / 2)
                 );
             case 'left':
-                return Math.round(icon.left - box.left) - 16;
+                return Math.round(icon.left - box.left) - xOffset;
             default:
                 throw new Error(`Align ${mode} is not supported!`);
         }
@@ -51,9 +54,11 @@ class HelpComponent extends Component<TProps, IState> {
     ): number {
         switch (mode) {
             case 'bottom':
-                return Math.round(icon.bottom - box.top) + 10;
+                return Math.round(icon.bottom - box.top) + yOffset;
             case 'top':
-                return -(Math.round(box.height) + 10);
+                return -(
+                    Math.round(box.height / 2 + icon.height / 2) + yOffset
+                );
             case 'left':
             case 'right':
                 return Math.round(
@@ -66,20 +71,20 @@ class HelpComponent extends Component<TProps, IState> {
 
     public render(): React.ReactElement {
         const hovered = this.state.hovered;
-        const theme = this.props.theme;
+        const { theme, direction } = this.props;
 
         const content = hovered ? (
             <>
                 <Box
                     position="absolute"
                     ref={this.arrow}
-                    border="solid 5px transparent"
-                    borderBottom={`solid 5px ${theme.colors.primary.$300}`}
+                    border="solid 6px transparent"
+                    borderBottom={`solid 6px ${theme.colors.primary.$300}`}
                 />
                 <Box
                     position="absolute"
                     background={theme.colors.main.$700}
-                    borderTop={`solid 4px ${theme.colors.primary.$300}`}
+                    sx={this.getBoxBorder(direction, theme)}
                     padding="12px 16px 16px 16px"
                     borderRadius={4}
                     overflow="hidden"
@@ -100,9 +105,12 @@ class HelpComponent extends Component<TProps, IState> {
                     borderRadius="circle"
                     justifyContent="center"
                     alignItems="center"
+                    ref={this.icon}
                     backgroundColor={
                         this.state.hovered ? 'primary.$300' : 'basic.$500'
                     }
+                    onMouseEnter={this.onMouseEnter}
+                    onMouseLeave={this.onMouseLeave}
                 >
                     <Icon
                         sx={{
@@ -112,11 +120,8 @@ class HelpComponent extends Component<TProps, IState> {
                         top="50%"
                         left="50%"
                         icon={iconQuestion}
-                        ref={this.icon}
                         size="7px"
                         color="standard.$1000"
-                        onMouseEnter={this.onMouseEnter}
-                        onMouseLeave={this.onMouseLeave}
                     />
                 </Flex>
                 {content}
@@ -162,9 +167,15 @@ class HelpComponent extends Component<TProps, IState> {
                 iconRect.width / 2 -
                 (arrowRect.left + arrowRect.width / 2)
         );
-        const arrowY = Math.round(iconRect.bottom - arrowRect.top);
 
-        this.arrow.current!.style.transform = `translate(${arrowX}px, ${arrowY}px)`;
+        const arrowY =
+            direction === 'bottom'
+                ? Math.round(iconRect.bottom - arrowRect.top)
+                : Math.round(iconRect.top - arrowRect.bottom);
+
+        const arrowScale = direction === 'bottom' ? '1' : '-1';
+
+        this.arrow.current!.style.transform = `translate(${arrowX}px, ${arrowY}px) scale(${arrowScale})`;
 
         const x = HelpComponent.getSnapHorizontalX(iconRect, boxRect, align);
         const y = HelpComponent.getSnapVerticalY(iconRect, boxRect, direction);
@@ -178,6 +189,15 @@ class HelpComponent extends Component<TProps, IState> {
             this.timer = null;
         }
     }
+
+    private readonly getBoxBorder = (
+        direction: TDirection = 'bottom',
+        theme: TDefaultTheme
+    ) => ({
+        [direction === 'bottom'
+            ? 'borderTop'
+            : 'borderBottom']: `solid 4px ${theme.colors.primary.$300}`,
+    });
 }
 
 export const Help = styled(
