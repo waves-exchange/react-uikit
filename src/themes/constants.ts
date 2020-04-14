@@ -42,6 +42,7 @@ export const colors = {
         $500: '#009952',
     },
     success: {
+        $300: '#39A12C',
         $500: '#008B55',
     },
     mix: {
