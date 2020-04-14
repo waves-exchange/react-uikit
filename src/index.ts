@@ -43,6 +43,7 @@ export * from './components/Slider/SliderTrack';
 export * from './components/Slider/SliderThumb';
 export * from './components/Slider/SliderLegendLabel';
 export * from './themes/default';
+export * from './components/PlateNote/PlateNote';
 // assets
 export * from './icons/check';
 export * from './icons/close';
