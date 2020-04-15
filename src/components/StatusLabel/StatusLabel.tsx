@@ -80,7 +80,7 @@ export const StatusLabel: React.FC<TStatusLabel> = ({
                     fontSize={statusLabelSize[size].fontSize}
                     lineHeight={statusLabelSize[size].lineHeight}
                     color={statusLabelVariants[variant].color}
-                    sx={{ 'text-transform': 'uppercase' }}
+                    sx={{ textTransform: 'uppercase' }}
                 >
                     {text}
                 </Text>
