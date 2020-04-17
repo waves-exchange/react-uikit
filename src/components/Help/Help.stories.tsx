@@ -9,7 +9,7 @@ import { Help } from './Help';
 
 const stories = storiesOf('Help', module);
 const box = (
-    <Box width="200px" color={defaultTheme.colors.standard[0]}>
+    <Box width="200px" color="standard.$0">
         <Text>Enter this address into your Bitcoin client or wallet</Text>
         <Text>
             Once the transaction is confirmed, the gateway will process the
@@ -22,7 +22,7 @@ const box = (
     </Box>
 );
 
-stories.add('Bottom left', () => (
+stories.add('Bottom Left', () => (
     <ThemeProvider theme={defaultTheme}>
         <Flex
             position="fixed"
@@ -31,12 +31,18 @@ stories.add('Bottom left', () => (
             justifyContent="center"
             alignItems="center"
             flexDirection="row"
-            p="16"
+            p="16px"
+            backgroundColor="main.$800"
         >
-            <Text mr="10px" fontSize="15px" fontFamily="Roboto">
+            <Text
+                mr="10px"
+                fontSize="15px"
+                fontFamily="Roboto"
+                color="basic.$500"
+            >
                 Set a single password for all your Waves.Exchange accounts.
             </Text>
-            <Help pl="10px" direction="bottom" align="right">
+            <Help pl="10px" direction="bottom" align="left">
                 {box}
             </Help>
         </Flex>
@@ -52,7 +58,8 @@ stories.add('Bottom Center', () => (
             justifyContent="center"
             alignItems="center"
             flexDirection="row"
-            p="16"
+            p="16px"
+            backgroundColor="main.$800"
         >
             <Help direction="bottom" align="center">
                 {box}
@@ -70,7 +77,8 @@ stories.add('Bottom Right', () => (
             justifyContent="center"
             alignItems="center"
             flexDirection="row"
-            p="16"
+            p="16px"
+            backgroundColor="main.$800"
         >
             <Help direction="bottom" align="right">
                 {box}
@@ -88,7 +96,8 @@ stories.add('Top Left', () => (
             justifyContent="center"
             alignItems="center"
             flexDirection="row"
-            p="16"
+            p="16px"
+            backgroundColor="main.$800"
         >
             <Help direction="top" align="right">
                 {box}

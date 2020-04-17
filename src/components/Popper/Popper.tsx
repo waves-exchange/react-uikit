@@ -16,7 +16,7 @@ import { mergeOptions } from './helpers';
 
 export type PopperModifierOptions = {
     arrowPadding?: number; // prevents arrow from shifting to very edge of popper(needed when popper has border radius)
-    offset?: number[]; // displace a popper from its anchor element
+    offset?: number | number[]; // displace a popper from its anchor element
 };
 
 type Popper = BoxProps & {
