@@ -30,15 +30,17 @@ export const Help: FC<HelpProps> = ({
     }, [direction, align]);
 
     const offset = useMemo(() => {
+        const offsetY = direction === 'top' ? 12 : 8;
+
         switch (align) {
             case 'left':
-                return [-16, 8];
+                return [-16, offsetY];
             case 'right':
-                return [16, 8];
+                return [16, offsetY];
             default:
-                return [0, 8];
+                return [0, offsetY];
         }
-    }, [align]);
+    }, [align, direction]);
 
     const tooltipContentFactory = useCallback(
         () => (
@@ -55,6 +57,12 @@ export const Help: FC<HelpProps> = ({
                     },
                     '[data-popper-placement^="bottom"] &': {
                         borderTopStyle: 'solid',
+                    },
+                    '[data-popper-placement^="left"] &': {
+                        borderRightStyle: 'solid',
+                    },
+                    '[data-popper-placement^="right"] &': {
+                        borderLeftStyle: 'solid',
                     },
                 }}
             >

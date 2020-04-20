@@ -43,7 +43,7 @@ export const getPopperArrowStyle: GetPopperArrowStyle = ({
 
         "&[data-popper-placement^='left'] [data-popper-arrow]": {
             right: `calc(${arrowSize} * -2)`,
-            borderClolor: 'ftransparent transparent transparent currentColor',
+            borderColor: 'transparent transparent transparent currentColor',
         },
 
         "&[data-popper-placement^='right']": {

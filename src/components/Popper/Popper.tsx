@@ -4,6 +4,7 @@ import React, {
     useCallback,
     forwardRef,
     useLayoutEffect,
+    useMemo,
 } from 'react';
 import {
     createPopper,
@@ -27,37 +28,42 @@ type Popper = BoxProps & {
     modifierOptions?: PopperModifierOptions;
 };
 
+const defaultOptions: Partial<Options> = {
+    placement: 'left',
+    strategy: 'absolute',
+};
+const defaultModifierOptions: PopperModifierOptions = {
+    arrowPadding: 5,
+    offset: [0, 8],
+};
+
 export const Popper: FC<Popper> = ({
     arrowEl,
     anchorEl,
     children,
     isOpen,
     options = {},
-    modifierOptions = { arrowPadding: 5, offset: [0, 8] },
+    modifierOptions = {},
     ...rest
 }) => {
     const popperElemRef = useRef<HTMLElement>();
     const popperInstanceRef = useRef<Instance>();
 
-    const defaultOptions: Partial<Options> = {
-        placement: 'left',
-        strategy: 'absolute',
-    };
-    const defaultModifierOptions: PopperModifierOptions = {
-        arrowPadding: 5,
-        offset: [0, 8],
-    };
-    const mergedOptions = mergeOptions(
-        {
-            ...defaultOptions,
-            ...options,
-        },
-        { ...defaultModifierOptions, ...modifierOptions },
-        arrowEl
+    const mergedOptions = useMemo(
+        () =>
+            mergeOptions(
+                {
+                    ...defaultOptions,
+                    ...options,
+                },
+                { ...defaultModifierOptions, ...modifierOptions },
+                arrowEl
+            ),
+        [options, modifierOptions, arrowEl]
     );
 
     const handlePopperRender = useCallback(() => {
-        if (!anchorEl || !popperElemRef.current) {
+        if (!anchorEl || !popperElemRef.current || !arrowEl) {
             return;
         }
 
@@ -66,7 +72,7 @@ export const Popper: FC<Popper> = ({
             popperElemRef.current,
             mergedOptions
         );
-    }, [anchorEl, mergedOptions]);
+    }, [anchorEl, arrowEl, mergedOptions]);
 
     const handleMountRef = useCallback(
         (node) => {
