@@ -7,7 +7,8 @@ const commonStyles = {
     color: 'basic.$300',
     pr: 10,
     pl: 16,
-    transition: 'max-height .3s,padding-top .3s,padding-bottom .3s',
+    transition:
+        'max-height .3s, padding-top .3s, padding-bottom .3s, margin-top .3s',
     overflow: 'hidden',
 };
 
@@ -18,6 +19,7 @@ export const AccordionPanel: React.FC<BoxProps> = ({ children, ...rest }) => {
               ...commonStyles,
               maxHeight: 500,
               py: 12,
+              mt: 10,
           }
         : {
               ...commonStyles,

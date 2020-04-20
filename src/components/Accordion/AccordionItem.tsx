@@ -47,7 +47,9 @@ export const AccordionItem: React.FC<IAccordionItem> = ({
 
     return (
         <AccordionItemProvider context={context}>
-            <Box {...rest}>{children}</Box>
+            <Box mb={10} {...rest}>
+                {children}
+            </Box>
         </AccordionItemProvider>
     );
 };

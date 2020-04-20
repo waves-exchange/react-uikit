@@ -69,11 +69,13 @@ stories.add('allowMultiple', () => (
             color="standard.$0"
         >
             <Box width={600}>
-                <Accordion allowMultiple>
-                    {items.map((item, i) => (
-                        <AccordionItem key={i}>
+                <Accordion allowMultiple defaultIndex={[0, 1]}>
+                    {[...items, ...items].map((item, i) => (
+                        <AccordionItem key={i} isDisabled={i === 1}>
                             <AccordionHeader>
-                                <Text>{item.header}</Text>
+                                <Text>
+                                    {i === 1 ? ' I am disabled.' : item.header}
+                                </Text>
                             </AccordionHeader>
                             <AccordionPanel>
                                 <Text>{item.panel}</Text>
@@ -206,8 +208,7 @@ stories.add('disabled', () => (
                                 }}
                             >
                                 <Text>
-                                    {item.header}
-                                    {i === 1 ? ' I am disabled.' : ''}
+                                    {i === 1 ? ' I am disabled.' : item.header}
                                 </Text>
                             </AccordionHeader>
                             <AccordionPanel>
@@ -246,8 +247,7 @@ stories.add('custom styles', () => (
                                 }}
                             >
                                 <Text>
-                                    {item.header}
-                                    {i === 1 ? ' I am disabled.' : ''}
+                                    {i === 1 ? ' I am disabled.' : item.header}
                                 </Text>
                             </AccordionHeader>
                             <AccordionPanel backgroundColor="primary.$700">

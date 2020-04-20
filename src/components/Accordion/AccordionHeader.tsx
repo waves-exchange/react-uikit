@@ -34,7 +34,6 @@ export const AccordionHeader: React.FC<TAccordionHeader> = ({
             alignItems="center"
             px={16}
             py={14}
-            mb={10}
             backgroundColor={isExpanded ? 'main.$500' : 'main.$600'}
             borderRadius="$4"
             boxShadow="0 2px 7px 0 rgba(0, 0, 0, .15)"
