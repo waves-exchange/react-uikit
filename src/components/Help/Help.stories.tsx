@@ -42,7 +42,7 @@ stories.add('Bottom Left', () => (
             >
                 Set a single password for all your Waves.Exchange accounts.
             </Text>
-            <Help pl="10px" direction="bottom" align="left">
+            <Help direction="bottom" align="left">
                 {box}
             </Help>
         </Flex>

@@ -1,17 +1,15 @@
 import { Placement } from '@popperjs/core';
 import React, { FC, useCallback, useMemo } from 'react';
-import { MarginProps, PaddingProps } from 'styled-system';
 import { iconQuestion } from '../../icons/question';
 import { Box } from '../Box/Box';
 import { Flex } from '../Flex/Flex';
 import { Icon } from '../Icon/Icon';
 import { Tooltip } from '../Tooltip/Tooltip';
 
-type HelpProps = MarginProps &
-    PaddingProps & {
-        direction?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
-        align?: 'left' | 'center' | 'right' | 'auto';
-    };
+type HelpProps = {
+    direction?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+    align?: 'left' | 'center' | 'right' | 'auto';
+};
 
 export const Help: FC<HelpProps> = ({
     align,
