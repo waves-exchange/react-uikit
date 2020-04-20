@@ -39,10 +39,12 @@ export type TooltipProps = BoxProps & {
     isOpen?: boolean; // prop for controlled tooltip
     isDefaultOpen?: boolean; // is tooltip open by default. has less priority than isOpen prop
     showDelay?: number;
-    offset?: number;
+    offset?: number | number[];
+    arrowPadding?: number;
     placement?: Placement;
     postPositionCb?: (arrowRef: HTMLDivElement | null) => void;
     popperOptions?: Partial<Options>;
+    interactive?: boolean;
 };
 
 export const Tooltip: FC<TooltipProps> = ({
@@ -55,10 +57,12 @@ export const Tooltip: FC<TooltipProps> = ({
     label,
     maxWidth = '320px',
     showDelay,
-    offset = 8,
+    offset,
+    arrowPadding,
     placement = 'bottom',
     postPositionCb,
     popperOptions,
+    interactive,
     ...rest
 }) => {
     const [isOpen, setIsOpen] = useState(isOpenProp || isDefaultOpen);
@@ -150,7 +154,8 @@ export const Tooltip: FC<TooltipProps> = ({
                 isOpen={isOpen}
                 options={{ placement, ...popperOptions }}
                 modifierOptions={{
-                    offset: [0, offset],
+                    offset,
+                    arrowPadding,
                 }}
                 sx={getPopperArrowStyle({
                     arrowSize,
@@ -161,7 +166,12 @@ export const Tooltip: FC<TooltipProps> = ({
                 zIndex={1}
                 {...rest}
             >
-                {typeof label === 'function' ? label() : label}
+                <div
+                    onMouseEnter={interactive ? handleMouseEnter : undefined}
+                    onMouseLeave={interactive ? handleMouseLeave : undefined}
+                >
+                    {typeof label === 'function' ? label() : label}
+                </div>
                 {hasArrow && (
                     <PopperArrow ref={setArrowRef as Ref<HTMLDivElement>} />
                 )}
