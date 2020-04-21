@@ -31,19 +31,11 @@ export const AccordionItem: React.FC<IAccordionItem> = ({
         }
     }, [isExpanded, onChange]);
 
-    const [context, setContext] = useState<IAccordionItemContext>({
+    const context: IAccordionItemContext = {
         isExpanded,
         isDisabled,
         onToggle,
-    });
-
-    useEffect(() => {
-        setContext({
-            isExpanded,
-            isDisabled,
-            onToggle,
-        });
-    }, [isExpanded, isDisabled, onToggle]);
+    };
 
     return (
         <AccordionItemProvider context={context}>

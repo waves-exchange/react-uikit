@@ -68,13 +68,14 @@ export const Accordion: React.FC<TAccordion> = ({
                             onChange(newIndexes);
                         }
                     } else {
+                        let newIndex = -1;
+
                         if (isExpanded) {
-                            setExpandedIndex(index);
-                        } else {
-                            setExpandedIndex(-1);
+                            newIndex = index;
                         }
+                        setExpandedIndex(newIndex);
                         if (typeof onChange === 'function') {
-                            onChange(index);
+                            onChange(newIndex);
                         }
                     }
                 },

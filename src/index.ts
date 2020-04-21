@@ -42,8 +42,12 @@ export * from './components/Slider/SliderFilledTrack';
 export * from './components/Slider/SliderTrack';
 export * from './components/Slider/SliderThumb';
 export * from './components/Slider/SliderLegendLabel';
-export * from './themes/default';
 export * from './components/PlateNote/PlateNote';
+export * from './components/Accordion/Accordion';
+export * from './components/Accordion/AccordionItem';
+export * from './components/Accordion/AccordionHeader';
+export * from './components/Accordion/AccordionPanel';
+export * from './themes/default';
 // assets
 export * from './icons/check';
 export * from './icons/close';
