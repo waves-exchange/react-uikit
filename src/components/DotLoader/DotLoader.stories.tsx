@@ -2,15 +2,20 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ThemeProvider } from 'emotion-theming';
 import { defaultTheme } from '../../themes/default';
-import { Box } from '../Box/Box';
+import { Flex } from '../Flex/Flex';
 import { DotLoader } from './DotLoader';
 
 const stories = storiesOf('DotLoader', module);
 
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Box p={30} position="relative" backgroundColor="main.$800">
+        <Flex
+            p={30}
+            backgroundColor="main.$800"
+            justifyContent="center"
+            alignItems="center"
+        >
             <DotLoader />
-        </Box>
+        </Flex>
     </ThemeProvider>
 ));

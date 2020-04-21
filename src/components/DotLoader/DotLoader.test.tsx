@@ -11,8 +11,6 @@ describe('DotLoader', () => {
 
         const dotWrap = container.firstChild;
 
-        expect(dotWrap).toHaveStyleRule('position', 'absolute');
         expect(dotWrap).toHaveStyleRule('width', '52px');
-        expect(dotWrap).toHaveStyleRule('height', '13px');
     });
 });

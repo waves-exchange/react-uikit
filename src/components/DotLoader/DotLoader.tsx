@@ -1,67 +1,44 @@
 import * as React from 'react';
-import { Box, BoxProps } from '../Box/Box';
-import { loaderAnimation } from './keyframes';
+import { keyframes } from '@emotion/core';
+import { Box } from '../Box/Box';
+import { Flex } from '../Flex/Flex';
 
-export type TDotLoader = BoxProps & {};
+const loaderAnimation = keyframes({
+    '0%, 80%, 100%': {
+        boxShadow: '0 15px 0 0 #5a81ea, 0 17px 0 0 transparent',
+    },
+    '40%': {
+        boxShadow: '0 15px 0 -15px #5a81ea',
+    },
+});
 
-const loaderDotSize = 13;
-
-const dotStyle = {
-    top: -15,
-    width: loaderDotSize,
-    height: loaderDotSize,
-    borderRadius: 'circle',
-    display: 'inline-block',
+type DotProps = {
+    size: number;
+    animationDelay?: string;
 };
 
-export const DotLoader: React.FC<TDotLoader> = () => {
-    return (
-        <Box
-            position="absolute"
-            left="50%"
-            top="50%"
-            width={loaderDotSize * 4}
-            height={loaderDotSize}
-            sx={{ transform: 'translate(-25%, -50%)' }}
-        >
-            <Box
-                position="absolute"
-                left="0px"
-                {...dotStyle}
-                sx={{
-                    animation: `${loaderAnimation} 1.6s infinite ease-in-out`,
-                    animationFillMode: 'both',
-                    animationDelay: '.16s',
-                }}
-                css={{
-                    backgroundColor: 'hotpink',
-                    '&:hover': {
-                        color: 'lightgreen',
-                    },
-                }}
-            />
-            <Box
-                position="absolute"
-                left="0"
-                {...dotStyle}
-                sx={{
-                    animation: `${loaderAnimation} 1.6s infinite ease-in-out`,
-                    animationFillMode: 'both',
-                    animationDelay: '0',
-                    transform: 'translateX(-20px)',
-                }}
-            />
-            <Box
-                position="absolute"
-                left="0"
-                {...dotStyle}
-                sx={{
-                    animation: `${loaderAnimation} 1.6s infinite ease-in-out`,
-                    animationFillMode: 'both',
-                    animationDelay: '.32s',
-                    transform: 'translateX(20px)',
-                }}
-            />
-        </Box>
-    );
+const Dot: React.FC<DotProps> = ({ size, animationDelay }) => (
+    <Box
+        width={size}
+        height={size}
+        borderRadius="circle"
+        mt="-15px"
+        sx={{
+            animation: `${loaderAnimation} 1.6s infinite ease-in-out`,
+            animationFillMode: 'both',
+            animationDelay,
+        }}
+    />
+);
+
+type DotLoaderProps = {
+    dotSize?: number;
 };
+
+export const DotLoader: React.FC<DotLoaderProps> = ({ dotSize = 13 }) => (
+    <Flex width={dotSize * 4} height={dotSize} justifyContent="space-between">
+        <Dot size={dotSize} />
+        <Dot size={dotSize} animationDelay=".16s" />
+        <Dot size={dotSize} animationDelay=".32s" />
+    </Flex>
+);
