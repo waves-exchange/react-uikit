@@ -78,6 +78,7 @@ export * from './icons/ledgerMini';
 export * from './icons/wavesKeeperMini';
 export * from './icons/smartMini';
 export * from './icons/sponsorshipMini';
+export * from './icons/expandAccordion';
 //types
 export * from './interface';
 //hooks

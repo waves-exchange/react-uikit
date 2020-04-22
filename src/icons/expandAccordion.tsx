@@ -8,5 +8,5 @@ export const iconExpandAccordion = {
             fillRule="nonzero"
         ></path>
     ),
-    viewBox: '0 0 12 12',
+    viewBox: '0 0 10 10',
 };

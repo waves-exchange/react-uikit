@@ -40,16 +40,12 @@ export const AccordionPanel: React.FC<BoxProps> = ({ children, ...rest }) => {
                 overflowY="auto"
                 sx={{
                     '::-webkit-scrollbar': {
-                        width: 3,
+                        width: 4,
                     },
                     '::-webkit-scrollbar-thumb': {
-                        backgroundColor: 'main.$200',
+                        backgroundColor: 'main.$300',
                         borderRadius: 1.5,
                         width: 3,
-                    },
-                    '::-webkit-scrollbar-track-piece': {
-                        marginBottom: 3,
-                        marginTop: 3,
                     },
                 }}
             >

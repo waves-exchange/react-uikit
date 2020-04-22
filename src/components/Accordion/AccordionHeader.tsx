@@ -41,6 +41,7 @@ export const AccordionHeader: React.FC<TAccordionHeader> = ({
             cursor={isDisabled ? 'not-allowed' : 'pointer'}
             color="standard.$0"
             fontSize="$15"
+            lineHeight="24px"
             sx={
                 !isDisabled
                     ? {
@@ -65,6 +66,7 @@ export const AccordionHeader: React.FC<TAccordionHeader> = ({
                 sx={{
                     transform: isExpanded ? 'rotate(-180deg)' : 'rotate(0deg)',
                 }}
+                size={12}
             />
         </Flex>
     );
