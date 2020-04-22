@@ -66,6 +66,7 @@ export const AccordionHeader: React.FC<TAccordionHeader> = ({
                 sx={{
                     transform: isExpanded ? 'rotate(-180deg)' : 'rotate(0deg)',
                 }}
+                size={12}
             />
         </Flex>
     );
