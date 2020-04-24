@@ -9,6 +9,7 @@ export * from './components/Button/Button';
 export * from './components/Checkbox/Checkbox';
 export * from './components/ControlBox/ControlBox';
 export * from './components/DonutDiagram/DonutDiagram';
+export * from './components/DotLoader/DotLoader';
 export * from './components/ExternalLink/ExternalLink';
 export * from './components/Flex/Flex';
 export * from './components/Heading/Heading';
