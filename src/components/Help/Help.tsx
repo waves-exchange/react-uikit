@@ -9,11 +9,13 @@ import { Tooltip } from '../Tooltip/Tooltip';
 type HelpProps = {
     direction?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
     align?: 'left' | 'center' | 'right' | 'auto';
+    maxWidth?: string;
 };
 
 export const Help: FC<HelpProps> = ({
     align,
     direction = 'auto',
+    maxWidth = '320px',
     children,
 }) => {
     const placement = useMemo<Placement>(() => {
@@ -81,6 +83,7 @@ export const Help: FC<HelpProps> = ({
             offset={offset}
             showDelay={500}
             interactive={true}
+            maxWidth={maxWidth}
         >
             <Flex
                 size="14px"
