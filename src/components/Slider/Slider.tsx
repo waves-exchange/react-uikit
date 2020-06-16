@@ -178,6 +178,8 @@ export class Slider extends Component<SliderProps, SliderState> {
     };
 
     private readonly handleMouseMove = (event: MouseOrTouchEvent): void => {
+        event.preventDefault();
+        event.stopPropagation();
         this.updateValue(this.getNewValue(event));
     };
 
