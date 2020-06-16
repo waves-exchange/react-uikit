@@ -1,13 +1,10 @@
 import React, {
-    FC,
-    useCallback,
-    useRef,
-    useState,
-    useEffect,
     ReactNode,
     MutableRefObject,
     KeyboardEventHandler,
     FocusEventHandler,
+    Component,
+    createRef,
 } from 'react';
 import { Box, BoxProps } from '../Box/Box';
 import { getSliderStyle } from './styles';
@@ -39,37 +36,120 @@ type SliderProps = Omit<BoxProps, 'onChange'> & {
     onBlur?: FocusEventHandler<HTMLElement>;
 };
 
-export const Slider: FC<SliderProps> = ({
-    value,
-    onChange,
-    onKeyDown,
-    onFocus,
-    onBlur,
-    onMouseDown,
-    isDisabled,
-    max = 100,
-    min = 0,
-    step = 1,
-    labelInterval = 1,
-    children,
-    name,
-    id,
-    hasDefaultTooltip,
-    ...rest
-}) => {
-    const [actualValue, setActualValue] = useState(
-        clamp(min, max, value ? value : min)
-    );
+type SliderState = {
+    actualValue: number;
+    trackRef: MutableRefObject<HTMLDivElement>;
+    min: number;
+    max: number;
+    step: number;
+    labelInterval: number;
+};
 
-    useEffect(() => {
-        setActualValue(clamp(min, max, value ? value : min));
-    }, [value, min, max]);
+export class Slider extends Component<SliderProps, SliderState> {
+    constructor(props: SliderProps) {
+        super(props);
 
-    const trackRef = useRef<HTMLDivElement>() as MutableRefObject<
-        HTMLDivElement
-    >;
+        const {
+            value,
+            max = 100,
+            min = 0,
+            step = 1,
+            labelInterval = 1,
+        } = props;
 
-    const getNewValue: (event: MouseOrTouchEvent) => number = (event) => {
+        const trackRef = createRef<HTMLDivElement>() as MutableRefObject<
+            HTMLDivElement
+        >;
+
+        this.state = {
+            actualValue: clamp(min, max, value ? value : min),
+            trackRef,
+            min,
+            max,
+            step,
+            labelInterval,
+        };
+    }
+
+    render(): React.ReactNode {
+        const {
+            trackRef,
+            actualValue,
+            min,
+            step,
+            max,
+            labelInterval,
+        } = this.state;
+        const {
+            isDisabled,
+            onFocus,
+            hasDefaultTooltip,
+            id,
+            onChange,
+            children,
+            ...rest
+        } = this.props;
+        const trackPercent = valueToPercent(actualValue, min, max);
+        const { rootStyle } = getSliderStyle(trackPercent);
+
+        const context: SliderContextInterface = {
+            trackRef,
+            trackPercent,
+            isDisabled: !!isDisabled,
+            onThumbKeyDown: this.handleThumbKeyDown,
+            onFocus,
+            max,
+            min,
+            step,
+            labelInterval,
+            hasDefaultTooltip,
+            value: actualValue,
+        };
+
+        return (
+            <SliderProvider context={context}>
+                <Box
+                    onMouseDown={this.handleMouseDown}
+                    onTouchStart={this.handleMouseDown}
+                    onTouchEnd={this.handleMouseUp}
+                    onBlur={this.handleBlur}
+                    aria-disabled={isDisabled}
+                    {...rootStyle}
+                    {...rest}
+                >
+                    {children}
+                    <input
+                        type="hidden"
+                        value={actualValue}
+                        name={name}
+                        id={id}
+                    />
+                </Box>
+            </SliderProvider>
+        );
+    }
+
+    componentDidUpdate(prevProps: SliderProps): void {
+        const { min, max, value } = this.props;
+
+        if (
+            min !== prevProps.min ||
+            max !== prevProps.max ||
+            value !== prevProps.value
+        ) {
+            this.setState({
+                actualValue: clamp(min, max, value ? value : min) as number,
+            });
+        }
+    }
+
+    componentWillUnmount(): void {
+        this.handleMouseUp();
+    }
+
+    private readonly getNewValue = (event: MouseOrTouchEvent): number => {
+        const { actualValue, trackRef, min, max, step } = this.state;
+
         if (trackRef.current) {
             const { left, width } = trackRef.current.getBoundingClientRect();
             const { clientX } = 'touches' in event ? event.touches[0] : event;
@@ -87,47 +167,54 @@ export const Slider: FC<SliderProps> = ({
         return actualValue;
     };
 
-    const updateValue = useCallback(
-        (newValue: number) => {
-            setActualValue(newValue);
-            if (typeof onChange === 'function') {
-                onChange(newValue);
-            }
-        },
-        [onChange]
-    );
+    private readonly updateValue = (newValue: number): void => {
+        this.setState({
+            actualValue: newValue,
+        });
 
-    const handleMouseMove = (event: MouseOrTouchEvent): void => {
-        updateValue(getNewValue(event));
+        if (typeof this.props.onChange === 'function') {
+            this.props.onChange(newValue);
+        }
     };
 
-    const handleMouseUp = (): void => {
-        document.body.removeEventListener('mousemove', handleMouseMove);
-        document.body.removeEventListener('touchmove', handleMouseMove);
-        document.body.removeEventListener('mouseup', handleMouseUp);
-        document.body.removeEventListener('touchend', handleMouseUp);
+    private readonly handleMouseMove = (event: MouseOrTouchEvent): void => {
+        this.updateValue(this.getNewValue(event));
     };
 
-    const handleMouseDown = (event: MouseOrTouchEvent): void => {
+    private readonly handleMouseUp = (): void => {
+        document.body.removeEventListener('mousemove', this.handleMouseMove);
+        document.body.removeEventListener('touchmove', this.handleMouseMove);
+        document.body.removeEventListener('mouseup', this.handleMouseUp);
+        document.body.removeEventListener('touchend', this.handleMouseUp);
+    };
+
+    private readonly handleMouseDown = (event: MouseOrTouchEvent): void => {
+        const { isDisabled, onMouseDown } = this.props;
+        const { actualValue } = this.state;
+
         if (isDisabled) return;
         if (typeof onMouseDown === 'function') {
             onMouseDown(event);
         }
         event.preventDefault();
 
-        const newValue = getNewValue(event);
+        const newValue = this.getNewValue(event);
 
         if (newValue !== actualValue) {
-            updateValue(newValue);
+            this.updateValue(newValue);
         }
 
-        document.body.addEventListener('mousemove', handleMouseMove);
-        document.body.addEventListener('touchmove', handleMouseMove);
-        document.body.addEventListener('mouseup', handleMouseUp);
-        document.body.addEventListener('touchend', handleMouseUp);
+        document.body.addEventListener('mousemove', this.handleMouseMove);
+        document.body.addEventListener('touchmove', this.handleMouseMove);
+        document.body.addEventListener('mouseup', this.handleMouseUp);
+        document.body.addEventListener('touchend', this.handleMouseUp);
     };
 
-    const handleThumbKeyDown: KeyboardEventHandler<HTMLElement> = (event) => {
+    private readonly handleThumbKeyDown: KeyboardEventHandler<HTMLElement> = (
+        event
+    ) => {
+        const { actualValue, step, min, max } = this.state;
+        const { onKeyDown } = this.props;
         let isUpdateValue = false;
         let newValue;
 
@@ -147,7 +234,7 @@ export const Slider: FC<SliderProps> = ({
         if (isUpdateValue) {
             event.preventDefault();
             event.stopPropagation();
-            updateValue(getValidValue(newValue, min, max, step));
+            this.updateValue(getValidValue(newValue, min, max, step));
         }
 
         if (typeof onKeyDown === 'function') {
@@ -155,47 +242,12 @@ export const Slider: FC<SliderProps> = ({
         }
     };
 
-    const handleBlur: FocusEventHandler<HTMLElement> = (event) => {
-        handleMouseUp();
+    private readonly handleBlur: FocusEventHandler<HTMLElement> = (event) => {
+        this.handleMouseUp();
+        const { onBlur } = this.props;
+
         if (typeof onBlur === 'function') {
             onBlur(event);
         }
     };
-
-    const trackPercent = valueToPercent(actualValue, min, max);
-    const { rootStyle } = getSliderStyle(trackPercent);
-
-    const context: SliderContextInterface = {
-        trackRef,
-        trackPercent,
-        isDisabled: !!isDisabled,
-        onThumbKeyDown: handleThumbKeyDown,
-        onFocus,
-        max,
-        min,
-        step,
-        labelInterval,
-        hasDefaultTooltip,
-        value: actualValue,
-    };
-
-    return (
-        <SliderProvider context={context}>
-            <Box
-                onMouseDown={handleMouseDown}
-                onTouchStart={handleMouseDown}
-                onMouseLeave={handleMouseUp}
-                onTouchEnd={handleMouseUp}
-                onBlur={handleBlur}
-                aria-disabled={isDisabled}
-                {...rootStyle}
-                {...rest}
-            >
-                {children}
-                <input type="hidden" value={actualValue} name={name} id={id} />
-            </Box>
-        </SliderProvider>
-    );
-};
-
-Slider.displayName = 'Slider';
+}
