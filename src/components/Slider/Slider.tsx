@@ -46,6 +46,12 @@ type SliderState = {
 };
 
 export class Slider extends Component<SliderProps, SliderState> {
+
+    value: number;
+    inProgress = false;
+    rect: { left: number, width: number } = Object.create(null);
+    updateRef = true;
+
     constructor(props: SliderProps) {
         super(props);
 
@@ -61,8 +67,10 @@ export class Slider extends Component<SliderProps, SliderState> {
             HTMLDivElement
         >;
 
+        this.value = clamp(min, max, value ? value : min);
+
         this.state = {
-            actualValue: clamp(min, max, value ? value : min),
+            actualValue: this.value,
             trackRef,
             min,
             max,
@@ -90,8 +98,6 @@ export class Slider extends Component<SliderProps, SliderState> {
             ...rest
         } = this.props;
         const trackPercent = valueToPercent(actualValue, min, max);
-        const { rootStyle } = getSliderStyle(trackPercent);
-
         const context: SliderContextInterface = {
             trackRef,
             trackPercent,
@@ -105,6 +111,7 @@ export class Slider extends Component<SliderProps, SliderState> {
             hasDefaultTooltip,
             value: actualValue,
         };
+        const { rootStyle } = getSliderStyle();
 
         return (
             <SliderProvider context={context}>
@@ -137,21 +144,34 @@ export class Slider extends Component<SliderProps, SliderState> {
             max !== prevProps.max ||
             value !== prevProps.value
         ) {
-            this.setState({
-                actualValue: clamp(min, max, value ? value : min) as number,
-            });
+
+            const newValue = clamp(min, max, value ? value : min) as number;
+            if (newValue !== this.value) {
+                this.updateValue(newValue);
+            }
         }
     }
 
     componentWillUnmount(): void {
         this.handleMouseUp();
+        this.inProgress = false;
+    }
+
+    private getRect() {
+        if (this.state.trackRef && this.updateRef) {
+            this.rect = this.state.trackRef.current.getBoundingClientRect();
+            this.updateRef = false;
+            setTimeout(() => this.updateRef = true, 500);
+        }
     }
 
     private readonly getNewValue = (event: MouseOrTouchEvent): number => {
         const { actualValue, trackRef, min, max, step } = this.state;
 
         if (trackRef.current) {
-            const { left, width } = trackRef.current.getBoundingClientRect();
+            this.getRect();
+            const { left, width } = this.rect;
+
             const { clientX } = 'touches' in event ? event.touches[0] : event;
 
             return calcNewValue({
@@ -167,15 +187,29 @@ export class Slider extends Component<SliderProps, SliderState> {
         return actualValue;
     };
 
-    private readonly updateValue = (newValue: number): void => {
-        this.setState({
-            actualValue: newValue,
-        });
-
-        if (typeof this.props.onChange === 'function') {
-            this.props.onChange(newValue);
+    private updateValue(value: number): void {
+        if (this.inProgress || this.value === value) {
+            return;
         }
-    };
+
+        this.value = value;
+
+        setTimeout(() => {
+            if (!this.inProgress || this.state.actualValue === this.value) {
+                return;
+            }
+            this.inProgress = false;
+            this.setState({
+                actualValue: this.value,
+            });
+
+            if (typeof this.props.onChange === 'function') {
+                this.props.onChange(this.value);
+            }
+        }, 40);
+
+        this.inProgress = true;
+    }
 
     private readonly handleMouseMove = (event: MouseOrTouchEvent): void => {
         event.preventDefault();
@@ -191,6 +225,8 @@ export class Slider extends Component<SliderProps, SliderState> {
     };
 
     private readonly handleMouseDown = (event: MouseOrTouchEvent): void => {
+        this.handleMouseUp();
+
         const { isDisabled, onMouseDown } = this.props;
         const { actualValue } = this.state;
 
