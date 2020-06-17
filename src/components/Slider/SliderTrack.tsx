@@ -4,8 +4,8 @@ import { SliderContext } from './SliderContext';
 import { getSliderStyle } from './styles';
 
 export const SliderTrack: FC<BoxProps> = (props) => {
-    const { trackRef, trackPercent } = useContext(SliderContext);
-    const { trackStyle } = getSliderStyle(trackPercent);
+    const { trackRef } = useContext(SliderContext);
+    const { trackStyle } = getSliderStyle();
 
     return (
         <Box ref={trackRef} {...trackStyle} {...props}>

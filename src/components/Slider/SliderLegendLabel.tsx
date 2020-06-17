@@ -20,11 +20,9 @@ export const SliderLegendLabel: FC<SliderLegendLabelProps> = ({
     const gridValues = range(0, amount + 1).map((num: number) =>
         getValidValue(min + num * interval, min, max, step)
     );
-
     const {
         legendLabelStyle: { boxStyles, textStyles },
     } = getSliderStyle();
-
     return (
         <Box {...boxStyles} {...props}>
             {gridValues.map((value) => (
