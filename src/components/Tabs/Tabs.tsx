@@ -8,6 +8,7 @@ import React, {
     createContext,
     useCallback,
     useContext,
+    useEffect,
 } from 'react';
 import { Box, BoxProps } from '../Box/Box';
 import { Flex, TFlexProps } from '../Flex/Flex';
@@ -44,6 +45,12 @@ export const Tabs: TabsFC = (props) => {
         },
         [props, onChange]
     );
+
+    useEffect(() => {
+        if (typeof selectedIndex !== 'undefined' && selectedIndex !== index) {
+            onChangeTab(selectedIndex, props.value);
+        }
+    }, [index, onChangeTab, props.value, selectedIndex]);
 
     const context: TabContextType = {
         selectedIndex: index,
