@@ -46,10 +46,9 @@ type SliderState = {
 };
 
 export class Slider extends Component<SliderProps, SliderState> {
-
     value: number;
     inProgress = false;
-    rect: { left: number, width: number } = Object.create(null);
+    rect: { left: number; width: number } = Object.create(null);
     updateRef = true;
 
     constructor(props: SliderProps) {
@@ -144,8 +143,8 @@ export class Slider extends Component<SliderProps, SliderState> {
             max !== prevProps.max ||
             value !== prevProps.value
         ) {
-
             const newValue = clamp(min, max, value ? value : min) as number;
+
             if (newValue !== this.value) {
                 this.updateValue(newValue);
             }
@@ -161,7 +160,7 @@ export class Slider extends Component<SliderProps, SliderState> {
         if (this.state.trackRef && this.updateRef) {
             this.rect = this.state.trackRef.current.getBoundingClientRect();
             this.updateRef = false;
-            setTimeout(() => this.updateRef = true, 500);
+            setTimeout(() => (this.updateRef = true), 500);
         }
     }
 
