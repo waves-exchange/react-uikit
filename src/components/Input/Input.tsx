@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { variant } from 'styled-system';
 import { TDefaultTheme } from '../../interface';
 import { Box } from '../Box/Box';
+import { InterpolationWithTheme } from '@emotion/core';
 
 export const inputSizeVariants = {
     medium: {
@@ -57,6 +58,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     variantSize?: InputSize;
     variant?: InputVariant;
     paddingRight?: string;
+    sx?: InterpolationWithTheme<TDefaultTheme>;
 };
 
 export const Input = styled(Box)<InputProps, TDefaultTheme>(
