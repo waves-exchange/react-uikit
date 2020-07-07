@@ -1,4 +1,11 @@
-import React, { Children, cloneElement, isValidElement, useState } from 'react';
+import React, {
+    Children,
+    cloneElement,
+    isValidElement,
+    useEffect,
+    useState,
+    useCallback,
+} from 'react';
 import { Box, BoxProps } from '../Box/Box';
 
 type TExpendedIndex = Array<number> | number;
@@ -15,7 +22,7 @@ export const Accordion: React.FC<TAccordion> = ({
     children,
     ...rest
 }) => {
-    const initializeExpendedIndex = () => {
+    const initializeExpendedIndex = useCallback(() => {
         if (allowMultiple) {
             return Array.isArray(defaultIndex)
                 ? defaultIndex
@@ -29,11 +36,15 @@ export const Accordion: React.FC<TAccordion> = ({
                 ? defaultIndex
                 : -1;
         }
-    };
+    }, [allowMultiple, defaultIndex]);
 
     const [expandedIndex, setExpandedIndex] = useState<TExpendedIndex>(
         initializeExpendedIndex
     );
+
+    useEffect(() => {
+        setExpandedIndex(initializeExpendedIndex);
+    }, [defaultIndex, initializeExpendedIndex]);
 
     const clones = Children.map(children, (child, index) => {
         const checkIsChildExpanded = (): boolean => {
