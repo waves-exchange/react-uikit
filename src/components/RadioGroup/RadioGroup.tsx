@@ -5,6 +5,7 @@ import React, {
     isValidElement,
     useState,
     ChangeEventHandler,
+    useEffect,
 } from 'react';
 import { Flex, TFlexProps } from '../Flex/Flex';
 
@@ -33,6 +34,12 @@ export const RadioGroup: FC<RadioGroupProps> = ({
             onChange(e);
         }
     };
+
+    useEffect(() => {
+        if (typeof value !== 'undefined' && value !== _value) {
+            _setValue(value);
+        }
+    }, [value, _value]);
 
     return (
         <Flex
