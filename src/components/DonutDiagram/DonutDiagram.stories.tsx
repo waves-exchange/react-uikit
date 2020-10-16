@@ -18,39 +18,81 @@ stories.add('simple', () => {
         <ThemeProvider theme={defaultTheme}>
             <Box>
                 <DonutDiagram
-                    value={0.25}
+                    data={[
+                        {
+                            value: 0.25,
+                            color: 'primary.$300',
+                            id: 'id1',
+                        },
+                        {
+                            value: 0.4,
+                            color: 'primary.$900',
+                            id: 'id6',
+                        },
+                    ]}
                     baseColor="#80c726"
-                    valueColor="primary.$300"
                     border={12}
                     size={112}
                 />
                 <DonutDiagram
-                    value={value}
+                    data={[
+                        {
+                            value,
+                            color: 'primary.$300',
+                            id: 'id2',
+                        },
+                    ]}
                     easing={'ease-out'}
-                    animationTime={1000}
+                    animationTime={500}
                     baseColor="danger.$300"
-                    valueColor="primary.$300"
                     border={40}
                     size={112}
                 />
                 <DonutDiagram
-                    value={0.5}
-                    valueColor="success.$500"
+                    data={[
+                        {
+                            value: 0.5,
+                            color: 'success.$500',
+                            id: 'id3',
+                        },
+                    ]}
                     baseColor="transparent"
                     border={20}
                     size={150}
                 />
                 <DonutDiagram
-                    value={0.1}
+                    data={[
+                        {
+                            value: 0.1,
+                            color: 'primary.$300',
+                            id: 'id4',
+                        },
+                    ]}
                     baseColor="danger.$300"
-                    valueColor="primary.$300"
                     size={112}
                     border={2}
                 />
                 <DonutDiagram
-                    value={0.75}
+                    data={[
+                        {
+                            value: 0.75,
+                            color: 'primary.$300',
+                            id: 'id5',
+                        },
+                    ]}
                     baseColor="danger.$300"
-                    valueColor="primary.$300"
+                    size={300}
+                    border="none"
+                />
+                <DonutDiagram
+                    data={[
+                        { value: 0.25, color: 'primary.$300', id: 'value1' },
+                        { value: 0.29, color: 'danger.$300', id: 'value2' },
+                        { value: 0.2, color: 'green.$500', id: 'value3' },
+                        { value: 0.15, color: 'success.$300', id: 'value4' },
+                        { value: 0.1, color: 'warning.$500', id: 'value5' },
+                    ]}
+                    baseColor="main.$100"
                     size={300}
                     border="none"
                 />
