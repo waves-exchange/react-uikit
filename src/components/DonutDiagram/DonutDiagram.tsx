@@ -2,10 +2,15 @@ import React, { HTMLAttributes, SVGAttributes } from 'react';
 import { Box, BoxAsElement, BoxProps } from '../..';
 import styled from '@emotion/styled';
 
-interface IProps {
+interface IDiagramData {
+    id: string;
     value: number;
+    color: string;
+}
+
+interface IProps {
+    data: Array<IDiagramData>;
     baseColor: string;
-    valueColor: string;
     border: number | 'none';
     size: number;
     animationTime?: number;
@@ -29,9 +34,8 @@ const Svg = styled(Box as BoxAsElement<'svg', SVGBoxProps>)({
 });
 
 export const DonutDiagram: React.FC<BoxProps & IProps> = ({
-    value,
+    data,
     baseColor,
-    valueColor,
     border: borderProp,
     size,
     animationTime,
@@ -40,7 +44,15 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
     const border: number =
         borderProp === 'none' ? size / 2 : (borderProp as number);
     const circumference = Math.PI * (size - border);
-    const dashValue = circumference * value;
+    const sectorsData = data
+        .slice()
+        .sort(({ value: valueA }, { value: valueB }) => valueA - valueB)
+        .reduce((acc, { value: amount, color, id }) => {
+            const sum =
+                amount * circumference + (acc[acc.length - 1]?.value || 0);
+
+            return [...acc, { value: sum, color, id }];
+        }, [] as Array<IDiagramData>);
 
     return (
         <Box
@@ -67,19 +79,22 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
                         fill: 'none',
                     }}
                 />
-                <Svg
-                    as="circle"
-                    cx={size / 2}
-                    cy={size / 2}
-                    r={size / 2 - border / 2}
-                    sx={{
-                        stroke: valueColor,
-                        strokeWidth: border,
-                        strokeDasharray: `${dashValue}, ${circumference}`,
-                        fill: 'none',
-                        transition: `${animationTime! / 100}s ${easing}`,
-                    }}
-                />
+                {sectorsData.reverse().map(({ value, color, id }) => (
+                    <Svg
+                        key={id}
+                        as="circle"
+                        cx={size / 2}
+                        cy={size / 2}
+                        r={size / 2 - border / 2}
+                        sx={{
+                            stroke: color,
+                            strokeWidth: border,
+                            strokeDasharray: `${value}, ${circumference}`,
+                            fill: 'none',
+                            transition: `${animationTime! / 100}s ${easing}`,
+                        }}
+                    />
+                ))}
             </Svg>
         </Box>
     );
