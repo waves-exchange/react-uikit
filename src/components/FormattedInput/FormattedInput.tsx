@@ -107,6 +107,17 @@ export class FormattedInput extends Component<
             lengthLimit,
         } = this.props;
 
+        if (
+            event.target.value.trim() ===
+            parseFormattedValue(
+                this.state.formattedValue,
+                formatSeparator,
+                prefix
+            )
+        ) {
+            return;
+        }
+
         const valueLength = event.target.value.split(formatSeparator).join('')
             .length;
 

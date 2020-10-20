@@ -13,11 +13,11 @@ export const getFormattedValue = (
     );
 
     if (valueArr.length === 1) {
-        const value = first;
+        const value = first.trim();
 
         return value ? `${prefix || ''}${value}` : '';
     } else {
-        const value = `${first}.${valueArr[1]}`;
+        const value = `${first}.${valueArr[1]}`.trim();
 
         return value ? `${prefix || ''}${value}` : '';
     }
@@ -32,7 +32,10 @@ export const parseFormattedValue = (
     const findPrefix = new RegExp(prefix || '', 'g');
 
     return value
-        ? value.replace(findSeparators, '').replace(findPrefix, '')
+        ? value
+              .replace(findSeparators, '')
+              .replace(findPrefix, '')
+              .replace(' ', '')
         : '';
 };
 
