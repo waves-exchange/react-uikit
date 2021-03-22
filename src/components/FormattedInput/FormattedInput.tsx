@@ -25,6 +25,7 @@ export class FormattedInput extends Component<
 > {
     private readonly inputRef = React.createRef<HTMLInputElement>();
     private dotInput = false;
+    private isBackspace = false;
 
     constructor(props: FormattedInputProps) {
         super(props);
@@ -92,6 +93,10 @@ export class FormattedInput extends Component<
         if (event.key === '.') {
             this.dotInput = true;
         }
+
+        if (event.keyCode === 8) {
+            this.isBackspace = true;
+        }
     };
 
     private readonly handleChange = (
@@ -107,6 +112,10 @@ export class FormattedInput extends Component<
             lengthLimit,
         } = this.props;
 
+        const isBackspace = this.isBackspace;
+
+        this.isBackspace = false;
+
         if (
             event.target.value.trim() ===
             parseFormattedValue(
@@ -121,7 +130,7 @@ export class FormattedInput extends Component<
         const valueLength = event.target.value.split(formatSeparator).join('')
             .length;
 
-        if (lengthLimit && +valueLength > lengthLimit) {
+        if (lengthLimit && +valueLength > lengthLimit && !isBackspace) {
             return;
         }
 
