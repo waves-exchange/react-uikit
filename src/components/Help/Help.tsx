@@ -99,6 +99,7 @@ export const Help: FC<HelpProps> = ({
             <Flex
                 alignItems="center"
                 cursor="pointer"
+                display="inline-flex"
                 sx={{
                     ':hover > div:nth-of-type(1)': {
                         backgroundColor: hasContentBefore
