@@ -55,6 +55,7 @@ stories.add('simple', () => {
                     bg="none"
                     arrowColor="black"
                     hasArrow={true}
+                    // popperOptions={{ strategy="10px"}}
                 >
                     <Button {...commonAnchorProps}>custom tooltip</Button>
                 </Tooltip>

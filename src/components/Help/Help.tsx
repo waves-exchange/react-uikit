@@ -10,12 +10,18 @@ type HelpProps = {
     direction?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
     align?: 'left' | 'center' | 'right' | 'auto';
     maxWidth?: string;
+    color?: string;
+    contentBefore?: () => React.ReactElement | undefined;
+    contentAfter?: () => React.ReactElement | undefined;
 };
 
 export const Help: FC<HelpProps> = ({
     align,
     direction = 'auto',
     maxWidth = '320px',
+    color = 'primary.$300',
+    contentBefore,
+    contentAfter,
     children,
 }) => {
     const placement = useMemo<Placement>(() => {
@@ -49,7 +55,7 @@ export const Help: FC<HelpProps> = ({
                 color="basic.$300"
                 padding="12px 16px 16px 16px"
                 borderRadius="$4"
-                borderColor="primary.$300"
+                borderColor={color}
                 borderWidth="4px"
                 sx={{
                     '[data-popper-placement^="top"] &': {
@@ -69,7 +75,12 @@ export const Help: FC<HelpProps> = ({
                 {children}
             </Box>
         ),
-        [children]
+        [children, color]
+    );
+
+    const hasContentBefore = useMemo(
+        () => typeof contentBefore === 'function',
+        [contentBefore]
     );
 
     return (
@@ -78,7 +89,7 @@ export const Help: FC<HelpProps> = ({
             placement={placement}
             hasArrow={true}
             arrowSize="4px"
-            arrowColor="primary.$300"
+            arrowColor={color}
             arrowPadding={align === 'center' ? 0 : 16}
             offset={offset}
             showDelay={500}
@@ -86,19 +97,40 @@ export const Help: FC<HelpProps> = ({
             maxWidth={maxWidth}
         >
             <Flex
-                size="14px"
-                borderRadius="circle"
-                justifyContent="center"
                 alignItems="center"
-                backgroundColor="basic.$700"
                 cursor="pointer"
                 sx={{
-                    ':hover': {
-                        backgroundColor: 'primary.$300',
+                    ':hover > div:nth-of-type(1)': {
+                        backgroundColor: hasContentBefore
+                            ? 'transparent'
+                            : color,
+                    },
+                    ':hover > div:nth-of-type(2)': {
+                        backgroundColor: hasContentBefore
+                            ? color
+                            : 'basic.$700',
                     },
                 }}
             >
-                <Icon icon={iconQuestion} size="8px" color="standard.$1000" />
+                {typeof contentBefore === 'function' && (
+                    <Box>{contentBefore()}</Box>
+                )}
+                <Flex
+                    size="14px"
+                    borderRadius="circle"
+                    justifyContent="center"
+                    alignItems="center"
+                    backgroundColor="basic.$700"
+                >
+                    <Icon
+                        icon={iconQuestion}
+                        size="8px"
+                        color="standard.$1000"
+                    />
+                </Flex>
+                {typeof contentAfter === 'function' && (
+                    <Box>{contentAfter()}</Box>
+                )}
             </Flex>
         </Tooltip>
     );
