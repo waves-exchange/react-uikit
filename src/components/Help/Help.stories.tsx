@@ -105,3 +105,54 @@ stories.add('Top Left', () => (
         </Flex>
     </ThemeProvider>
 ));
+
+stories.add('Top Left width before content and after content', () => (
+    <ThemeProvider theme={defaultTheme}>
+        <Flex
+            position="fixed"
+            width="100%"
+            height="100%"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="row"
+            p="16px"
+            backgroundColor="main.$800"
+        >
+            <Help
+                direction="top"
+                align="left"
+                contentBefore={() => (
+                    <Box color="standard.$0" mr="4px">
+                        Before content
+                    </Box>
+                )}
+                contentAfter={() => (
+                    <Box color="standard.$0" ml="4px">
+                        After content After content
+                    </Box>
+                )}
+            >
+                {box}
+            </Help>
+        </Flex>
+    </ThemeProvider>
+));
+
+stories.add('Top Left CustomColor', () => (
+    <ThemeProvider theme={defaultTheme}>
+        <Flex
+            position="fixed"
+            width="100%"
+            height="100%"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="row"
+            p="16px"
+            backgroundColor="main.$800"
+        >
+            <Help direction="top" align="right" color="#e9ac00">
+                {box}
+            </Help>
+        </Flex>
+    </ThemeProvider>
+));
