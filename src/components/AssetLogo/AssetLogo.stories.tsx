@@ -36,5 +36,10 @@ stories.add('simple', () => (
             size="30px"
         />
         <AssetLogo assetId={null} name="Waves" variant="large" />
+        <AssetLogo
+            assetId="ETk6gjBhbEN3AxrzFVMK6tpYXRHeQz5rcJ877y9Jy81y"
+            name='"'
+            size="30px"
+        />
     </ThemeProvider>
 ));
