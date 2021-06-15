@@ -17,7 +17,12 @@ import { variant } from 'styled-system';
 import { styled } from '../../styled';
 import { Icon } from '../Icon/Icon';
 import { Box } from '../Box/Box';
-import { getAssetLogoBgColor, getHeight, wrapWith } from './helpers';
+import {
+    getAssetLogoBgColor,
+    getHeight,
+    wrapWith,
+    getPrettyName,
+} from './helpers';
 import { variants } from './styles';
 import { iconWavesLogo } from '../../icons/waves-logo';
 
@@ -64,6 +69,7 @@ export const AssetLogo = styled(
                 ':before': applySpec({
                     content: pipe(
                         prop('name'),
+                        getPrettyName,
                         head,
                         toUpper,
                         wrapWith('"', '"')
