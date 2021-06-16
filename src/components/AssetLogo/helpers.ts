@@ -17,7 +17,6 @@ import {
     reduce,
     split,
     toPairs,
-    prop,
 } from 'ramda';
 
 const sizeProperties = ['size', 'height', 'width'];
@@ -100,6 +99,10 @@ export const getHeight = pipe(
 );
 
 export const escapeHtml = (str: string): string => {
+    if (!str) {
+        return '';
+    }
+
     return str
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -108,6 +111,4 @@ export const escapeHtml = (str: string): string => {
         .replace(/'/g, '&#039;');
 };
 
-export const getPrettyName = pipe(
-    ifElse(pipe(prop('name'), isNil), escapeHtml, always(''))
-);
+export const getPrettyName = pipe(ifElse(isNil, always(''), escapeHtml));
