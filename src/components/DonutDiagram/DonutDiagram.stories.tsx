@@ -96,6 +96,47 @@ stories.add('simple', () => {
                     size={300}
                     border="none"
                 />
+                <DonutDiagram
+                    data={[
+                        {
+                            value: 0.25,
+                            color: 'primary.$300',
+                            id: 'id1',
+                        },
+                        {
+                            value: 0.4,
+                            color: 'primary.$900',
+                            id: 'id6',
+                        },
+                    ]}
+                    baseColor="#80c726"
+                    border={12}
+                    size={112}
+                    gaps={{ color: '#fff', value: 0.05 }}
+                />
+                <DonutDiagram
+                    data={[
+                        {
+                            value: 0.25,
+                            color: 'primary.$300',
+                            id: 'id1',
+                        },
+                        {
+                            value: 0.4,
+                            color: 'primary.$900',
+                            id: 'id6',
+                        },
+                        {
+                            value: 0.35,
+                            color: 'main.$300',
+                            id: 'id6.1',
+                        },
+                    ]}
+                    baseColor="#80c726"
+                    border={12}
+                    size={112}
+                    gaps={{ color: '#fff' }}
+                />
             </Box>
         </ThemeProvider>
     );
