@@ -49,6 +49,7 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
     animationTime,
     easing,
     gaps,
+    ...rest
 }) => {
     const border: number =
         borderProp === 'none' ? size / 2 : (borderProp as number);
@@ -78,6 +79,7 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
                 return [...acc, { value: sum, color, id }];
             } else {
                 const { color: gapColor, value = DEFAULT_GAP } = gaps;
+
                 const sum =
                     (amount - value) * circumference +
                     (acc[acc.length - 1]?.value || 0);
@@ -101,6 +103,7 @@ export const DonutDiagram: React.FC<BoxProps & IProps> = ({
                 transform: 'rotate(-90deg)',
                 willChange: 'transform',
             }}
+            {...rest}
         >
             <Svg
                 as="svg"
