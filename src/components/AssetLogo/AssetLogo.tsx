@@ -12,6 +12,8 @@ import {
     prop,
     omit,
     toUpper,
+    map,
+    is,
 } from 'ramda';
 import { variant } from 'styled-system';
 import { styled } from '../../styled';
@@ -41,6 +43,15 @@ export type AssetLogoProps = {
 };
 const NAMES = ['name', 'logo', 'assetId'];
 
+const getFontHeight = pipe(
+    multiply(0.43),
+    Math.round,
+    String,
+    flip(concat)('px')
+);
+
+const getLineHeight = pipe(String, flip(concat)('px'));
+
 export const AssetLogo = styled(
     ifElse(
         pipe(prop('assetId'), isNil),
@@ -48,17 +59,26 @@ export const AssetLogo = styled(
         (props) => <Box {...omit(NAMES, props)}></Box>
     )
 )<AssetLogoProps>(
-    css({
-        borderRadius: '100%',
-        backgroundSize: '100% 100%',
-        ':before': {
-            color: 'standard.$0',
-            display: 'block',
-            width: '100%',
-            height: '100%',
-            textAlign: 'center',
-        },
-    }),
+    (data) =>
+        css({
+            borderRadius: '100%',
+            backgroundSize: '100% 100%',
+            ':before': {
+                color: 'standard.$0',
+                display: 'block',
+                width: '100%',
+                height: '100%',
+                textAlign: 'center',
+                fontSize: pipe(
+                    getHeight,
+                    ifElse(is(Object), pipe(map(getFontHeight)), getFontHeight)
+                )(data),
+                lineHeight: pipe(
+                    getHeight,
+                    ifElse(is(Object), map(getLineHeight), getLineHeight)
+                )(data),
+            },
+        }),
     ifElse(
         pipe(prop('assetId'), isNil),
         () => null,
@@ -74,14 +94,6 @@ export const AssetLogo = styled(
                         toUpper,
                         wrapWith('"', '"')
                     ),
-                    fontSize: pipe(
-                        getHeight,
-                        multiply(0.43),
-                        Math.round,
-                        String,
-                        flip(concat)('px')
-                    ),
-                    lineHeight: pipe(getHeight, String, flip(concat)('px')),
                 }),
             }),
             applySpec({

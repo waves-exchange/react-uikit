@@ -90,8 +90,21 @@ export const getHeight = pipe(
                 isNil,
                 always(0),
                 pipe(
-                    (height: string) => parseInt(height, 10),
-                    ifElse(isNaN, always(0), identity)
+                    ifElse(
+                        Array.isArray,
+                        (height: string[]) =>
+                            map(
+                                pipe(
+                                    (height: string) => parseInt(height, 10),
+                                    identity
+                                ),
+                                height
+                            ),
+                        pipe(
+                            (height: string) => parseInt(height, 10),
+                            ifElse(isNaN, always(0), identity)
+                        )
+                    )
                 )
             )
         )
