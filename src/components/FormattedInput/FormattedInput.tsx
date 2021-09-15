@@ -10,6 +10,7 @@ type FormattedInputProps = InputProps & {
     decimals: number;
     prefix?: string;
     lengthLimit?: number;
+    maxValue?: number;
 };
 
 interface FormattedInputState {
@@ -110,19 +111,30 @@ export class FormattedInput extends Component<
             formatSeparator,
             prefix,
             lengthLimit,
+            maxValue,
         } = this.props;
 
         const isBackspace = this.isBackspace;
 
         this.isBackspace = false;
 
+        const trimmedValue = event.target.value.trim();
+
         if (
-            event.target.value.trim() ===
+            trimmedValue ===
             parseFormattedValue(
                 this.state.formattedValue,
                 formatSeparator,
                 prefix
             )
+        ) {
+            return;
+        }
+
+        if (
+            maxValue &&
+            Number(parseFormattedValue(trimmedValue, formatSeparator, prefix)) >
+                maxValue
         ) {
             return;
         }

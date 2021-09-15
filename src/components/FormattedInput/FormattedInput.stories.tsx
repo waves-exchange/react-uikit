@@ -39,8 +39,13 @@ stories.add('simple', () => (
                     <Flex flexDirection="column" mb="$5">
                         <Text>separator: ","</Text>
                         <Text>decimals: 2</Text>
+                        <Text>maxValue: 10000</Text>
                     </Flex>
-                    <FormattedInput formatSeparator="," decimals={2} />
+                    <FormattedInput
+                        formatSeparator=","
+                        decimals={2}
+                        maxValue={10000}
+                    />
                 </label>
             </Box>
             <Box mb="$30">
