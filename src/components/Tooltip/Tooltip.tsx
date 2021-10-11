@@ -4,6 +4,7 @@ import React, {
     cloneElement,
     FC,
     isValidElement,
+    MouseEventHandler,
     ReactNode,
     useCallback,
     useState,
@@ -138,11 +139,7 @@ export const Tooltip: FC<TooltipProps> = ({
     }, [anchorEl, useDisabledChildHack]);
 
     return (
-        <div
-            style={{ position: 'relative' }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
+        <div style={{ position: 'relative' }} onClick={handleMouseEnter}>
             {useDisabledChildHack ? (
                 <div
                     style={{
@@ -150,6 +147,8 @@ export const Tooltip: FC<TooltipProps> = ({
                         cursor: 'not-allowed',
                         ...overlayStyles,
                     }}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
                 />
             ) : null}
             {child}
@@ -171,7 +170,12 @@ export const Tooltip: FC<TooltipProps> = ({
                 zIndex={1}
                 {...rest}
             >
-                <div>{typeof label === 'function' ? label() : label}</div>
+                <div
+                    onMouseEnter={interactive ? handleMouseEnter : undefined}
+                    onMouseLeave={interactive ? handleMouseLeave : undefined}
+                >
+                    {typeof label === 'function' ? label() : label}
+                </div>
                 {hasArrow && (
                     <PopperArrow ref={setArrowRef as Ref<HTMLDivElement>} />
                 )}
