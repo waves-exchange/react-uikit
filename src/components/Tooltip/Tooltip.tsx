@@ -4,13 +4,12 @@ import React, {
     cloneElement,
     FC,
     isValidElement,
-    MouseEventHandler,
     ReactNode,
     useCallback,
     useState,
     useEffect,
     useLayoutEffect,
-    Ref,
+    Ref
 } from 'react';
 import { BoxProps } from '../Box/Box';
 import { Popper, PopperArrow } from '../Popper/Popper';
@@ -78,13 +77,17 @@ export const Tooltip: FC<TooltipProps> = ({
         postPositionCb && postPositionCb(arrowRef);
     });
 
+    useEffect(() => {
+        return () => clearTimeout(delayTimeout);
+    }, [delayTimeout]);
+
     const anchorRef = useCallback((node) => {
         if (node !== null) {
             setAnchorEl(node);
         }
     }, []);
 
-    const handleMouseEnter = useCallback<MouseEventHandler>(() => {
+    const handleMouseEnter = useCallback(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (showDelay && delayTimeout) {
@@ -93,7 +96,7 @@ export const Tooltip: FC<TooltipProps> = ({
         setIsOpen(true);
     }, [delayTimeout, isOpenProp, showDelay]);
 
-    const handleMouseLeave = useCallback<MouseEventHandler>(() => {
+    const handleMouseLeave = useCallback(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (showDelay) {
@@ -144,7 +147,9 @@ export const Tooltip: FC<TooltipProps> = ({
                         ...overlayStyles,
                     }}
                     onMouseEnter={handleMouseEnter}
+                    onTouchStart={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
+                    onTouchEnd={handleMouseLeave}
                 />
             ) : null}
             {child}
@@ -168,7 +173,9 @@ export const Tooltip: FC<TooltipProps> = ({
             >
                 <div
                     onMouseEnter={interactive ? handleMouseEnter : undefined}
+                    onTouchStart={interactive ? handleMouseEnter : undefined}
                     onMouseLeave={interactive ? handleMouseLeave : undefined}
+                    onTouchEnd={interactive ? handleMouseLeave : undefined}
                 >
                     {typeof label === 'function' ? label() : label}
                 </div>
