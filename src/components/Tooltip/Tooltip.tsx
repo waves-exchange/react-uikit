@@ -11,7 +11,6 @@ import React, {
     useEffect,
     useLayoutEffect,
     Ref,
-    TouchEventHandler,
 } from 'react';
 import { BoxProps } from '../Box/Box';
 import { Popper, PopperArrow } from '../Popper/Popper';
@@ -89,7 +88,7 @@ export const Tooltip: FC<TooltipProps> = ({
         }
     }, []);
 
-    const handleMouseEnter = useCallback(() => {
+    const handleMouseEnter = useCallback<MouseEventHandler>(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (showDelay && delayTimeout) {
@@ -98,7 +97,7 @@ export const Tooltip: FC<TooltipProps> = ({
         setIsOpen(true);
     }, [delayTimeout, isOpenProp, showDelay]);
 
-    const handleMouseLeave = useCallback(() => {
+    const handleMouseLeave = useCallback<MouseEventHandler>(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (showDelay) {
@@ -140,7 +139,11 @@ export const Tooltip: FC<TooltipProps> = ({
     }, [anchorEl, useDisabledChildHack]);
 
     return (
-        <div style={{ position: 'relative' }}>
+        <div
+            style={{ position: 'relative' }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
             {useDisabledChildHack ? (
                 <div
                     style={{
@@ -148,10 +151,6 @@ export const Tooltip: FC<TooltipProps> = ({
                         cursor: 'not-allowed',
                         ...overlayStyles,
                     }}
-                    onMouseEnter={handleMouseEnter}
-                    onTouchStart={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                    onTouchEnd={handleMouseLeave}
                 />
             ) : null}
             {child}
@@ -173,14 +172,7 @@ export const Tooltip: FC<TooltipProps> = ({
                 zIndex={1}
                 {...rest}
             >
-                <div
-                    onMouseEnter={interactive ? handleMouseEnter : undefined}
-                    onTouchStart={interactive ? handleMouseEnter : undefined}
-                    onMouseLeave={interactive ? handleMouseLeave : undefined}
-                    onTouchEnd={interactive ? handleMouseLeave : undefined}
-                >
-                    {typeof label === 'function' ? label() : label}
-                </div>
+                <div>{typeof label === 'function' ? label() : label}</div>
                 {hasArrow && (
                     <PopperArrow ref={setArrowRef as Ref<HTMLDivElement>} />
                 )}
