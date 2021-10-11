@@ -89,16 +89,7 @@ export const Tooltip: FC<TooltipProps> = ({
         }
     }, []);
 
-    const handleMouseEnter = useCallback<MouseEventHandler>(() => {
-        if (typeof isOpenProp !== 'undefined') return;
-
-        if (showDelay && delayTimeout) {
-            clearTimeout(delayTimeout);
-        }
-        setIsOpen(true);
-    }, [delayTimeout, isOpenProp, showDelay]);
-
-    const handleTouchStart = useCallback<TouchEventHandler>(() => {
+    const handleMouseEnter = useCallback(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (showDelay && delayTimeout) {
@@ -158,7 +149,7 @@ export const Tooltip: FC<TooltipProps> = ({
                         ...overlayStyles,
                     }}
                     onMouseEnter={handleMouseEnter}
-                    onTouchStart={handleTouchStart}
+                    onTouchStart={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 />
             ) : null}
@@ -183,7 +174,7 @@ export const Tooltip: FC<TooltipProps> = ({
             >
                 <div
                     onMouseEnter={interactive ? handleMouseEnter : undefined}
-                    onTouchStart={interactive ? handleTouchStart : undefined}
+                    onTouchStart={interactive ? handleMouseEnter : undefined}
                     onMouseLeave={interactive ? handleMouseLeave : undefined}
                 >
                     {typeof label === 'function' ? label() : label}
