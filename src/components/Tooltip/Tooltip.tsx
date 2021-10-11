@@ -11,6 +11,7 @@ import React, {
     useEffect,
     useLayoutEffect,
     Ref,
+    TouchEventHandler,
 } from 'react';
 import { BoxProps } from '../Box/Box';
 import { Popper, PopperArrow } from '../Popper/Popper';
@@ -78,6 +79,10 @@ export const Tooltip: FC<TooltipProps> = ({
         postPositionCb && postPositionCb(arrowRef);
     });
 
+    useEffect(() => {
+        return () => clearTimeout(delayTimeout);
+    }, [delayTimeout]);
+
     const anchorRef = useCallback((node) => {
         if (node !== null) {
             setAnchorEl(node);
@@ -85,6 +90,15 @@ export const Tooltip: FC<TooltipProps> = ({
     }, []);
 
     const handleMouseEnter = useCallback<MouseEventHandler>(() => {
+        if (typeof isOpenProp !== 'undefined') return;
+
+        if (showDelay && delayTimeout) {
+            clearTimeout(delayTimeout);
+        }
+        setIsOpen(true);
+    }, [delayTimeout, isOpenProp, showDelay]);
+
+    const handleTouchStart = useCallback<TouchEventHandler>(() => {
         if (typeof isOpenProp !== 'undefined') return;
 
         if (showDelay && delayTimeout) {
@@ -144,6 +158,7 @@ export const Tooltip: FC<TooltipProps> = ({
                         ...overlayStyles,
                     }}
                     onMouseEnter={handleMouseEnter}
+                    onTouchStart={handleTouchStart}
                     onMouseLeave={handleMouseLeave}
                 />
             ) : null}
@@ -168,6 +183,7 @@ export const Tooltip: FC<TooltipProps> = ({
             >
                 <div
                     onMouseEnter={interactive ? handleMouseEnter : undefined}
+                    onTouchStart={interactive ? handleTouchStart : undefined}
                     onMouseLeave={interactive ? handleMouseLeave : undefined}
                 >
                     {typeof label === 'function' ? label() : label}
