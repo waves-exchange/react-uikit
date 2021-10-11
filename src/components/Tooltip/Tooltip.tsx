@@ -4,7 +4,6 @@ import React, {
     cloneElement,
     FC,
     isValidElement,
-    MouseEventHandler,
     ReactNode,
     useCallback,
     useState,

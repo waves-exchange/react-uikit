@@ -1,6 +1,6 @@
 {
   "name": "@waves.exchange/react-uikit",
-  "version": "0.7.2",
+  "version": "0.8.1",
   "description": "",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -52,6 +52,7 @@
     "@types/styled-system__css": "^5.0.4",
     "@typescript-eslint/eslint-plugin": "^2.10.0",
     "@typescript-eslint/parser": "^2.10.0",
+    "@waves/ts-lib-crypto": "^1.4.3",
     "babel-loader": "8.0.6",
     "emotion-theming": "^10.0.19",
     "eslint": "6.3.0",
@@ -100,7 +101,6 @@
     "@popperjs/core": "^2.0.0-rc.1",
     "@styled-system/css": "^5.1.4",
     "@types/ramda": "^0.26.36",
-    "@waves/ts-lib-crypto": "^1.4.1",
     "@waves/ts-types": "^0.3.1",
     "identity-img": "^2.0.0",
     "ramda": "^0.26.1"
