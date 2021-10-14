@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import { LightCopy } from './LightCopy';
+import { fireEvent, render } from '@testing-library/react';
 
 describe('LightCopy', () => {
     const buttonText = 'click to copy';
@@ -27,6 +27,12 @@ describe('LightCopy', () => {
                 value: jest.fn(),
             },
         });
+
+        Object.defineProperties(navigator, {
+            clipboard: {
+                value: null,
+            },
+        });
     });
 
     it("executes document.execCommand('copy') and calls callback", () => {
@@ -39,7 +45,6 @@ describe('LightCopy', () => {
         );
 
         fireEvent.click(getByText(buttonText));
-
         expect(document.execCommand).toHaveBeenCalledWith('copy');
         expect(onTextCopy).toHaveBeenCalledWith(textToCopy);
     });
