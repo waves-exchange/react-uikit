@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Copy, iconTestId } from './Copy';
 import '@testing-library/jest-dom/extend-expect'; // TODO выпилить, когда типы начнут приезжать из коробки
 
@@ -31,6 +31,12 @@ describe('Copy', () => {
         Object.defineProperties(document, {
             execCommand: {
                 value: jest.fn(),
+            },
+        });
+
+        Object.defineProperties(navigator, {
+            clipboard: {
+                value: null,
             },
         });
     });
