@@ -27,7 +27,14 @@ stories.add('simple', () => (
             <Box mt="8px" mb="16px">
                 <PlateNote
                     text="The minimum amount of deposit is 0.1 WEST, the maximum amount of deposit is 500,000 WEST."
-                    textProps={{ color: 'standard.$0' }}
+                    textProps={{ color: 'warning.$500' }}
+                />
+            </Box>
+            Type 'primary-info'
+            <Box mt="8px" mb="16px">
+                <PlateNote
+                    type="primary-info"
+                    text="The minimum amount of deposit is 0.1 WEST, the maximum amount of deposit is 500,000 WEST."
                 />
             </Box>
             Type 'warning'
