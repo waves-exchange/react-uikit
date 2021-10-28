@@ -1,15 +1,32 @@
 import { TPlateNoteType } from './PlateNote';
 
-export const getMainColor = (type: TPlateNoteType): string => {
+export const getMainColor = (
+    type: TPlateNoteType
+): { mainColor: string; textColor: string } => {
     switch (type) {
         case 'error': {
-            return 'danger.$300';
+            return {
+                mainColor: 'danger.$300',
+                textColor: 'danger.$300',
+            };
         }
         case 'warning': {
-            return 'warning.$500';
+            return {
+                mainColor: 'warning.$500',
+                textColor: 'warning.$500',
+            };
+        }
+        case 'primary-info': {
+            return {
+                mainColor: 'primary.$300',
+                textColor: 'standard.$0',
+            };
         }
         default: {
-            return 'main.$500';
+            return {
+                mainColor: 'main.$500',
+                textColor: 'main.$500',
+            };
         }
     }
 };

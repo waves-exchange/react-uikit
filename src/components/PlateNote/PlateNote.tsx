@@ -3,7 +3,7 @@ import { getMainColor } from './helpers';
 import { Flex, TFlexProps } from '../Flex/Flex';
 import { Text, TTextProps } from '../Text/Text';
 
-export type TPlateNoteType = 'info' | 'warning' | 'error';
+export type TPlateNoteType = 'info' | 'warning' | 'error' | 'primary-info';
 
 export type TPlateNote = TFlexProps & {
     type?: TPlateNoteType;
@@ -18,7 +18,7 @@ export const PlateNote: React.FC<TPlateNote> = ({
     children,
     ...rest
 }) => {
-    const mainColor = getMainColor(type);
+    const { mainColor, textColor } = getMainColor(type);
 
     return (
         <Flex
@@ -33,7 +33,7 @@ export const PlateNote: React.FC<TPlateNote> = ({
                 <Text
                     fontSize={14}
                     lineHeight="$20"
-                    color={mainColor}
+                    color={textColor}
                     {...textProps}
                 >
                     {text}
