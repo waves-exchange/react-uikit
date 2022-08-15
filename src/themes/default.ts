@@ -1,16 +1,18 @@
 import {
-    colors,
+    borderWidths,
+    breakpoints,
+    darkThemeColors,
     fontSizes,
     fontWeights,
-    space,
-    sizes,
     lineHeights,
     radii,
+    shadows,
+    sizes,
+    space,
     transitions,
 } from './constants';
 
-export const defaultTheme = {
-    colors,
+const common = {
     fontSizes,
     fontWeights,
     lineHeights,
@@ -18,9 +20,19 @@ export const defaultTheme = {
     sizes,
     radii,
     transitions,
-    borderWidths: [0, 1],
-    breakpoints: ['576px', '768px', '992px', '1200px'],
-    shadows: {
-        default: '0 0 4px rgba(0, 0, 0, 0.125)',
-    },
+    borderWidths,
+    breakpoints,
+    shadows,
 };
+
+export const darkTheme = {
+    colors: { ...darkThemeColors },
+    ...common,
+};
+
+export const lightTheme = {
+    colors: { ...darkThemeColors },
+    ...common,
+};
+
+export const defaultTheme = { ...darkTheme };

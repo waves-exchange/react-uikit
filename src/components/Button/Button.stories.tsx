@@ -9,7 +9,7 @@ const stories = storiesOf('Button', module);
 
 stories.add('simple', () => (
     <ThemeProvider theme={defaultTheme}>
-        <Flex flexDirection="row" p={16} bg="main.$800">
+        <Flex flexDirection="row" p={16} bg="main.$700">
             <Flex flexDirection="column" mr={16}>
                 <h3>Large</h3>
                 <Button mb={16} variant="primary" variantSize="large">
