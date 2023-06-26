@@ -7,6 +7,7 @@ import { Icon } from '../Icon/Icon';
 import { Tooltip } from '../Tooltip/Tooltip';
 
 type HelpProps = {
+    children: React.ReactNode;
     direction?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
     align?: 'left' | 'center' | 'right' | 'auto';
     maxWidth?: string;
